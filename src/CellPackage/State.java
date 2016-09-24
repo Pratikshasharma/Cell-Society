@@ -1,28 +1,38 @@
 package CellPackage;
-import java.awt.Color;
+import javafx.scene.paint.Paint;
 
 public class State {
-private String stateName;
-private Color stateColor;
+	private String stateName;
+	private int stateID;
+	private Paint stateColor;
 
-public State(String myStateName, Color myColor){
-	this.stateName = myStateName;
-	this.stateColor = myColor;
-}
+	public State(String myStateName, Paint myColor, int stateID){
+		this.stateName = myStateName;
+		this.stateColor = myColor;
+		this.stateID = stateID;
+	}
 
-public String getStateName() {
-	return stateName;
-}
+	public String getStateName() {
+		return stateName;
+	}
 
-public void setStateName(String stateName) {
-	this.stateName = stateName;
-}
+	public void setStateName(String stateName) {
+		this.stateName = stateName;
+	}
 
-public Color getStateColor() {
-	return stateColor;
-}
+	public Paint getStateColor() {
+		return stateColor;
+	}
 
-public void setStateColor(Color stateColor) {
-	this.stateColor = stateColor;
-}
+	public void setStateColor(Paint stateColor) {
+		this.stateColor = stateColor;
+	}
+	
+	public int getStateID(){
+		return stateID;
+	}
+	
+	public void setStateID(int stateID){
+		this.stateID = stateID;
+	}
 }
