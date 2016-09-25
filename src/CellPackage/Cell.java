@@ -6,7 +6,7 @@ import javafx.scene.shape.Shape;
 public class Cell {
 	private Shape myCellShape;
 	private State cellCurrentState; 
-	//private State cellNextState;
+	private State cellNextState;
 
 	public Cell(Shape myShape, State myState){
 		this.myCellShape = myShape;
@@ -27,5 +27,13 @@ public class Cell {
 
 	public void setCellCurrentState(State cellCurrentState) {
 		this.cellCurrentState = cellCurrentState;
+	}
+	
+	public State getNextState(){
+		return cellNextState;
+	}
+	
+	public void setNextState(State cellNextState){
+		this.cellNextState = cellNextState;
 	}
 }
