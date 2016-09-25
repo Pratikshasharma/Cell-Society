@@ -49,4 +49,44 @@ public class SegregationModel extends SimModel {
 		return myEmptyState;
 	}
 
+	@Override
+	public double getMyProbCatch() {
+		return 0;
+	}
+
+	@Override
+	public GenState getMyTree() {
+		return null;
+	}
+
+	@Override
+	public GenState getMyBurning() {
+		return null;
+	}
+
+	@Override
+	public int getMyFishTurnsToBreed() {
+		return 0;
+	}
+
+	@Override
+	public int getMySharkTurnsToBreed() {
+		return 0;
+	}
+
+	@Override
+	public int getMySharkTurnsToStarve() {
+		return 0;
+	}
+
+	@Override
+	public GenState getMyFish() {
+		return null;
+	}
+
+	@Override
+	public GenState getMyShark() {
+		return null;
+	}
+
 }

@@ -5,17 +5,21 @@ package xml.model;
  * 
  * @author Ryan Anders
  */
-public class SimModel {
+public abstract class SimModel {
     private String mySimName;
     private String mySimAuthor;
-    private String mySimWidth;
-    private String mySimHeight;
+    private int mySimWidth;
+    private int mySimHeight;
 
+    public SimModel (){
+    	
+    }
+    
     public SimModel (String simName, String simAuthor, String simWidth, String simHeight) {
         mySimName = simName;
         mySimAuthor = simAuthor;
-        mySimWidth = simWidth;
-        mySimHeight = simHeight;
+        mySimWidth = Integer.parseInt(simWidth);
+        mySimHeight = Integer.parseInt(simHeight);
     }
 
 	/**
@@ -35,14 +39,42 @@ public class SimModel {
 	/**
 	 * @return mySimWidth
 	 */
-	public String getMySimWidth() {
+	public int getMySimWidth() {
 		return mySimWidth;
 	}
 
 	/**
 	 * @return mySimHeight
 	 */
-	public String getMySimHeight() {
+	public int getMySimHeight() {
 		return mySimHeight;
 	}
+	
+	//fire
+	public abstract double getMyProbCatch();
+	
+	public abstract GenState getMyTree();
+	
+	public abstract GenState getMyBurning();
+	
+	public abstract GenState getMyEmptyState();
+
+	//predprey
+	public abstract int getMyFishTurnsToBreed();
+	
+	public abstract int getMySharkTurnsToBreed();
+
+	public abstract int getMySharkTurnsToStarve();
+	
+	public abstract GenState getMyFish();
+
+	public abstract GenState getMyShark();
+	
+	//Segregation
+	public abstract double getMySatisfaction();
+	
+	public abstract GenState getMyRace1();
+	
+	public abstract GenState getMyRace2();
+
 }

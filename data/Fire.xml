@@ -7,21 +7,19 @@
     <simheight>50</simheight>
   </genparam>
   <probcatch>0.15</probcatch>
-  <states>
-    <tree>
-      <statename>tree</statename>
-      <statecolor>green</statecolor>
-      <percentage>0.5</percentage>
-      <stateID>0</stateID></tree>
-    <burning>
-      <statename>burning</statename>
-      <statecolor>brown</statecolor>
-      <percentage>0.01</percentage>
-      <stateID>1</stateID></burning>
-    <empty>
-      <statename>empty</statename>
-      <statecolor>white</statecolor>
-      <percentage>0.49</percentage>
-      <stateID>2</stateID></empty>
-  </states>
+  <state id="0">
+    <statename>tree</statename>
+    <statecolor>GREEN</statecolor>
+    <percentage>0.5</percentage>
+  </state>
+  <state id="1">
+    <statename>burning</statename>
+    <statecolor>BROWN</statecolor>
+    <percentage>0.01</percentage>
+  </state>
+  <state id="2">
+    <statename>empty</statename>
+    <statecolor>WHITE</statecolor>
+    <percentage>0.49</percentage>
+  </state>
 </root>

@@ -21,7 +21,10 @@ public class FireModel extends SimModel {
 		myEmptyState = emptyState;
 	}
 
-	 /**
+	 public FireModel() {
+	}
+
+	/**
 	  * @return myProbCatch
 	  */
 	public double getMyProbCatch() {
@@ -47,5 +50,45 @@ public class FireModel extends SimModel {
 	 */
 	public GenState getMyEmptyState() {
 		return myEmptyState;
+	}
+
+	@Override
+	public int getMyFishTurnsToBreed() {
+		return 0;
+	}
+
+	@Override
+	public int getMySharkTurnsToBreed() {
+		return 0;
+	}
+
+	@Override
+	public int getMySharkTurnsToStarve() {
+		return 0;
+	}
+
+	@Override
+	public GenState getMyFish() {
+		return null;
+	}
+
+	@Override
+	public GenState getMyShark() {
+		return null;
+	}
+
+	@Override
+	public double getMySatisfaction() {
+		return 0;
+	}
+
+	@Override
+	public GenState getMyRace1() {
+		return null;
+	}
+
+	@Override
+	public GenState getMyRace2() {
+		return null;
 	}
 }

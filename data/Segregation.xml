@@ -7,21 +7,19 @@
     <simheight>50</simheight>
   </genparam>
   <satisfaction>0.5</satisfaction>
-  <states>
-    <race1>
-      <statename>race1</statename>
-      <statecolor>blue</statecolor>
-      <percentage>0.2</percentage>
-      <stateID>0</stateID></race1>
-    <race2>
-      <statename>race2</statename>
-      <statecolor>red</statecolor>
-      <percentage>0.5</percentage>
-      <stateID>1</stateID></race2>
-    <empty>
-      <statename>empty</statename>
-      <statecolor>white</statecolor>
-      <percentage>0.3</percentage>
-      <stateID>2</stateID></empty>
-  </states>
+  <state id="0">
+    <statename>race1</statename>
+    <statecolor>BLUE</statecolor>
+    <percentage>0.2</percentage>
+  </state>
+  <state id="1">
+    <statename>race2</statename>
+    <statecolor>RED</statecolor>
+    <percentage>0.5</percentage>
+  </state>
+  <state id="2">
+    <statename>empty</statename>
+    <statecolor>WHITE</statecolor>
+    <percentage>0.3</percentage>
+  </state>
 </root>

@@ -8,31 +8,32 @@ import java.util.Objects;
 
 
 /**
- * An XMLFactory that gives back a Person object.
+ * An XMLFactory that gives back a Simulation object.
  *
  * @author Rhondu Smithwick
  * @author Robert Duvall
+ * @author Ryan Anders
  */
 public abstract class SimXMLFactory extends XMLFactory {
     private String mySimType;
 
 
     /**
-     * Create a factory for making Person objects.  
+     * Create a factory for making Simulation objects.  
      */
     protected SimXMLFactory (String simType) {
         mySimType = simType;
     }
 
     /**
-     * @return the type of person this file represents
+     * @return the type of Simulation this file represents
      */
     public String getSimType () {
         return mySimType;
     }
 
     /**
-     * Get the actual person contained in this XML File.
+     * Get the actual Simulation contained in this XML File.
      */
     public abstract SimModel getSim (Element root) throws XMLFactoryException;
     //public abstract SimModel getSim (Node root) throws XMLFactoryException;

@@ -8,12 +8,12 @@
   </genparam>
   <state id="0">
     <statename>full</statename>
-    <statecolor>black</statecolor>
+    <statecolor>BLACK</statecolor>
     <percentage>0.5</percentage>
   </state>
   <state id="1">
     <statename>empty</statename>
-    <statecolor>white</statecolor>
+    <statecolor>WHITE</statecolor>
     <percentage>0.5</percentage>
   </state>
 </root>

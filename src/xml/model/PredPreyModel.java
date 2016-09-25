@@ -67,4 +67,36 @@ public class PredPreyModel extends SimModel {
 	public GenState getMyEmptyState() {
 		return myEmptyState;
 	}
+
+	@Override
+	public double getMyProbCatch() {
+		return 0;
+	}
+
+	@Override
+	public GenState getMyTree() {
+		return null;
+	}
+
+	@Override
+	public GenState getMyBurning() {
+		return null;
+	}
+
+	@Override
+	public double getMySatisfaction() {
+		return 0;
+	}
+
+	@Override
+	public GenState getMyRace1() {
+		return null;
+	}
+
+	@Override
+	public GenState getMyRace2() {
+		return null;
+	}
+
+
 }

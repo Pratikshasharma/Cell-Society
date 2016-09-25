@@ -1,50 +1,44 @@
 package xml;
 
 import java.io.File;
-import xml.model.SimModel;
+import org.w3c.dom.Element;
+import xml.model.*;
 import xml.XMLParser;
-import xml.factory.SimXMLFactory;
-import xml.factory.GameOfLifeXMLFactory;
-import xml.factory.XMLFactoryException;
-
+import xml.factory.*;
 
 /**
  * @author Rhondu Smithwick
  * @author Robert Duvall
+ * @author Ryan Anders
  */
 public class MainXML {
-    private static final String XML_FILES_LOCATION = "data/GameOfLife.xml";
-    private static final String XML_SUFFIX = ".xml";
+private FireModel fireModel;
+private GameOfLifeModel gameOfLifeModel;
 
-
-    public SimModel xmlRead () {
+    public SimModel xmlRead (File file) {
         XMLParser parser = new XMLParser();
-        SimXMLFactory factory = new GameOfLifeXMLFactory();
-        File folder = new File(XML_FILES_LOCATION);
-        SimModel p = null;
-        if (folder.isFile()) {
+//        SimModel p = myModelManager();
+        if (file.isFile()) {
         	try {
-        		
-        		p = factory.getSim(parser.getRootElement(folder.getAbsolutePath()));
+        		Element root = parser.getRootElement(file.getAbsolutePath());
+        		if (root.getAttribute("SimType").equals("gameoflife")) {
+        			SimXMLFactory factory = new GameOfLifeXMLFactory();
+        			SimModel p = (GameOfLifeModel) factory.getSim(root);
+        			return p;
+        		}
+        		else if (root.getAttribute("SimType").equals("fire")) {
+        			SimXMLFactory factory = new FireXMLFactory();
+        			SimModel p = (FireModel) factory.getSim(root);
+        			return p;
+        		}
         	}
         	catch (XMLFactoryException e) {
-        		System.err.println("Reading file " + folder.getPath());
+        		System.err.println("Reading file " + file.getPath());
         		e.printStackTrace();
         	}
         }
-        System.out.println(p.getMySimAuthor());
-        return p;
-//        for (File f : folder.listFiles()) {
-//            if (f.isFile() && f.getName().endsWith(XML_SUFFIX)) {
-//                try {
-//                    SimModel p = factory.getPerson(parser.getRootElement(f.getAbsolutePath()));
-//                    System.out.println(p);
-//                }
-//                catch (XMLFactoryException e) {
-//                    System.err.println("Reading file " + f.getPath());
-//                    e.printStackTrace();
-//                }
-//            }
-//        }
+        
+		return null;	
     }
+    
 }
