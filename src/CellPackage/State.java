@@ -1,11 +1,11 @@
 package CellPackage;
-import java.awt.Color;
+import javafx.scene.paint.Paint;
 
 public class State {
 private String stateName;
-private Color stateColor;
+private Paint stateColor;
 
-public State(String myStateName, Color myColor){
+public State(String myStateName, Paint myColor){
 	this.stateName = myStateName;
 	this.stateColor = myColor;
 }
@@ -18,11 +18,11 @@ public void setStateName(String stateName) {
 	this.stateName = stateName;
 }
 
-public Color getStateColor() {
+public Paint getStateColor() {
 	return stateColor;
 }
 
-public void setStateColor(Color stateColor) {
+public void setStateColor(Paint stateColor) {
 	this.stateColor = stateColor;
 }
 }
