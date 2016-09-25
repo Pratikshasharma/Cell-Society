@@ -12,23 +12,29 @@ import xml.factory.*;
  * @author Ryan Anders
  */
 public class MainXML {
-private FireModel fireModel;
-private GameOfLifeModel gameOfLifeModel;
 
     public SimModel xmlRead (File file) {
         XMLParser parser = new XMLParser();
-//        SimModel p = myModelManager();
+        
         if (file.isFile()) {
         	try {
         		Element root = parser.getRootElement(file.getAbsolutePath());
-        		if (root.getAttribute("SimType").equals("gameoflife")) {
+        		String simType = root.getAttribute("SimType");
+        		if (simType.equals("gameoflife")) {
         			SimXMLFactory factory = new GameOfLifeXMLFactory();
         			SimModel p = (GameOfLifeModel) factory.getSim(root);
         			return p;
-        		}
-        		else if (root.getAttribute("SimType").equals("fire")) {
+        		} else if (simType.equals("fire")) {
         			SimXMLFactory factory = new FireXMLFactory();
         			SimModel p = (FireModel) factory.getSim(root);
+        			return p;
+        		} else if (simType.equals("segregation")) {
+        			SimXMLFactory factory = new SegregationXMLFactory();
+        			SimModel p = (SegregationModel) factory.getSim(root);
+        			return p;
+        		} else if (simType.equals("predprey")) {
+        			SimXMLFactory factory = new PredPreyXMLFactory();
+        			SimModel p = (PredPreyModel) factory.getSim(root);
         			return p;
         		}
         	}
