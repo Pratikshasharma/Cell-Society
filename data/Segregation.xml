@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<root SimType="segregation">
+  <genparam>
+    <simname>Segregation</simname>
+    <simauthor>Frank McCown</simauthor>
+    <simwidth>50</simwidth>
+    <simheight>50</simheight>
+  </genparam>
+  <satisfaction>0.5</satisfaction>
+  <state id="0">
+    <statename>race1</statename>
+    <statecolor>BLUE</statecolor>
+    <percentage>0.2</percentage>
+  </state>
+  <state id="1">
+    <statename>race2</statename>
+    <statecolor>RED</statecolor>
+    <percentage>0.5</percentage>
+  </state>
+  <state id="2">
+    <statename>empty</statename>
+    <statecolor>WHITE</statecolor>
+    <percentage>0.3</percentage>
+  </state>
+</root>

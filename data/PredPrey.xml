@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<root SimType="predprey">
+  <genparam>
+    <simname>Predator-Prey</simname>
+    <simauthor>Mike Scott</simauthor>
+    <simwidth>50</simwidth>
+    <simheight>50</simheight>
+  </genparam>
+  <fishturnstobreed>5</fishturnstobreed>
+  <sharkturnstobreed>10</sharkturnstobreed>
+  <sharkturnstostarve>13</sharkturnstostarve>
+  <state id="0">
+    <statename>fish</statename>
+    <statecolor>GREEN</statecolor>
+    <percentage>0.5</percentage>
+  </state>
+  <state id="1">
+    <statename>shark</statename>
+    <statecolor>YELLOW</statecolor>
+    <percentage>0.1</percentage>
+  </state>
+  <state id="2">
+    <statename>empty</statename>
+    <statecolor>WHITE</statecolor>
+    <percentage>0.5</percentage>
+  </state>
+</root>
