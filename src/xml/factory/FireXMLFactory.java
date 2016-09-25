@@ -1,6 +1,5 @@
 package xml.factory;
 
-import xml.model.SimModel;
 import xml.model.FireModel;
 import xml.model.GenState;
 import org.w3c.dom.Element;
@@ -9,7 +8,7 @@ import org.w3c.dom.NodeList;
 
 
 /**
- * Creates Game of Life object from an XML file.
+ * Creates Fire object from an XML file.
  *
  * @author Rhondu Smithwick
  * @author Robert Duvall
@@ -30,7 +29,7 @@ public class FireXMLFactory extends SimXMLFactory {
      * @see PersonXMLFactory#getPerson()
      */
     @Override
-    public SimModel getSim (Element root) throws XMLFactoryException {  
+    public FireModel getSim (Element root) throws XMLFactoryException {  
     	if (! isValidFile(root)) {
             throw new XMLFactoryException("XML file does not represent a %s", getSimType());
         }
