@@ -1,8 +1,4 @@
 package Simulations;
-
-import java.util.ArrayList;
-import java.util.List;
-
 import javafx.scene.paint.Paint;
 import CellPackage.Cell;
 import CellPackage.State;
@@ -22,7 +18,7 @@ public class SpreadingOfFire {
 	}
 	
 	private boolean checkOnGrid(int row, int column){
-		return row>=0 && row<myGrid.length && column >= 0 && column < myGrid.length;
+		return row>=0 && row<myGrid.length && column >= 0 && column < myGrid[row].length;
 	}
 
 	private void checkSpreadFire( int row, int column){
@@ -50,12 +46,18 @@ public class SpreadingOfFire {
 		return Math.random()<=probCatch;
 	}
 
-	public void spreadFire(int row, int column){
-		checkSpreadFire(row, column);
+	private void spreadFire(){
+		for(int i = 0; i<6;i++){
+			for (int j = 0; j<6; j++){
+				if (checkIfFire(i,j)){
+					checkSpreadFire( i, j);
+				}
+			}
+		}
 	}
 
 
-	public void checkBurningCells(){
+	private void checkBurningCells(){
 		for(int i = 0; i<myGrid.length;i++){
 			for(int j = 0; j<myGrid[i].length;j++){
 				if (myGrid[i][j].getCellCurrentState().getStateID() == 2){
@@ -66,11 +68,11 @@ public class SpreadingOfFire {
 		}
 	}
 
-	public boolean checkIfFire(int row, int column){
+	private boolean checkIfFire(int row, int column){
 		return myGrid[row][column].getCellCurrentState().getStateID() == 2;
-	}
+	} 
 
-	public void updateCells(){
+	private void updateCells(){
 		for (int row = 0; row<myGrid.length; row++){
 			for(int column = 0; column<myGrid[row].length; column++){
 				if(myGrid[row][column].getNextState() != null){
@@ -81,11 +83,17 @@ public class SpreadingOfFire {
 			}
 		}
 	}
+	
+	public void updateSimulation(){
+		checkBurningCells();
+		spreadFire();
+		updateCells();
+	}
 
 	public void printGrid(){
 		for (int i = 0; i < myGrid.length;i++){
 			System.out.println();
-			for(int j = 0 ; j<myGrid.length; j++){
+			for(int j = 0 ; j<myGrid[i].length; j++){
 				System.out.print(myGrid[i][j].getCellCurrentState().getStateID());
 			}
 		}
