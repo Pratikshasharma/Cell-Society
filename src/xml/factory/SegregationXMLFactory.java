@@ -1,6 +1,6 @@
 package xml.factory;
 
-import xml.model.GameOfLifeModel;
+import xml.model.SegregationModel;
 import xml.model.GenState;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -8,20 +8,20 @@ import org.w3c.dom.NodeList;
 
 
 /**
- * Creates Game of Life object from an XML file.
+ * Creates Segregation object from an XML file.
  *
  * @author Rhondu Smithwick
  * @author Robert Duvall
  * @author Ryan Anders
  */
-public class GameOfLifeXMLFactory extends SimXMLFactory {
-    private static final String XML_TAG_NAME = "gameoflife";
+public class SegregationXMLFactory extends SimXMLFactory {
+    private static final String XML_TAG_NAME = "segregation";
 
 
     /**
      * Create factory capable of generating Professor objects.
      */
-    public GameOfLifeXMLFactory () {
+    public SegregationXMLFactory () {
         super(XML_TAG_NAME);
     }
 
@@ -29,7 +29,7 @@ public class GameOfLifeXMLFactory extends SimXMLFactory {
      * @see PersonXMLFactory#getPerson()
      */
     @Override
-    public GameOfLifeModel getSim (Element root) throws XMLFactoryException {  
+    public SegregationModel getSim (Element root) throws XMLFactoryException {  
     	if (! isValidFile(root)) {
             throw new XMLFactoryException("XML file does not represent a %s", getSimType());
         }
@@ -50,6 +50,8 @@ public class GameOfLifeXMLFactory extends SimXMLFactory {
     		simHeight = getTextValue(genpElement, "simheight");
     	}
     	
+    	//get satisfaction
+    	String satisfaction = getTextValue(root, "satisfaction");
     	
     	//create GenState objects
     	NodeList nList = root.getElementsByTagName("state");
@@ -64,6 +66,6 @@ public class GameOfLifeXMLFactory extends SimXMLFactory {
     		}
     	}    
         
-        return new GameOfLifeModel(simName, simAuthor, simWidth, simHeight, states[0], states[1]);
+        return new SegregationModel(simName, simAuthor, simWidth, simHeight, satisfaction, states[0], states[1], states[2]);
     }
 }
