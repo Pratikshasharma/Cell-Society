@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<root SimType="gameoflife">
+  <genparam>
+    <simname>Game Of Life</simname>
+    <simauthor>John Horton Conway</simauthor>
+    <simwidth>50</simwidth>
+    <simheight>50</simheight>
+  </genparam>
+  <state id="0">
+    <statename>full</statename>
+    <statecolor>BLACK</statecolor>
+    <percentage>0.5</percentage>
+  </state>
+  <state id="1">
+    <statename>empty</statename>
+    <statecolor>WHITE</statecolor>
+    <percentage>0.5</percentage>
+  </state>
+</root>
