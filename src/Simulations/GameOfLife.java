@@ -23,7 +23,7 @@ public class GameOfLife {
 	
 	public void updateState(int row, int column, int id){
 		State tempState = new State("DEAD", Paint.valueOf("WHITE"), id);
-		myGrid[row][column].setCellCurrentState(tempState);
+		myGrid[row][column].setNextState(tempState);
 	}
 	
 	public boolean onGrid(int row, int column){
@@ -63,11 +63,25 @@ public class GameOfLife {
 		for (int i = 0; i< myGrid.length; i++){
 			for (int j = 0; j < myGrid[i].length; j++){
 				int numAlive = countAlive(i, j);
+				//System.out.println("number of alive " + numAlive + " at row " + i + " and column " + j);
 				if (checkAlive(i, j) && (numAlive<2 || numAlive>3)){
 					updateState(i,j, 0);
 					
 				}else if(checkAlive(i,j) || (checkDead(i, j) && numAlive ==3)){
 					updateState(i, j, 1);
+				}
+			}
+		}
+		updateCells();
+	}
+	
+	private void updateCells(){
+		for (int row = 0; row<myGrid.length; row++){
+			for(int column = 0; column<myGrid[row].length; column++){
+				if(myGrid[row][column].getNextState() != null){
+					myGrid[row][column].setCellCurrentState(myGrid[row][column].getNextState());
+					myGrid[row][column].setNextState(null);
+					//Give GUI row & column
 				}
 			}
 		}
