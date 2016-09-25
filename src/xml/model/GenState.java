@@ -9,11 +9,13 @@ public class GenState {
 	private String myName;
 	private String myColor;
 	private double myPercentage;
+	private int myStateID;
 	
-	public GenState (String name, String color, String perc) {
+	public GenState (String name, String color, String perc, String stateID) {
 		myName = name;
 		myColor = color;
 		myPercentage = Double.parseDouble(perc);
+		myStateID = Integer.parseInt(stateID);
 	}
 
 	/**
@@ -35,5 +37,12 @@ public class GenState {
 	 */
 	public double getMyPercentage() {
 		return myPercentage;
+	}
+	
+	/**
+	 * @return myStateID
+	 */
+	public int getMyStateID() {
+		return myStateID;
 	}
 }
