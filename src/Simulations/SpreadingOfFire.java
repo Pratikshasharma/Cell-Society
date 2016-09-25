@@ -16,10 +16,7 @@ public class SpreadingOfFire {
 	}
 	
 	private boolean checkCell(int row, int column){
-		if (myGrid[row][column].getCellCurrentState().getStateName().equals("TREE")){
-			return true;
-		}
-		return false;
+		return myGrid[row][column].getCellCurrentState().getStateName().equals("TREE");
 	}
 	
 	private List checkSpreadFire( int row, int column){
@@ -74,4 +71,17 @@ public class SpreadingOfFire {
 			}
 		}
 	}
+	
+	public void updateCells(){
+		for (int row = 0; row<myGrid.length; row++){
+			for(int column = 0; column<myGrid[row].length; row++){
+				if(myGrid[row][column].getNextState() != null){
+					myGrid[row][column].setCellCurrentState(myGrid[row][column].getNextState());
+					myGrid[row][column].setNextState(null);
+					//Give GUI row & column
+				}
+			}
+		}
+	}
+	
 }
