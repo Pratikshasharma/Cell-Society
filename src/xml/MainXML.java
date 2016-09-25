@@ -17,20 +17,23 @@ public class MainXML {
     private static final String XML_SUFFIX = ".xml";
 
 
-    public void xmlRead () {
+    public SimModel xmlRead () {
         XMLParser parser = new XMLParser();
         SimXMLFactory factory = new GameOfLifeXMLFactory();
         File folder = new File(XML_FILES_LOCATION);
+        SimModel p = null;
         if (folder.isFile()) {
         	try {
-        		SimModel p = factory.getSim(parser.getRootElement(folder.getAbsolutePath()));
-        		System.out.println(p);
+        		
+        		p = factory.getSim(parser.getRootElement(folder.getAbsolutePath()));
         	}
         	catch (XMLFactoryException e) {
         		System.err.println("Reading file " + folder.getPath());
         		e.printStackTrace();
         	}
         }
+        System.out.println(p.getMySimAuthor());
+        return p;
 //        for (File f : folder.listFiles()) {
 //            if (f.isFile() && f.getName().endsWith(XML_SUFFIX)) {
 //                try {
