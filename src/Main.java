@@ -1,6 +1,8 @@
 
+
 import GUIPackage.GUIController;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
@@ -15,8 +17,7 @@ public class Main extends Application{
 	}
 
 	@Override
-	public void start(Stage myStage) {
-
+	public void start(Stage myStage) throws Exception{
 		myStage.setTitle(myGUIController.getTitle());
 		Scene scene = myGUIController.init();
 		myStage.setScene(scene);
@@ -30,6 +31,9 @@ public class Main extends Application{
 		launch(args);
 	}
 
-
-
+	public static void exitGame(){
+		Platform.exit();
+		System.exit(0);
+	}
+	
 }
