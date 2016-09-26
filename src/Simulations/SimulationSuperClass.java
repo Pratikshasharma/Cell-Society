@@ -4,7 +4,6 @@ import CellPackage.Cell;
 
 
 public abstract class SimulationSuperClass {
-	protected Cell[][] myGrid;
 
 	//protected genState myGenState; -- This holds the State and the percentages
 //	public SimulationSuperClass(Cell[][] myGrid){
@@ -18,6 +17,8 @@ public abstract class SimulationSuperClass {
 //	 * Abstract Class for Calling Simulation
 //	 */
 //
+	public abstract Cell[][] getGrid();
+	
 	public abstract  void updateSimulation();
 	
 	public abstract void printGrid();

@@ -246,5 +246,10 @@ public class PredPrey extends SimulationSuperClass{
 			}
 		}
 	}
+	@Override
+	public Cell[][] getGrid() {
+		// TODO Auto-generated method stub
+		return myGrid;
+	}
 	
 }
