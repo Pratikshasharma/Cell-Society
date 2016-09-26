@@ -9,14 +9,15 @@ import javafx.scene.text.FontWeight;
 
 
 public class ButtonCreater {
-	//public final String DEFAULT_RESOURCE_PACKAGE = "resources/Button.properties";
+	//public final String DEFAULT_RESOURCE_PACKAGE = "resources/Button";
 	//private ResourceBundle myResources;  
 	private Button myButton;
 
 	public ButtonCreater(String property, EventHandler<ActionEvent> handler) {
-	//	myResources= ResourceBundle.getBundle(DEFAULT_RESOURCE_PACKAGE);
-	//	String label = myResources.getString(property);
+		//myResources= ResourceBundle.getBundle(DEFAULT_RESOURCE_PACKAGE);
+		//String label = myResources.getString(property);
 		
+		//System.out.println(" Command "+ label);
 		this.myButton = new Button(property);
 		if (handler != null){ myButton.setOnAction(handler);};
 		//myButton.setText(label);
