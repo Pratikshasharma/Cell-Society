@@ -50,6 +50,10 @@ public abstract class SimModel {
 		return mySimHeight;
 	}
 	
+	//gameoflife
+	
+	public abstract GenState getMyFullState();
+	
 	//fire
 	public abstract double getMyProbCatch();
 	

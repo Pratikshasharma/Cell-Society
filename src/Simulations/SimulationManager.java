@@ -13,7 +13,7 @@ import javafx.scene.shape.Rectangle;
 public class SimulationManager {
 	private Segregation mySegregationSimulation;
 	private SpreadingOfFire mySpreadingFire;
-	private Cell[][] myCells;
+	private Cell[][] myGrid;
 
 	private int numCellsWidth;
 	private int numCellsHeight;
@@ -21,12 +21,14 @@ public class SimulationManager {
 
 	public final String SPREADING_FIRE = "Spreading of Fire";
 	public final String SEGREGATION = "Segregation";
+	public final String PREDPREY = "Predator-Prey";
+	public final String GAMEOFLIFE = "Game of Life";
 	private SimModel mySimModel;
 
 
 	/**
 	 * Constructor
-	 * @param myCells
+	 * @param myGrid
 	 */
 	public SimulationManager( SimModel mySimModel){
 		this.mySimModel = mySimModel;
@@ -36,10 +38,15 @@ public class SimulationManager {
 
 
 	public SimulationSuperClass getSimulationType(String mySimulationName){
-		if( (SPREADING_FIRE.equals(mySimulationName)));
-		{
+		if (SPREADING_FIRE.equals(mySimulationName)){
+			//return fire constructor
 		}
 		if (SEGREGATION.equals(mySimulationName)){
+		}
+		if (PREDPREY.equals(mySimulationName)){	
+		}
+		if (GAMEOFLIFE.equals(mySimulationName)){
+			
 		}
 		return null;
 	}
@@ -50,18 +57,17 @@ public class SimulationManager {
 	}
 
 	public Cell[][] getMyCell(){
-		return this.myCells;
+		return this.myGrid;
 	}
 
-	public  void initializeMyCells(String mySimulationName){
+	public void initializeMyCells(String mySimulationName){
 		if( (SPREADING_FIRE.equals(mySimulationName)));
 		{
-			this.myCells = initializeCells(mySimModel.getMyBurning(),mySimModel.getMyEmptyState(),mySimModel.getMyTree());
 			//State myState1 = getCellState(mySimModel.getMyBurning());
 			//State myState2 = getCellState(mySimModel.getMyEmptyState());
 			//State myState3 = getCellState(mySimModel.getMyTree());
 			// First Initialize Cells Before Calling in Constructor
-			//mySpreadingFire = new SpreadingOfFire(myCells,mySimModel.getMyProbCatch());
+			this.myGrid = initializeCells(mySimModel.getMyTree(),mySimModel.getMyBurning(),mySimModel.getMyEmptyState());
 		}
 
 		if (SEGREGATION.equals(mySimulationName)){
@@ -69,19 +75,32 @@ public class SimulationManager {
 			//State myState2 = getCellState(mySimModel.getMyEmptyState());
 			//State myState3 = getCellState(mySimModel.getMyTree());
 			// First Initialize Cells Before Calling in Constructor
-			this.myCells = initializeCells(mySimModel.getMyBurning(),mySimModel.getMyTree(),mySimModel.getMyEmptyState());
+			this.myGrid = initializeCells(mySimModel.getMyRace1(),mySimModel.getMyRace2(),mySimModel.getMyEmptyState());
+		}
+		
+		if (PREDPREY.equals(mySimulationName)) {
+			//State myState1 = getCellState(mySimModel.getMyFish());
+			//State myState3 = getCellState(mySimModel.getMyShark());
+			//State myState2 = getCellState(mySimModel.getMyEmpty());
+			this.myGrid = initializeCells(mySimModel.getMyFish(),mySimModel.getMyShark(),mySimModel.getMyEmptyState());
+		}
+		
+		if(GAMEOFLIFE.equals(mySimulationName)) {
+			//State myState1 = getCellState(mySimModel.getMyFullState());
+			//State myState3 = getCellState(mySimModel.getMyEmptyState());
+			this.myGrid = initializeCells(mySimModel.getMyFullState(),null,mySimModel.getMyEmptyState());
 		}
 
 	}
 
 	public Cell[][] initializeCells(GenState myGenState1, GenState myGenState2, GenState myGenState3){
-		this.myCells = new Cell[numCellsWidth][numCellsHeight];
+		this.myGrid = new Cell[numCellsWidth][numCellsHeight];
 		if(myGenState1!=null){addGenState(myGenState1);}
 		if(myGenState2!=null){addGenState(myGenState2);}
 		if(myGenState3!=null){addEmptyCells(myGenState3);}
 
 		// Print all the cells	
-		return this.myCells;
+		return this.myGrid;
 	}
 
 	private void addGenState(GenState myGenState){
@@ -91,8 +110,8 @@ public class SimulationManager {
 			Random rand = new Random();
 			int i = rand.nextInt(numCellsWidth-1);
 			int j = rand.nextInt(numCellsHeight-1);
-			if(isEmpty(myCells[i][j])){
-				myCells [i][j] = createNewCell(myGenState);
+			if(isEmpty(myGrid[i][j])){
+				myGrid [i][j] = createNewCell(myGenState);
 				counter = counter+1;
 			}
 			//counter = counter+1;
@@ -103,8 +122,8 @@ public class SimulationManager {
 	private void addEmptyCells(GenState myGenState){
 		for( int i = 0; i<=numCellsWidth-1;i++ ){
 			for (int j=0;j<=numCellsHeight-1;j++){
-				if(isEmpty(myCells[i][j])){
-					myCells[i][j]= createNewCell(myGenState);
+				if(isEmpty(myGrid[i][j])){
+					myGrid[i][j]= createNewCell(myGenState);
 				}
 			}
 		}		

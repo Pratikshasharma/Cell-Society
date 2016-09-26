@@ -52,7 +52,7 @@ public class SimulationController {
 	// Update the Cells per Simulation
 	public Paint[][] updateCells(){
 		mySimulationManager.getSimulationType(mySimulationName);
-		getMyCellsColor(mySimulationManager.getSimulationType(mySimulationName).myCells);
+		getMyCellsColor(mySimulationManager.getSimulationType(mySimulationName).myGrid);
 		return myGridColor;
 		//mySimulationManager.getSimulationType.updateSimulation();
 	}

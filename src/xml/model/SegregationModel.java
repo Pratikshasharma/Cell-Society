@@ -89,4 +89,9 @@ public class SegregationModel extends SimModel {
 		return null;
 	}
 
+	@Override
+	public GenState getMyFullState() {
+		return null;
+	}
+
 }
