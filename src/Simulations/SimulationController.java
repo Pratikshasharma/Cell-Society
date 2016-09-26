@@ -23,8 +23,7 @@ public class SimulationController {
 		//Initialize Cells
 		mySimulationManager = new SimulationManager(mySimModel);
 		this.mySimulationName = mySimModel.getMySimName();
-		// Return the initialized Cells
-		mySimulationManager.initializeMyCells(mySimModel.getMySimName());
+		initializeCells();
 		mySuperClass = mySimulationManager.getSimulationType(mySimulationName);
 		myGridColor= new Paint[mySimulationManager.getNumCellsWidth()][mySimulationManager.getNumCellsHeight()];
 		getMyCellsColor(mySimulationManager.getMyCell());
@@ -38,6 +37,11 @@ public class SimulationController {
 				myGridColor[i][j]= myCell[i][j].getCellCurrentState().getStateColor();
 			}
 		}
+	}
+	
+	public void initializeCells(){
+	// Return the initialized Cells
+	mySimulationManager.initializeMyCells(mySimModel.getMySimName());
 	}
 	
 	public String getSimulationName(){
