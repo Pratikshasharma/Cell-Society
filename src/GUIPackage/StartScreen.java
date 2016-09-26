@@ -28,7 +28,7 @@ public class StartScreen{
 		root.getChildren().add(chooseFileButton.getButton());
 		root.getChildren().add(exitButton.getButton());
 		
-		System.out.println(" Creates Root ");
+		//System.out.println(" Creates Root ");
 		
 		return root;
 	

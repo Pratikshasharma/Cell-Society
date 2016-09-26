@@ -14,6 +14,7 @@ public class SimulationController {
 	private SimModel mySimModel;
 	private String mySimulationName;
 	private Paint [][] myGridColor;
+	private SimulationSuperClass mySuperClass;
 
 
 	public SimulationController(){
@@ -25,23 +26,20 @@ public class SimulationController {
 		//Initialize Cells
 		mySimulationManager = new SimulationManager(mySimModel);
 		this.mySimulationName = mySimModel.getMySimName();
-
 		// Return the initialized Cells
-		initializeCells();
+		mySimulationManager.initializeMyCells(mySimModel.getMySimName());
+		mySuperClass = mySimulationManager.getSimulationType(mySimulationName);
 		myGridColor= new Paint[mySimulationManager.getNumCellsWidth()][mySimulationManager.getNumCellsHeight()];
 		getMyCellsColor(mySimulationManager.getMyCell());
-		return myGridColor;	
-	}
-	
-	public void initializeCells(){
-		mySimulationManager.initializeMyCells(mySimModel.getMySimName());	
+		updateCells();
+		return myGridColor;
 	}
 
 	private void getMyCellsColor(Cell[][] myCell) {
 		for( int i = 0; i<=mySimulationManager.getNumCellsWidth()-1;i++ ){
 			for (int j=0;j<=mySimulationManager.getNumCellsHeight()-1;j++){
 				myGridColor[i][j]= myCell[i][j].getCellCurrentState().getStateColor();
-				System.out.println("j val " + j);
+				//System.out.println("j val " + j);
 			}
 		}
 	}
@@ -51,10 +49,13 @@ public class SimulationController {
 	}
 	// Update the Cells per Simulation
 	public Paint[][] updateCells(){
-		mySimulationManager.getSimulationType(mySimulationName);
-		getMyCellsColor(mySimulationManager.getSimulationType(mySimulationName).myGrid);
-		return myGridColor;
+		mySuperClass.printGrid(); //for testing
+		mySuperClass.updateSimulation();
+		mySuperClass.printGrid(); //for testing
+//		mySimulationManager.getSimulationType(mySimulationName);
+//		getMyCellsColor(mySimulationManager.getSimulationType(mySimulationName).myGrid); ----This caused a nullpointer!!!
 		//mySimulationManager.getSimulationType.updateSimulation();
+		return myGridColor;
 	}
 }
 

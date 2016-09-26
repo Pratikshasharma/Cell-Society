@@ -6,7 +6,7 @@ import javafx.scene.paint.Color;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class PredPrey {
+public class PredPrey extends SimulationSuperClass{
 
 	private static final int FISH = 1;
 	private static final int SHARK = 2;

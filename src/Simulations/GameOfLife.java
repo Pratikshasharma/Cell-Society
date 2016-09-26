@@ -4,7 +4,7 @@ import javafx.scene.paint.Paint;
 import CellPackage.Cell;
 import CellPackage.State;
 
-public class GameOfLife{
+public class GameOfLife extends SimulationSuperClass {
 	
 	private Cell[][] myGrid;
 	private State emptyState;
