@@ -1,10 +1,7 @@
 package Simulations;
 import java.io.File;
-import java.util.HashMap;
-
 import CellPackage.Cell;
 import javafx.scene.paint.Paint;
-import javafx.scene.shape.Rectangle;
 import xml.MainXML;
 import xml.model.SimModel;
 
@@ -16,7 +13,7 @@ public class SimulationController {
 	private Paint [][] myGridColor;
 	private SimulationSuperClass mySuperClass;
 
-
+	
 	public SimulationController(){
 		myXMLReader = new MainXML();		
 	}
@@ -39,14 +36,14 @@ public class SimulationController {
 		for( int i = 0; i<=mySimulationManager.getNumCellsWidth()-1;i++ ){
 			for (int j=0;j<=mySimulationManager.getNumCellsHeight()-1;j++){
 				myGridColor[i][j]= myCell[i][j].getCellCurrentState().getStateColor();
-				//System.out.println("j val " + j);
 			}
 		}
 	}
-
+	
 	public String getSimulationName(){
 		return this.mySimulationName;
 	}
+	
 	// Update the Cells per Simulation
 	public Paint[][] updateCells(){
 		mySuperClass.printGrid(); //for testing
@@ -58,7 +55,6 @@ public class SimulationController {
 		return myGridColor;
 	}
 }
-
 
 
 

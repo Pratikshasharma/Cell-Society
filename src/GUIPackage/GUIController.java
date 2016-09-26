@@ -2,14 +2,13 @@
 package GUIPackage;
 
 import java.io.File;
-
-import CellPackage.Cell;
 import Simulations.SimulationController;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.scene.Scene;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 import javafx.util.Duration;
 
 public class GUIController{
@@ -18,7 +17,8 @@ public class GUIController{
 	private ChooseFile myFileChooser;
 	private String TITLE = "Cell Society Simulation";
 	private File myChosenFile;
-	private CreateGrid myGrid;
+	private Paint [][] myGridColor;
+	private CreateGrid myWindow;
 	private SimulationController mySimulationController;
 	
 	public static final int DEFAULT_FRAMES_PER_SECOND = 10;
@@ -36,7 +36,7 @@ public class GUIController{
 	public GUIController(){
 		initialScreen = new StartScreen();
 		myFileChooser = new ChooseFile();
-		myGrid = new CreateGrid();
+		myWindow = new CreateGrid();
 		mySimulationController = new SimulationController();
 	}
 
@@ -44,8 +44,11 @@ public class GUIController{
 		myScene = new Scene(initialScreen.createRoot(),SCENE_WIDTH,SCENE_HEIGHT, Color.WHITE); 
 		//initialScreen.getExitButton().setOnAction(e -> exitGame());
 		initialScreen.getChooseFileButton().setOnAction(e -> chooseSimulationFile());
+		myWindow.getResetButton().getButton().setOnAction(e -> mySimulationController.initializeCells());
+		myWindow.getStartSimulationButton().getButton().setOnAction(e -> mySimulationController.updateCells());
+		myWindow.getStepSimulationButton().getButton().setOnAction( e-> updateGrid());
 		
-		KeyFrame frame = new KeyFrame(Duration.millis(MILLISECOND_DELAY),e -> this.step());
+		KeyFrame frame = new KeyFrame(Duration.millis(myWindow.getSimulationSpeedSlider().getValue()),e -> this.step());
 		Timeline animation = new Timeline();
 		animation.setCycleCount(Timeline.INDEFINITE);
 		animation.getKeyFrames().add(frame);
@@ -72,17 +75,23 @@ public class GUIController{
 	public void chooseSimulationFile(){
 		myChosenFile = myFileChooser.chooseFile();
 		// TODO: SEND FILE TO BACK END
-		mySimulationController.readFile(myChosenFile);
+		myGridColor = mySimulationController.readFile(myChosenFile);
 		//Initialize Stuff
-		myScene.setRoot(myGrid.createCellsList());
+		myScene.setRoot(myWindow.createCellsList(myGridColor));
 	}
 	
 	public void step(){
 		//TODO: update Cells
 		//myScene.setRoot(myGrid.updateCells());
 		//System.out.println(" KEEP PRINTING ");
+		mySimulationController.updateCells();	
 	}
-	
+
+	private void updateGrid(){
+		myGridColor = mySimulationController.updateCells();
+		// Call the updated Color Array	
+		updateGridVisualization();
+	}
 	/**
 	 * Possibly for the Simulation package to load Chosen XML File
 	 * @return
@@ -90,4 +99,13 @@ public class GUIController{
 public  File getFile(){
 	return this.myChosenFile;
 }
+
+private void updateGridVisualization(){
+	for (int i=0; i<myGridColor[0].length; i++){
+		for(int j=0;j<myGridColor.length;j++){
+			myWindow.updateColor(i, j);
+		}
+	}
+}
+
 }
