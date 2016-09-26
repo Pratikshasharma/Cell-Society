@@ -61,7 +61,8 @@ public class SimulationManager {
 			//State myState2 = getCellState(mySimModel.getMyEmptyState());
 			//State myState3 = getCellState(mySimModel.getMyTree());
 			// First Initialize Cells Before Calling in Constructor
-			//mySpreadingFire = new SpreadingOfFire(myCells,mySimModel.getMyProbCatch());
+			//mySpreadingFire = new SpreadingOfFire(myCells,mySimModel.getMyProbCatch(),);
+		
 		}
 
 		if (SEGREGATION.equals(mySimulationName)){
@@ -70,6 +71,7 @@ public class SimulationManager {
 			//State myState3 = getCellState(mySimModel.getMyTree());
 			// First Initialize Cells Before Calling in Constructor
 			this.myCells = initializeCells(mySimModel.getMyBurning(),mySimModel.getMyTree(),mySimModel.getMyEmptyState());
+			
 		}
 
 	}
