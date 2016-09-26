@@ -3,6 +3,8 @@ package GUIPackage;
 
 import java.io.File;
 
+import CellPackage.Cell;
+import Simulations.SimulationController;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Platform;
@@ -17,6 +19,7 @@ public class GUIController{
 	private String TITLE = "Cell Society Simulation";
 	private File myChosenFile;
 	private CreateGrid myGrid;
+	private SimulationController mySimulationController;
 	
 	public static final int DEFAULT_FRAMES_PER_SECOND = 10;
 	public static final int MAX_FRAMES_PER_SECOND = 50;
@@ -34,6 +37,7 @@ public class GUIController{
 		initialScreen = new StartScreen();
 		myFileChooser = new ChooseFile();
 		myGrid = new CreateGrid();
+		mySimulationController = new SimulationController();
 	}
 
 	public Scene init () {
@@ -68,6 +72,7 @@ public class GUIController{
 	public void chooseSimulationFile(){
 		myChosenFile = myFileChooser.chooseFile();
 		// TODO: SEND FILE TO BACK END
+		mySimulationController.readFile(myChosenFile);
 		//Initialize Stuff
 		myScene.setRoot(myGrid.createCellsList());
 	}
@@ -75,7 +80,7 @@ public class GUIController{
 	public void step(){
 		//TODO: update Cells
 		//myScene.setRoot(myGrid.updateCells());
-		System.out.println(" KEEP PRINTING ");
+		//System.out.println(" KEEP PRINTING ");
 	}
 	
 	/**
