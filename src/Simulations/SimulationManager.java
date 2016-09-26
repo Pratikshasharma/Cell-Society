@@ -11,8 +11,10 @@ import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
 
 public class SimulationManager {
-	private Segregation mySegregationSimulation;
+	private Segregation mySegregation;
 	private SpreadingOfFire mySpreadingFire;
+	private GameOfLife myGameOfLife;
+	private PredPrey myPredPrey;
 	private Cell[][] myGrid;
 
 	private int numCellsWidth;
@@ -39,14 +41,16 @@ public class SimulationManager {
 
 	public SimulationSuperClass getSimulationType(String mySimulationName){
 		if (SPREADING_FIRE.equals(mySimulationName)){
-			//return fire constructor
+			return mySpreadingFire;
 		}
 		if (SEGREGATION.equals(mySimulationName)){
+			return mySegregation;
 		}
 		if (PREDPREY.equals(mySimulationName)){	
+			return myPredPrey;
 		}
 		if (GAMEOFLIFE.equals(mySimulationName)){
-			
+			return myGameOfLife;	
 		}
 		return null;
 	}
@@ -61,34 +65,29 @@ public class SimulationManager {
 	}
 
 	public void initializeMyCells(String mySimulationName){
-		if( (SPREADING_FIRE.equals(mySimulationName)));
-		{
-			//State myState1 = getCellState(mySimModel.getMyBurning());
-			//State myState2 = getCellState(mySimModel.getMyEmptyState());
-			//State myState3 = getCellState(mySimModel.getMyTree());
+		if (SPREADING_FIRE.equals(mySimulationName)) {
 			// First Initialize Cells Before Calling in Constructor
 			this.myGrid = initializeCells(mySimModel.getMyTree(),mySimModel.getMyBurning(),mySimModel.getMyEmptyState());
+			this.mySpreadingFire = new SpreadingOfFire(myGrid, mySimModel.getMyProbCatch(), getCellState(mySimModel.getMyEmptyState()),
+					getCellState(mySimModel.getMyTree()), getCellState(mySimModel.getMyBurning()));
 		}
 
-		if (SEGREGATION.equals(mySimulationName)){
-			//State myState1 = getCellState(mySimModel.getMyBurning());
-			//State myState2 = getCellState(mySimModel.getMyEmptyState());
-			//State myState3 = getCellState(mySimModel.getMyTree());
+		if (SEGREGATION.equals(mySimulationName)) {
 			// First Initialize Cells Before Calling in Constructor
 			this.myGrid = initializeCells(mySimModel.getMyRace1(),mySimModel.getMyRace2(),mySimModel.getMyEmptyState());
+			this.mySegregation = new Segregation(myGrid, mySimModel.getMySatisfaction(), getCellState(mySimModel.getMyEmptyState()), getCellState(mySimModel.getMyRace1()),
+					getCellState(mySimModel.getMyRace2()));
 		}
 		
 		if (PREDPREY.equals(mySimulationName)) {
-			//State myState1 = getCellState(mySimModel.getMyFish());
-			//State myState3 = getCellState(mySimModel.getMyShark());
-			//State myState2 = getCellState(mySimModel.getMyEmpty());
 			this.myGrid = initializeCells(mySimModel.getMyFish(),mySimModel.getMyShark(),mySimModel.getMyEmptyState());
+			this.myPredPrey = new PredPrey(myGrid, mySimModel.getMyFishTurnsToBreed(), mySimModel.getMySharkTurnsToBreed(), mySimModel.getMySharkTurnsToStarve(),
+					getCellState(mySimModel.getMyEmptyState()), getCellState(mySimModel.getMyFish()), getCellState(mySimModel.getMyShark()));
 		}
 		
 		if(GAMEOFLIFE.equals(mySimulationName)) {
-			//State myState1 = getCellState(mySimModel.getMyFullState());
-			//State myState3 = getCellState(mySimModel.getMyEmptyState());
 			this.myGrid = initializeCells(mySimModel.getMyFullState(),null,mySimModel.getMyEmptyState());
+			this.myGameOfLife = new GameOfLife(myGrid,getCellState(mySimModel.getMyEmptyState()), getCellState(mySimModel.getMyFullState()));
 		}
 
 	}
@@ -145,6 +144,14 @@ public class SimulationManager {
 		myRectangle = new Rectangle(CreateGrid.GRID_WIDTH/numCellsWidth,CreateGrid.GRID_HEIGHT/numCellsHeight);
 		Cell myTempCell = new Cell(myRectangle,myCellState);
 		return myTempCell;
+	}
+
+
+	/**
+	 * @return myGrid
+	 */
+	public Cell[][] getMyGrid() {
+		return myGrid;
 	}
 }
 

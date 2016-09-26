@@ -60,24 +60,24 @@ public class Tester {
 		return myGrid;
 	}
 
-	public static void main(String[] args){
-		Tester t = new Tester();
-		t.makeGrid(3);
-		Cell[][] grid = t.getGrid();
-		int fishbreed = 5;
-		int sharkbreed = 7;
-		int sharkdie = 9;
-		PredPrey sf = new PredPrey(grid, fishbreed,sharkbreed,sharkdie);
-		System.out.println("Initial Grid");
-		sf.printGrid();
-		for(int i = 0; i<4; i++){
-			sf.updateSimulation();
-			System.out.println("");
-			sf.printGrid();
-			System.out.println("");
-			System.out.printf("grid after step %d", i+1);
-		}
-
-	}
+//	public static void main(String[] args){
+//		Tester t = new Tester();
+//		t.makeGrid(3);
+//		Cell[][] grid = t.getGrid();
+//		int fishbreed = 5;
+//		int sharkbreed = 7;
+//		int sharkdie = 9;
+//		PredPrey sf = new PredPrey(grid, fishbreed,sharkbreed,sharkdie);
+//		System.out.println("Initial Grid");
+//		sf.printGrid();
+//		for(int i = 0; i<4; i++){
+//			sf.updateSimulation();
+//			System.out.println("");
+//			sf.printGrid();
+//			System.out.println("");
+//			System.out.printf("grid after step %d", i+1);
+//		}
+//
+//	}
 
 }

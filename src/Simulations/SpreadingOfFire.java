@@ -3,7 +3,7 @@ import javafx.scene.paint.Paint;
 import CellPackage.Cell;
 import CellPackage.State;
 
-public class SpreadingOfFire{
+public class SpreadingOfFire extends SimulationSuperClass{
 
 	private Cell[][] myGrid;
 	private double probCatch;
