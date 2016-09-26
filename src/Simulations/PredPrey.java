@@ -15,13 +15,18 @@ public class PredPrey {
 	private int fishTurnsToBreed;
 	private int sharkTurnsToBreed;
 	private int sharkTurnsToStarve;
+	private State emptyState;
+	private State fishState;
+	private State sharkState;
 	
-	
-	public PredPrey(Cell[][] gr, int fishBreed, int sharkBreed, int sharkStarve) {
+	public PredPrey(Cell[][] gr, int fishBreed, int sharkBreed, int sharkStarve, State s1, State s2, State s3) {
 		this.myGrid = gr;
 		this.fishTurnsToBreed = fishBreed;
 		this.sharkTurnsToBreed = sharkBreed;
 		this.sharkTurnsToStarve = sharkStarve;
+		this.emptyState = s1;
+		this.fishState = s2;
+		this.sharkState = s3;
 	}
 	
 	private boolean checkOnGrid(int row, int column){
