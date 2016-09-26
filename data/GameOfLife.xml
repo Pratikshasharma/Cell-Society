@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <root SimType="gameoflife">
   <genparam>
-    <simname>Game Of Life</simname>
+    <simname>Game of Life</simname>
     <simauthor>John Horton Conway</simauthor>
     <simwidth>50</simwidth>
     <simheight>50</simheight>

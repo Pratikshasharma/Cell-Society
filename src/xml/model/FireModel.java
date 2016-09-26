@@ -91,4 +91,9 @@ public class FireModel extends SimModel {
 	public GenState getMyRace2() {
 		return null;
 	}
+
+	@Override
+	public GenState getMyFullState() {
+		return null;
+	}
 }

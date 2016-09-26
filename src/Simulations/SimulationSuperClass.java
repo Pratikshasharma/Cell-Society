@@ -4,11 +4,11 @@ import CellPackage.Cell;
 
 
 public abstract class SimulationSuperClass {
-	protected Cell[][] myCells;
+	protected Cell[][] myGrid;
 
 	//protected genState myGenState; -- This holds the State and the percentages
-	public SimulationSuperClass(Cell[][] myCells){
-		this.myCells = myCells;
+	public SimulationSuperClass(Cell[][] myGrid){
+		this.myGrid = myGrid;
 	}
 
 	/**

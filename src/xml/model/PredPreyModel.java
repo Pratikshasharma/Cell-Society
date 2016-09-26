@@ -98,5 +98,10 @@ public class PredPreyModel extends SimModel {
 		return null;
 	}
 
+	@Override
+	public GenState getMyFullState() {
+		return null;
+	}
+
 
 }
