@@ -45,14 +45,8 @@ public class GUIController{
 		//initialScreen.getExitButton().setOnAction(e -> exitGame());
 		initialScreen.getChooseFileButton().setOnAction(e -> chooseSimulationFile());
 		myWindow.getResetButton().getButton().setOnAction(e -> mySimulationController.initializeCells());
-		myWindow.getStartSimulationButton().getButton().setOnAction(e -> mySimulationController.updateCells());
+		myWindow.getStartSimulationButton().getButton().setOnAction(e -> runContinuousSimulation());
 		myWindow.getStepSimulationButton().getButton().setOnAction( e-> updateGrid());
-		
-		KeyFrame frame = new KeyFrame(Duration.millis(myWindow.getSimulationSpeedSlider().getValue()),e -> this.step());
-		Timeline animation = new Timeline();
-		animation.setCycleCount(Timeline.INDEFINITE);
-		animation.getKeyFrames().add(frame);
-		animation.play();
 		return myScene;
 	} 
 
@@ -91,6 +85,14 @@ public class GUIController{
 		myGridColor = mySimulationController.updateCells();
 		// Call the updated Color Array	
 		updateGridVisualization();
+	}
+	
+	private void runContinuousSimulation(){
+		KeyFrame frame = new KeyFrame(Duration.millis(myWindow.getSimulationSpeedSlider().getValue()),e -> this.step());
+		Timeline animation = new Timeline();
+		animation.setCycleCount(Timeline.INDEFINITE);
+		animation.getKeyFrames().add(frame);
+		animation.play();
 	}
 	/**
 	 * Possibly for the Simulation package to load Chosen XML File
