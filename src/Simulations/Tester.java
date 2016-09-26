@@ -1,6 +1,7 @@
 package Simulations;
 
-import java.util.List;
+import java.util.ArrayList;
+import java.util.Random;
 
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
