@@ -7,6 +7,7 @@ import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
 import CellPackage.Cell;
 import CellPackage.State;
+import java.util.Random;
 
 public class Tester {
 
@@ -16,33 +17,40 @@ public class Tester {
 	private State state3;
 
 	private void makeState1(){
-		state1 = new State("EMPTY", Paint.valueOf("YELLOW"), 0);
+		state1 = new State("EMPTY", Paint.valueOf("WHITE"), 0);
 		//System.out.println(state1.getStateID());
 	}
 
 
 	private void makeState2(){
-		state2 = new State("TREE", Paint.valueOf("GREEN"), 1);
+		state2 = new State("FISH", Paint.valueOf("GREEN"), 1);
 		//System.out.println(state2.getStateID());
 	}
 
 	private void makeState3(){
-		state3 = new State("BURNING", Paint.valueOf("RED"), 2);
+		state3 = new State("SHARK", Paint.valueOf("YELLOW"), 2);
 	}
 
 	private void makeGrid(int size){
 		makeState1();
 		makeState2();
 		makeState3();
-		ArrayList<State> states = new ArrayList<State>();
-		states.add(state1);
-		states.add(state2);
-		states.add(state3);
+		Random rand = new Random();
 		myGrid = new Cell[size][size];
 		for (int i = 0; i<size; i++){
 			for(int j = 0; j<size; j++){
-				//System.out.println(" row is " + i + " column is " + j);
-				myGrid[i][j] = new Cell(new Rectangle(2,2), states.get(new Random().nextInt(states.size())));
+				
+				int luck = rand.nextInt(10);
+				if (luck<5){
+					myGrid[i][j] = new Cell(new Rectangle(2, 2), state2);
+				}
+				else if (luck >= 5 && luck <8) {
+					//System.out.println("setting tree");
+					myGrid[i][j] = new Cell(new Rectangle(2,2), state3);
+				}
+				else {
+					myGrid[i][j] = new Cell(new Rectangle(2,2), state1);
+				}
 			}
 		}
 
@@ -54,17 +62,21 @@ public class Tester {
 
 	public static void main(String[] args){
 		Tester t = new Tester();
-		t.makeGrid(4);
+		t.makeGrid(3);
 		Cell[][] grid = t.getGrid();
-		double pc = 0.5;
-		Segregation sf = new Segregation(grid, pc);
+		int fishbreed = 5;
+		int sharkbreed = 7;
+		int sharkdie = 9;
+		PredPrey sf = new PredPrey(grid, fishbreed,sharkbreed,sharkdie);
 		System.out.println("Initial Grid");
 		sf.printGrid();
-		//for(int i = 0; i<3; i++){
+		for(int i = 0; i<4; i++){
 			sf.updateSimulation();
-		//}
-		System.out.println("Final Grid after one step");
-		sf.printGrid();
+			System.out.println("");
+			sf.printGrid();
+			System.out.println("");
+			System.out.printf("grid after step %d", i+1);
+		}
 
 	}
 

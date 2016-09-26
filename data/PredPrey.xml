@@ -9,17 +9,17 @@
   <fishturnstobreed>5</fishturnstobreed>
   <sharkturnstobreed>10</sharkturnstobreed>
   <sharkturnstostarve>13</sharkturnstostarve>
-  <state id="0">
+  <state id="1">
     <statename>fish</statename>
     <statecolor>GREEN</statecolor>
     <percentage>0.5</percentage>
   </state>
-  <state id="1">
+  <state id="2">
     <statename>shark</statename>
     <statecolor>YELLOW</statecolor>
     <percentage>0.1</percentage>
   </state>
-  <state id="2">
+  <state id="0">
     <statename>empty</statename>
     <statecolor>WHITE</statecolor>
     <percentage>0.5</percentage>

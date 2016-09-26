@@ -6,12 +6,12 @@
     <simwidth>50</simwidth>
     <simheight>50</simheight>
   </genparam>
-  <state id="0">
+  <state id="1">
     <statename>full</statename>
     <statecolor>BLACK</statecolor>
     <percentage>0.5</percentage>
   </state>
-  <state id="1">
+  <state id="0">
     <statename>empty</statename>
     <statecolor>WHITE</statecolor>
     <percentage>0.5</percentage>

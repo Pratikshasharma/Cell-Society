@@ -10,5 +10,9 @@ public class TestXML {
 		File f = new File("data/PredPrey.xml");
 		SimModel s = reader.xmlRead(f);
 		System.out.println(s.getMyEmptyState().getMyColor());
+		int[] l = new int[4];
+		int[] m = new int[4];
+		if (l[0] == 0) {
+		System.out.println("fuck");}
 	}
 }
