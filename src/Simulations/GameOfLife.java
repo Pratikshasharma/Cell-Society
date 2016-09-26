@@ -4,12 +4,16 @@ import javafx.scene.paint.Paint;
 import CellPackage.Cell;
 import CellPackage.State;
 
-public class GameOfLife {
+public class GameOfLife extends SimulationSuperClass {
 	
-	Cell[][] myGrid;
+	private Cell[][] myGrid;
+	private State emptyState;
+	private State fullState;
 	
-	public GameOfLife(Cell[][] grid){
+	public GameOfLife(Cell[][] grid, State s1, State s2){
 		this.myGrid = grid;
+		this.emptyState = s1;
+		this.fullState = s2;
 	}
 	
 	private boolean checkAlive(int row, int column){

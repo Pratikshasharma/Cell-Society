@@ -6,14 +6,20 @@ import javafx.scene.paint.Paint;
 import CellPackage.Cell;
 import CellPackage.State;
 
-public class Segregation {
+public class Segregation extends SimulationSuperClass {
 
 	private Cell[][] myGrid;
 	private double percentSatisfaction;
+	private State emptyState;
+	private State race1State;
+	private State race2State;
 
-	public Segregation(Cell[][] grid, double s){
+	public Segregation(Cell[][] grid, double s, State s1, State s2, State s3){
 		this.myGrid = grid;
 		this.percentSatisfaction = s;
+		this.emptyState = s1;
+		this.race1State = s2;
+		this.race2State = s3;
 	}
 
 	private boolean checkOnGrid(int row, int column){

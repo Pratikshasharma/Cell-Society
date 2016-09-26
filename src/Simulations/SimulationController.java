@@ -11,6 +11,7 @@ public class SimulationController {
 	private SimModel mySimModel;
 	private String mySimulationName;
 	private Paint [][] myGridColor;
+	private SimulationSuperClass mySuperClass;
 
 	
 	public SimulationController(){
@@ -21,17 +22,14 @@ public class SimulationController {
 		mySimModel = myXMLReader.xmlRead(myFile);
 		//Initialize Cells
 		mySimulationManager = new SimulationManager(mySimModel);
-		this.mySimulationName = mySimModel.getMySimName();	
+		this.mySimulationName = mySimModel.getMySimName();
 		// Return the initialized Cells
-		initializeCells();
-		
+		mySimulationManager.initializeMyCells(mySimModel.getMySimName());
+		mySuperClass = mySimulationManager.getSimulationType(mySimulationName);
 		myGridColor= new Paint[mySimulationManager.getNumCellsWidth()][mySimulationManager.getNumCellsHeight()];
 		getMyCellsColor(mySimulationManager.getMyCell());
-		return myGridColor;	
-	}
-
-	public void initializeCells(){
-		mySimulationManager.initializeMyCells(mySimModel.getMySimName());	
+		updateCells();
+		return myGridColor;
 	}
 
 	private void getMyCellsColor(Cell[][] myCell) {
@@ -48,22 +46,15 @@ public class SimulationController {
 	
 	// Update the Cells per Simulation
 	public Paint[][] updateCells(){
-		mySimulationManager.getSimulationType(mySimulationName);
-		//getMyCellsColor(mySimulationManager.getSimulationType(mySimulationName).myCells);
-		//getMyCellsColor(mySimulationManager.getSimulationType(mySimulationName).myCells);
-		return myGridColor;
+		mySuperClass.printGrid(); //for testing
+		mySuperClass.updateSimulation();
+		mySuperClass.printGrid(); //for testing
+//		mySimulationManager.getSimulationType(mySimulationName);
+//		getMyCellsColor(mySimulationManager.getSimulationType(mySimulationName).myGrid); ----This caused a nullpointer!!!
 		//mySimulationManager.getSimulationType.updateSimulation();
-	}	
-	
-	public int getNumCellsWidth(){
-		return this.getNumCellsWidth();
-	}
-	
-	public int getNumCellsHeight(){
-		return this.getNumCellsHeight();
+		return myGridColor;
 	}
 }
-
 
 
 
