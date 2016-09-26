@@ -3,15 +3,21 @@ import javafx.scene.paint.Paint;
 import CellPackage.Cell;
 import CellPackage.State;
 
-public class SpreadingOfFire extends SimulationSuperClass{
+public class SpreadingOfFire{
 
 	private Cell[][] myGrid;
 	private double probCatch;
+	private State emptyState;
+	private State treeState;
+	private State burningState;
 
-	public SpreadingOfFire(Cell[][] myGrid, double p){
-		super(myGrid);
+	public SpreadingOfFire(Cell[][] myGrid, double p, State s1, State s2, State s3){
+		this.myGrid = myGrid;
 		this.myGrid = myGrid;
 		this.probCatch = p;
+		this.emptyState = s1;
+		this.treeState = s2;
+		this.burningState = s3;
 	}
 
 	private boolean checkCell(int row, int column){
