@@ -20,6 +20,9 @@ public class CreateGrid {
 	State myCellState;
 	private int CELL_WIDTH = 20;
 	private int CELL_HEIGHT = 20;
+	
+	public static final int GRID_WIDTH = 600;
+	public static final int GRID_HEIGHT = 600;
 	private Rectangle rectangle; 
 	private VBox myVBox;
 	private ButtonCreater startSimulationButton;
@@ -42,7 +45,7 @@ public class CreateGrid {
 		myGrid = new GridPane();
 	}
 	public Group createCellsList(){
-		State myCellState0 = new State("unhappy", Paint.valueOf("RED"));
+		State myCellState0 = new State("unhappy", Paint.valueOf("RED"),1);
 		myGrid.setGridLinesVisible(true);
 		myGrid.setAlignment(Pos.CENTER);
 		Group root = new Group();
