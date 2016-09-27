@@ -60,9 +60,6 @@ public class SimulationManager {
 		return tempState;
 	}
 
-	public Cell[][] getMyCell(){
-		return this.myGrid;
-	}
 
 	public void initializeMyCells(String mySimulationName){
 		if (SPREADING_FIRE.equals(mySimulationName)) {
