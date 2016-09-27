@@ -5,6 +5,11 @@ import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
+/**
+ * @author pratiksha sharma
+ *
+ */
+
 public class StartScreen{
 	private final String TITLE = "Cell Society Simulation" ;
 	private final String CELL_IMAGE = "cells.jpg";

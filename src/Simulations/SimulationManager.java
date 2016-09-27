@@ -1,7 +1,5 @@
 package Simulations;
-
 import java.util.Random;
-
 import CellPackage.Cell;
 import xml.model.GenState;
 import xml.model.SimModel;
@@ -10,6 +8,10 @@ import GUIPackage.CreateGrid;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
 
+/**
+ * @author pratiksha sharma
+ *
+ */
 public class SimulationManager {
 	private Segregation mySegregation;
 	private SpreadingOfFire mySpreadingFire;
@@ -37,7 +39,6 @@ public class SimulationManager {
 		this.numCellsWidth = mySimModel.getMySimWidth();
 		this.numCellsHeight = mySimModel.getMySimHeight();
 	}
-
 
 	public SimulationSuperClass getSimulationType(String mySimulationName){
 		if (SPREADING_FIRE.equals(mySimulationName)){
@@ -94,8 +95,6 @@ public class SimulationManager {
 		if(myGenState1!=null){addGenState(myGenState1);}
 		if(myGenState2!=null){addGenState(myGenState2);}
 		if(myGenState3!=null){addEmptyCells(myGenState3);}
-
-		// Print all the cells	
 		return this.myGrid;
 	}
 
@@ -110,7 +109,6 @@ public class SimulationManager {
 				myGrid [i][j] = createNewCell(myGenState);
 				counter = counter+1;
 			}
-			//counter = counter+1;
 			percentage = counter/(numCellsWidth*numCellsHeight);
 		}
 	}
@@ -142,7 +140,6 @@ public class SimulationManager {
 		Cell myTempCell = new Cell(myRectangle,myCellState);
 		return myTempCell;
 	}
-
 
 	/**
 	 * @return myGrid
