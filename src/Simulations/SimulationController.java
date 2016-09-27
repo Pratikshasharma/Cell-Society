@@ -48,9 +48,7 @@ public class SimulationController {
 		return myGridColor;
 	}
 
-
 	public void updateCells(){
-		System.out.println(" UPDATES HERE ");
 		//mySuperClass.printGrid(); //for testing
 		mySuperClass.updateSimulation();
 		//mySuperClass.printGrid(); //for testing
@@ -60,7 +58,6 @@ public class SimulationController {
 	public Paint[][] getColorGrid(){
 		return myGridColor;
 	}
-	
 	public int getNumCellsWidth(){
 		return this.numCellsWidth;
 	}

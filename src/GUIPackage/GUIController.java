@@ -58,8 +58,7 @@ public class GUIController{
 	private void resetSimulation() {
 		myGridColor = mySimulationController.initializeCellsAndGridVisualization();
 		updateGridVisualization();
-		stopSimulation();
-		
+		if(animation!=null) stopSimulation();
 	}
 
 	public void setTitle(String myTitle){
@@ -125,7 +124,6 @@ public class GUIController{
 
 
 	private void updateGridVisualization(){
-		System.out.println(" UPDATES HERE ? ");
 		myGridColor = mySimulationController.getColorGrid();
 		for (int i=0; i<myGridColor[0].length; i++){
 			for(int j=0;j<myGridColor.length;j++){
