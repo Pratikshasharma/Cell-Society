@@ -90,18 +90,11 @@ public class CreateGrid {
 		resetButton.setButtonSettings(0.8*GUIController.SCENE_HEIGHT,0.85*GUIController.SCENE_WIDTH,14);
 	}	
 
-//	public Group updateCells(){
-//		updateColor(2,5);
-//		return null;
-//		//return root;
-//	}
-
-	public void updateColor(int row, int col){
+	public void updateColor(int row, int col, Paint color){
 		for (Node node : myGrid.getChildren()) {
 			if (checkNodeIDNull(node)){
 				if (GridPane.getColumnIndex(node) == col && GridPane.getRowIndex(node) == row) {
-					System.out.println("PRESENT " + myGrid.getChildren().contains(node));
-					((Rectangle)node).setFill(Paint.valueOf("BLACK"));
+					((Rectangle)node).setFill(color);
 				}
 			}
 		}
