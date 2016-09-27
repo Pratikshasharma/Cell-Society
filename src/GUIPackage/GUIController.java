@@ -1,18 +1,19 @@
 
 package GUIPackage;
-
 import java.io.File;
 import Simulations.SimulationController;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Platform;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.util.Duration;
 
+/**
+ * @author pratiksha sharma
+ *
+ */
 public class GUIController{
 	private Scene myScene;
 	private StartScreen initialScreen;
@@ -22,14 +23,14 @@ public class GUIController{
 	private Paint [][] myGridColor;
 	private CreateGrid myWindow;
 	private SimulationController mySimulationController;
-	private boolean stopSimulation;
+	private int numCellsWidth;
+	private int numCellsHeight;
+	private String mySimulationName;
+	private Timeline animation;
 
-	public static final int DEFAULT_FRAMES_PER_SECOND = 10;
-	public static final int MAX_FRAMES_PER_SECOND = 50;
+	public static final int DEFAULT_FRAMES_PER_SECOND = 3;
+	public static final int MAX_FRAMES_PER_SECOND = 5;
 	public static final int MIN_FRAMES_PER_SECOND = 1;
-
-	public static final int MILLISECOND_DELAY = 160 / DEFAULT_FRAMES_PER_SECOND;
-	public static final double SECOND_DELAY = 1.0 / DEFAULT_FRAMES_PER_SECOND;
 	public static final double SCENE_WIDTH = 800;
 	public static final double SCENE_HEIGHT = 600;
 
@@ -49,14 +50,16 @@ public class GUIController{
 		myWindow.getResetButton().getButton().setOnAction(e -> resetSimulation());
 		myWindow.getStartSimulationButton().getButton().setOnAction(e -> runContinuousSimulation());
 		myWindow.getStepSimulationButton().getButton().setOnAction( e-> updateGrid());
+		myWindow.getStopSimulationButton().getButton().setOnAction(e-> stopSimulation());
 		return myScene;
 	} 
 
 	
 	private void resetSimulation() {
-		//myGridColor = mySimulationController.initializeCellsAndGridVisualization();
 		myGridColor = mySimulationController.initializeCellsAndGridVisualization();
 		updateGridVisualization();
+		stopSimulation();
+		
 	}
 
 	public void setTitle(String myTitle){
@@ -74,29 +77,43 @@ public class GUIController{
 		Platform.exit();
 		System.exit(0);
 	}
+	
+	public void stopSimulation(){
+		animation.stop();
+	}
 
 	public void chooseSimulationFile(){
+		
 		myChosenFile = myFileChooser.chooseFile();
+		
 		mySimulationController.readFile(myChosenFile);
+		
+		this.mySimulationName = mySimulationController.getSimulationName();
+		this.numCellsHeight = mySimulationController.getNumCellsHeight();
+		this.numCellsWidth = mySimulationController.getNumCellsWidth();
+		
+		myWindow.setNumCellsHeight(this.numCellsHeight);
+		myWindow.setNumCellsWidth(this.numCellsWidth);
+		myWindow.setSimulationName(this.mySimulationName);
+
 		myGridColor = mySimulationController.initializeCellsAndGridVisualization();
-		myScene.setRoot(myWindow.createCellsList(myGridColor));
+		myScene.setRoot(myWindow.createCellsList(myGridColor));	
 	}
 
 	private void updateGrid(){
 		mySimulationController.updateCells();
 		// Call the updated Color Array	
 		updateGridVisualization();
+		
 	}
 
 	private void runContinuousSimulation(){
-		KeyFrame frame = new KeyFrame(Duration.millis(10/myWindow.getSimulationSpeedSlider().getValue()),e -> this.updateGrid());
-		Timeline animation = new Timeline();
+		animation =  new Timeline();
+		KeyFrame frame = new KeyFrame(Duration.millis(5000/myWindow.getSimulationSpeedSlider().getValue()),e -> this.updateGrid());
 		animation.setCycleCount(Timeline.INDEFINITE);
 		animation.getKeyFrames().add(frame);
 		animation.play();
-		if(stopSimulation){
-			animation.stop();
-		}
+			
 	}
 	/**
 	 * Possibly for the Simulation package to load Chosen XML File
@@ -106,7 +123,9 @@ public class GUIController{
 		return this.myChosenFile;
 	}
 
+
 	private void updateGridVisualization(){
+		System.out.println(" UPDATES HERE ? ");
 		myGridColor = mySimulationController.getColorGrid();
 		for (int i=0; i<myGridColor[0].length; i++){
 			for(int j=0;j<myGridColor.length;j++){
@@ -114,6 +133,17 @@ public class GUIController{
 			}
 		}
 	}
+	
+	public int getNumCellWidth(){
+		return this.numCellsWidth;
+	}
+	
+	public int getNumCellHeight(){
+		return this.numCellsHeight;
+	}
 
-
+	public String getSimulationName(){
+		return this.mySimulationName;
+	}
+	
 }
