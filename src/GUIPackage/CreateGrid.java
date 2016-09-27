@@ -1,6 +1,6 @@
 package GUIPackage;
-import CellPackage.State;
-import Simulations.SimulationController;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
@@ -16,11 +16,14 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 
-public class CreateGrid {
-	State myCellState;
+/**
+ * @author pratiksha sharma
+ *
+ */
 
-	public static final int GRID_WIDTH = 600;
-	public static final int GRID_HEIGHT = 600;
+public class CreateGrid {
+	public static final int GRID_WIDTH = 400;
+	public static final int GRID_HEIGHT = 400;
 	private Rectangle rectangle; 
 	private VBox myVBox;
 	private ButtonCreater startSimulationButton;
@@ -29,35 +32,33 @@ public class CreateGrid {
 	private ButtonCreater resetButton;
 	private HBox myHBox;
 	private Slider simulationSpeedSlider;
-	
-	
-	private int CELL_HEIGHT = 5;
-	private int CELL_WIDTH = 5;
+	private String mySimulationName;
+	private int numCellsWidth;
+	private int numCellsHeight;
 
 
 	private GridPane myGrid;
-
 	public CreateGrid(){
 		startSimulationButton = new ButtonCreater("Start",null);
 		stepSimulationButton = new ButtonCreater("Step",null);
 		resetButton = new ButtonCreater("Reset",null);
-		stopSimulationButton = new ButtonCreater("Stop",event -> GUIController.exitGame());
+		stopSimulationButton = new ButtonCreater("Stop",null);
 		myGrid = new GridPane();
 	}
+
 	public Group createCellsList(Paint[][] myGridColor){
-		//		State myCellState0 = new State("unhappy", Paint.valueOf("RED"),1);
-				myGrid.setGridLinesVisible(true);
-				myGrid.setAlignment(Pos.CENTER);
+
+		myGrid.setGridLinesVisible(true);
+		myGrid.setAlignment(Pos.CENTER);
 		Group root = new Group();
 
 		for ( int i = 0; i<=myGridColor[0].length-1;i++ ){
 			for (int j=0;j<=myGridColor.length-1;j++){
-				rectangle = new Rectangle(CELL_WIDTH,CELL_HEIGHT);
+				rectangle = new Rectangle(GRID_WIDTH/numCellsWidth,GRID_HEIGHT/numCellsHeight);
 				rectangle.setFill(myGridColor[i][j]);
 				myGrid.add(rectangle, i, j);
 			}
-		}
-		
+		}		
 		createVBox();
 		myVBox.getChildren().add(myGrid);
 		myVBox.getChildren().add(myHBox);
@@ -69,17 +70,13 @@ public class CreateGrid {
 		myHBox = new HBox(30);
 		myVBox = new VBox(50);
 		myVBox.setPadding(new Insets(10));    
-		Text title = new Text("SIMULATION PROFILE NAME");
+		Text title = new Text(mySimulationName);
 		title.setFont(Font.font("Comic Sans", FontWeight.BOLD, 14));
 		myVBox.getChildren().add(title);
 		changeButtonSettings();
 
-		// Add buttons the HBox
-		myHBox.getChildren().add(stopSimulationButton.getButton());
-		myHBox.getChildren().add(startSimulationButton.getButton());
-		myHBox.getChildren().add(resetButton.getButton());
-		myHBox.getChildren().add(stepSimulationButton.getButton());	
 
+		myHBox.getChildren().addAll(stopSimulationButton.getButton(),startSimulationButton.getButton(),resetButton.getButton(),stepSimulationButton.getButton());
 		addSlider();
 	}
 
@@ -109,9 +106,15 @@ public class CreateGrid {
 		simulationSpeedSlider.setMajorTickUnit(10);
 		Label speedCaption = new Label("Simulation Speed :");
 		Label speedValue = new Label(Double.toString(simulationSpeedSlider.getValue()));
-		myHBox.getChildren().add(simulationSpeedSlider);
-		myHBox.getChildren().add(speedCaption);
-		myHBox.getChildren().add(speedValue);
+
+		simulationSpeedSlider.valueProperty().addListener(new ChangeListener(){
+			@Override
+			public void changed(ObservableValue arg0, Object arg1, Object arg2) {
+				speedValue.textProperty().setValue(
+						String.valueOf((int) simulationSpeedSlider.getValue()));} });
+
+		myHBox.getChildren().addAll(simulationSpeedSlider,speedCaption,speedValue);
+
 
 	}	
 	public ButtonCreater getResetButton() {
@@ -126,9 +129,20 @@ public class CreateGrid {
 	public ButtonCreater getStartSimulationButton() {
 		return startSimulationButton;
 	}
-	
+
 	public Slider getSimulationSpeedSlider() {
 		return simulationSpeedSlider;
+	}
+
+	public void setNumCellsWidth(int numCells){
+		this.numCellsWidth = numCells;
+	}
+
+	public void setNumCellsHeight(int numCells){
+		this.numCellsHeight=numCells;
+	}
+	public void setSimulationName(String simulationName){
+		this.mySimulationName = simulationName;
 	}
 }
 
