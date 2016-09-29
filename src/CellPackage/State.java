@@ -2,65 +2,73 @@ package CellPackage;
 import javafx.scene.paint.Paint;
 
 public class State {
-	private String stateName;
-	private int stateID;
-	private Paint stateColor;
-	private int breedCount;
-	private int starveCount;
+	private String myStateName;
+	private int myStateID;
+	private Paint myStateColor;
+	private int myBreedCount;
+	private int myStarveCount;
 
-	public State(String myStateName, Paint myColor, int stateID){
-		this.stateName = myStateName;
-		this.stateColor = myColor;
-		this.stateID = stateID;
+	public State(String stateName, Paint myColor, int stateID){
+		myStateName = stateName;
+		myStateColor = myColor;
+		myStateID = stateID;
 	}
 	
-	//fish state
-	public State(String myStateName, Paint myColor, int stateID, int breedCount){
-		this.stateName = myStateName;
-		this.stateColor = myColor;
-		this.stateID = stateID;
-		this.breedCount = breedCount;
+	public State(State s, int breedCount, int starveCount) {
+		myStateName = s.getStateName();
+		myStateColor = s.getStateColor();
+		myStateID = s.getStateID();
+		myBreedCount = breedCount;
+		myStarveCount = starveCount;
 	}
 	
-	//shark state
-	public State(String myStateName, Paint myColor, int stateID, int breedCount, int starveCount){
-		this.stateName = myStateName;
-		this.stateColor = myColor;
-		this.stateID = stateID;
-		this.breedCount = breedCount;
-		this.starveCount = starveCount;
-	}
+//	//fish state
+//	public State(String stateName, Paint myColor, int stateID, int breedCount){
+//		myStateName = stateName;
+//		myStateColor = myColor;
+//		myStateID = stateID;
+//		myBreedCount = breedCount;
+//	}
+//	
+//	//shark state
+//	public State(String stateName, Paint myColor, int stateID, int breedCount, int starveCount){
+//		myStateName = stateName;
+//		myStateColor = myColor;
+//		myStateID = stateID;
+//		myBreedCount = breedCount;
+//		myStarveCount = starveCount;
+//	}
 
 	public String getStateName() {
-		return stateName;
+		return myStateName;
 	}
 
 	public void setStateName(String stateName) {
-		this.stateName = stateName;
+		myStateName = stateName;
 	}
 
 	public Paint getStateColor() {
-		return stateColor;
+		return myStateColor;
 	}
 
 	public void setStateColor(Paint stateColor) {
-		this.stateColor = stateColor;
+		myStateColor = stateColor;
 	}
 	
 	public int getStateID(){
-		return stateID;
+		return myStateID;
 	}
 	
 	public void setStateID(int stateID){
-		this.stateID = stateID;
+		myStateID = stateID;
 	}
 
 	public int getBreedCount() {
-		return breedCount;
+		return myBreedCount;
 	}
 
 	public int getStarveCount() {
-		return starveCount;
+		return myStarveCount;
 	}
 
 }

@@ -22,6 +22,7 @@ public class SimulationController {
 	public SimulationController(){
 		myXMLReader = new MainXML();		
 	}
+	
 	public void readFile(File myFile){
 		mySimModel = myXMLReader.xmlRead(myFile);
 		mySimulationManager = new SimulationManager(mySimModel);
