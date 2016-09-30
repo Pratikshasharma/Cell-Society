@@ -1,36 +1,34 @@
 package Simulations;
 
-import javafx.scene.paint.Paint;
 import CellPackage.Cell;
 import CellPackage.State;
 
 public class GameOfLife extends SimulationSuperClass {
 
 	private Cell[][] myGrid;
-	private State emptyState;
-	private State fullState;
+	private State myEmptyState;
+	private State myFullState;
 
-	public GameOfLife(Cell[][] grid, State s1, State s2){
-		this.myGrid = grid;
-		this.emptyState = s1;
-		this.fullState = s2;
+	public GameOfLife(Cell[][] grid, State state1, State state2){
+		myGrid = grid;
+		myEmptyState = state1;
+		myFullState = state2;
 	}
 
 	private boolean checkAlive(int row, int column){
-		return myGrid[row][column].getCellCurrentState().getStateID() == 1;
+		return myGrid[row][column].getCellCurrentState().getStateID() == myFullState.getStateID();
 	}
 
 
 	private boolean checkDead(int row, int column){
-		return myGrid[row][column].getCellCurrentState().getStateID() == 0;
+		return myGrid[row][column].getCellCurrentState().getStateID() == myEmptyState.getStateID();
 	}
 
 	public void updateState(int row, int column, int id){
-	//	State tempState = new State("DEAD", Paint.valueOf("WHITE"), id);
-		if(id == emptyState.getStateID()){
-			myGrid[row][column].setNextState(emptyState);
+		if(id == myEmptyState.getStateID()){
+			myGrid[row][column].setNextState(myEmptyState);
 		}else{
-			myGrid[row][column].setNextState(fullState);
+			myGrid[row][column].setNextState(myFullState);
 		}
 	}
 
