@@ -6,18 +6,18 @@
     <simwidth>50</simwidth>
     <simheight>50</simheight>
   </genparam>
-  <probcatch>0.15</probcatch>
-  <state id="0">
+  <probcatch>0.75</probcatch>
+  <state id="1">
     <statename>tree</statename>
     <statecolor>GREEN</statecolor>
     <percentage>0.5</percentage>
   </state>
-  <state id="1">
+  <state id="2">
     <statename>burning</statename>
     <statecolor>BROWN</statecolor>
     <percentage>0.01</percentage>
   </state>
-  <state id="2">
+  <state id="0">
     <statename>empty</statename>
     <statecolor>WHITE</statecolor>
     <percentage>0.49</percentage>

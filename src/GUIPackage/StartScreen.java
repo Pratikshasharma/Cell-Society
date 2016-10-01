@@ -2,37 +2,50 @@ package GUIPackage;
 
 import javafx.scene.Group;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+
+/**
+ * @author pratiksha sharma
+ *
+ */
 
 public class StartScreen{
 	private final String TITLE = "Cell Society Simulation" ;
-	private Button chooseFileButton = new Button ("Open File");
-	private Button exitButton = new Button ("EXIT");
-
+	private final String CELL_IMAGE = "cells.jpg";
+	private ButtonCreater exitButton;
+	private ButtonCreater chooseFileButton;
+	
 	public String getTITLE() {
 		return TITLE;
 	}
 
+	public StartScreen(){
+		exitButton = new ButtonCreater("Exit",event -> GUIController.exitGame());
+		chooseFileButton = new ButtonCreater("Open File", null);
+	}
+	
 	public Group createRoot(){
 		Group root = new Group();
 		changeButtonSettings();
-		root.getChildren().add(chooseFileButton);
-		root.getChildren().add(exitButton);
+		ImageView myStartImage =new ImageView(new Image(getClass().getClassLoader().getResourceAsStream(CELL_IMAGE)));
+		root.getChildren().add(myStartImage);
+		root.getChildren().add(chooseFileButton.getButton());
+		root.getChildren().add(exitButton.getButton());
 		return root;
 	}
 
 	private void changeButtonSettings(){
-		chooseFileButton.setLayoutX(50);
-		chooseFileButton.setLayoutY(50);
-		exitButton.setLayoutX(250);
-		exitButton.setLayoutY(50);
+		chooseFileButton.setButtonSettings(0.4*GUIController.SCENE_WIDTH, GUIController.SCENE_HEIGHT/2,20);
+		exitButton.setButtonSettings(0.7*GUIController.SCENE_WIDTH,GUIController.SCENE_HEIGHT/2,20);	
 	}
 	
 	public Button getChooseFileButton(){
-		return chooseFileButton;
+		return chooseFileButton.getButton();
 	}
 	
 	public Button getExitButton(){
-		return exitButton;
+		return exitButton.getButton();
 	}
 
 }
