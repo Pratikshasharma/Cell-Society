@@ -1,14 +1,12 @@
-package simulations;
+package Simulations;
 
-import java.util.ArrayList;
 import java.util.Random;
 
-import cellpackage.Cell;
-import cellpackage.State;
+import CellPackage.Cell;
+import CellPackage.State;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
 
-import java.util.Random;
 
 public class Tester {
 

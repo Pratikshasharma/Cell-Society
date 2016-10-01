@@ -1,7 +1,6 @@
-package simulations;
-import cellpackage.Cell;
-import cellpackage.State;
-import javafx.scene.paint.Paint;
+package Simulations;
+import CellPackage.Cell;
+import CellPackage.State;
 
 public class SpreadingOfFire extends SimulationSuperClass{
 

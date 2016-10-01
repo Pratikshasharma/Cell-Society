@@ -1,4 +1,4 @@
-package cellpackage;
+package CellPackage;
 
 
 import javafx.scene.shape.Shape;

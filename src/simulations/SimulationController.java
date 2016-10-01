@@ -1,7 +1,7 @@
-package simulations;
+package Simulations;
 import java.io.File;
 
-import cellpackage.Cell;
+import CellPackage.Cell;
 import javafx.scene.paint.Paint;
 import xml.MainXML;
 import xml.model.SimModel;

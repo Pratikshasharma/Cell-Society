@@ -9,7 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.util.Duration;
-import simulations.SimulationController;
+import Simulations.SimulationController;
 
 /**
  * @author pratiksha sharma

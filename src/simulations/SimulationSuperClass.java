@@ -1,5 +1,5 @@
-package simulations;
-import cellpackage.Cell;
+package Simulations;
+import CellPackage.Cell;
 
 
 
