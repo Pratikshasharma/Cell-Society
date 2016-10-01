@@ -1,8 +1,8 @@
-package Simulations;
+package simulations;
 
+import cellpackage.Cell;
+import cellpackage.State;
 import javafx.scene.paint.Paint;
-import CellPackage.Cell;
-import CellPackage.State;
 
 public class GameOfLife extends SimulationSuperClass {
 	

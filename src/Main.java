@@ -1,8 +1,7 @@
 
 
-import GUIPackage.GUIController;
+import gui.GUIController;
 import javafx.application.Application;
-import javafx.application.Platform;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
@@ -31,9 +30,4 @@ public class Main extends Application{
 		launch(args);
 	}
 
-	public static void exitGame(){
-		Platform.exit();
-		System.exit(0);
-	}
-	
 }
