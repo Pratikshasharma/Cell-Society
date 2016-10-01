@@ -1,10 +1,11 @@
-package Simulations;
+package simulations;
 
-import CellPackage.*;
 import javafx.scene.paint.Color;
 
 import java.util.ArrayList;
 import java.util.Random;
+
+import cellpackage.*;
 
 public class PredPrey extends SimulationSuperClass{
 

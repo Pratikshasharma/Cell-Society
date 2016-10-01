@@ -1,4 +1,4 @@
-package CellPackage;
+package cellpackage;
 import javafx.scene.paint.Paint;
 
 public class State {
