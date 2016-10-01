@@ -1,32 +1,33 @@
 
-package GUIPackage;
+package gui;
+
 import java.io.File;
-import Simulations.SimulationController;
+
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.application.Platform;
 import javafx.scene.Scene;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.util.Duration;
+import simulations.SimulationController;
 
 /**
  * @author pratiksha sharma
  *
  */
-public class GUIController{
+public class GUIController {
 	private Scene myScene;
 	private StartScreen initialScreen;
 	private ChooseFile myFileChooser;
 	private String TITLE = "Cell Society Simulation";
 	private File myChosenFile;
-	private Paint [][] myGridColor;
-	private CreateGrid myWindow;
+	private MainGUI myGUI;
 	private SimulationController mySimulationController;
 	private int numCellsWidth;
 	private int numCellsHeight;
 	private String mySimulationName;
 	private Timeline animation;
+
 
 	public static final int DEFAULT_FRAMES_PER_SECOND = 3;
 	public static final int MAX_FRAMES_PER_SECOND = 5;
@@ -34,114 +35,105 @@ public class GUIController{
 	public static final double SCENE_WIDTH = 800;
 	public static final double SCENE_HEIGHT = 600;
 
+	private Paint[][] myGridColor;
+
 	/**
 	 * Constructor
 	 */
-	public GUIController(){
+	public GUIController() {
 		initialScreen = new StartScreen();
 		myFileChooser = new ChooseFile();
-		myWindow = new CreateGrid();
+		myGUI = new MainGUI();
 		mySimulationController = new SimulationController();
 	}
 
-	public Scene init () {
-		myScene = new Scene(initialScreen.createRoot(),SCENE_WIDTH,SCENE_HEIGHT, Color.WHITE); 
-		initialScreen.getChooseFileButton().setOnAction(e -> chooseSimulationFile());
-		myWindow.getResetButton().getButton().setOnAction(e -> resetSimulation());
-		myWindow.getStartSimulationButton().getButton().setOnAction(e -> runContinuousSimulation());
-		myWindow.getStepSimulationButton().getButton().setOnAction( e-> updateGrid());
-		myWindow.getStopSimulationButton().getButton().setOnAction(e-> stopSimulation());
+	public Scene init() {
+		myScene = new Scene(initialScreen.createRoot(), SCENE_WIDTH, SCENE_HEIGHT, Color.WHITE);
+		setEventHandlersOnButtons();
 		return myScene;
-	} 
+	}
 
-	
+
 	private void resetSimulation() {
 		myGridColor = mySimulationController.initializeCellsAndGridVisualization();
 		updateGridVisualization();
-		if(animation!=null) stopSimulation();
+		stopSimulation();
 	}
 
-	public void setTitle(String myTitle){
+	public void setTitle(String myTitle) {
 		this.TITLE = myTitle;
 	}
 
-	public String getTitle(){
+	public String getTitle() {
 		return this.TITLE;
 	}
 
-	/**
-	 * Exit the program.
-	 */
-	public static void exitGame(){
-		Platform.exit();
-		System.exit(0);
-	}
-	
-	public void stopSimulation(){
-		animation.stop();
+
+
+	public void stopSimulation() {
+		if (animation != null)
+			animation.stop();
 	}
 
-	public void chooseSimulationFile(){
-		
+	public void chooseSimulationFile() {
 		myChosenFile = myFileChooser.chooseFile();
-		
 		mySimulationController.readFile(myChosenFile);
-		
+
 		this.mySimulationName = mySimulationController.getSimulationName();
 		this.numCellsHeight = mySimulationController.getNumCellsHeight();
 		this.numCellsWidth = mySimulationController.getNumCellsWidth();
-		
-		myWindow.setNumCellsHeight(this.numCellsHeight);
-		myWindow.setNumCellsWidth(this.numCellsWidth);
-		myWindow.setSimulationName(this.mySimulationName);
+
+		myGUI.setNumCellsHeight(this.numCellsHeight);
+		myGUI.setNumCellsWidth(this.numCellsWidth);
+		myGUI.setSimulationName(this.mySimulationName);
 
 		myGridColor = mySimulationController.initializeCellsAndGridVisualization();
-		myScene.setRoot(myWindow.createCellsList(myGridColor));	
+		myScene.setRoot(myGUI.setScene(myGridColor));
 	}
 
-	private void updateGrid(){
+	private void updateGrid() {
 		mySimulationController.updateCells();
-		// Call the updated Color Array	
+		// Call the updated Color Array
 		updateGridVisualization();
-		
 	}
 
-	private void runContinuousSimulation(){
-		animation =  new Timeline();
-		KeyFrame frame = new KeyFrame(Duration.millis(5000/myWindow.getSimulationSpeedSlider().getValue()),e -> this.updateGrid());
+	private void runContinuousSimulation() {
+		animation = new Timeline();
+		KeyFrame frame = new KeyFrame(Duration.millis(5000 / myGUI.getSimulationSpeedSlider().getValue()),e -> this.updateGrid());
 		animation.setCycleCount(Timeline.INDEFINITE);
 		animation.getKeyFrames().add(frame);
 		animation.play();
-			
+
 	}
+
 	/**
 	 * Possibly for the Simulation package to load Chosen XML File
+	 * 
 	 * @return
 	 */
-	public  File getFile(){
+	public File getFile() {
 		return this.myChosenFile;
 	}
 
-
-	private void updateGridVisualization(){
+	private void updateGridVisualization() {
 		myGridColor = mySimulationController.getColorGrid();
-		for (int i=0; i<myGridColor[0].length; i++){
-			for(int j=0;j<myGridColor.length;j++){
-				myWindow.updateColor(i, j,myGridColor[i][j]);		
+		for (int i = 0; i < myGridColor[0].length; i++) {
+			for (int j = 0; j < myGridColor.length; j++) {
+				myGUI.updateGridColor(i, j, myGridColor[i][j]);
 			}
 		}
 	}
-	
-	public int getNumCellWidth(){
-		return this.numCellsWidth;
-	}
-	
-	public int getNumCellHeight(){
-		return this.numCellsHeight;
-	}
 
-	public String getSimulationName(){
+	public String getSimulationName() {
 		return this.mySimulationName;
 	}
-	
+
+	private void setEventHandlersOnButtons() {
+		initialScreen.getOpenFileButton().setOnAction(e -> chooseSimulationFile());
+		myGUI.getResetButton().setOnAction(e -> resetSimulation());
+		myGUI.getStartSimulationButton().setOnAction(e -> runContinuousSimulation());
+		myGUI.getStepSimulationButton().setOnAction(e -> updateGrid());
+		myGUI.getStopSimulationButton().setOnAction(e -> stopSimulation());
+
+	}
 }

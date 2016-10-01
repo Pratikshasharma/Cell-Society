@@ -1,8 +1,13 @@
-package CellPackage;
+package cellpackage;
 
 
 import javafx.scene.shape.Shape;
 
+/**
+ * 
+ * @author pratiksha sharma
+ *
+ */
 public class Cell {
 	private Shape myCellShape;
 	private State cellCurrentState; 
