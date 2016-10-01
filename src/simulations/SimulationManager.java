@@ -1,10 +1,11 @@
-package Simulations;
+package simulations;
 import java.util.Random;
-import CellPackage.Cell;
+
 import xml.model.GenState;
 import xml.model.SimModel;
-import CellPackage.State;
-import GUIPackage.CreateGrid;
+import cellpackage.Cell;
+import cellpackage.State;
+import gui.MainGUI;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
 
@@ -136,7 +137,7 @@ public class SimulationManager {
 	
 	private Cell createNewCell(GenState myGenState){
 		State myCellState = getCellState(myGenState);
-		myRectangle = new Rectangle(CreateGrid.GRID_WIDTH/numCellsWidth,CreateGrid.GRID_HEIGHT/numCellsHeight);
+		myRectangle = new Rectangle(MainGUI.GRID_WIDTH/numCellsWidth,MainGUI.GRID_HEIGHT/numCellsHeight);
 		Cell myTempCell = new Cell(myRectangle,myCellState);
 		return myTempCell;
 	}

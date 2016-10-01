@@ -1,6 +1,7 @@
-package Simulations;
+package simulations;
 import java.io.File;
-import CellPackage.Cell;
+
+import cellpackage.Cell;
 import javafx.scene.paint.Paint;
 import xml.MainXML;
 import xml.model.SimModel;
@@ -22,20 +23,20 @@ public class SimulationController {
 	public SimulationController(){
 		myXMLReader = new MainXML();		
 	}
+	
 	public void readFile(File myFile){
 		mySimModel = myXMLReader.xmlRead(myFile);
 		mySimulationManager = new SimulationManager(mySimModel);
-		
+
 		this.mySimulationName = mySimModel.getMySimName();
 		this.numCellsHeight = mySimModel.getMySimHeight();
 		this.numCellsWidth = mySimModel.getMySimWidth();
-
 	}
 
 	private void getMyCellsColor(Cell[][] myCell) {
 		for( int i = 0; i<mySimulationManager.getNumCellsWidth();i++ ){
 			for (int j= 0;j<mySimulationManager.getNumCellsHeight();j++){
-					 myGridColor[i][j] = myCell[i][j].getCellCurrentState().getStateColor();
+				myGridColor[i][j] = myCell[i][j].getCellCurrentState().getStateColor();
 			}
 		}
 	}
@@ -68,4 +69,5 @@ public class SimulationController {
 	public String getSimulationName(){
 		return this.mySimulationName;
 	}
+
 }

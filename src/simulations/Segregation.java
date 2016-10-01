@@ -1,11 +1,11 @@
-package Simulations;
+package simulations;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import cellpackage.Cell;
+import cellpackage.State;
 import javafx.scene.paint.Paint;
-import CellPackage.Cell;
-import CellPackage.State;
 
 public class Segregation extends SimulationSuperClass {
 

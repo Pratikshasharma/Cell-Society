@@ -6,7 +6,7 @@
     <simwidth>50</simwidth>
     <simheight>50</simheight>
   </genparam>
-  <probcatch>0.15</probcatch>
+  <probcatch>0.75</probcatch>
   <state id="1">
     <statename>tree</statename>
     <statecolor>GREEN</statecolor>
