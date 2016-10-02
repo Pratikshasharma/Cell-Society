@@ -148,8 +148,10 @@ public class PredPrey extends SimulationSuperClass{
 			myGrid[moveR][moveC].setNextState(new State(mySharkState,0,myGrid[i][j].getCellCurrentState().getStarveCount()+1));
 		} else if (didMove && !didBreed && !didEat) {
 			myGrid[moveR][moveC].setNextState(new State(mySharkState, myGrid[i][j].getCellCurrentState().getBreedCount()+1, myGrid[i][j].getCellCurrentState().getStarveCount()+1));
-		} else if (!didMove && !didEat) {
+		} else if (!didMove && !didEat && !didBreed) {
 			myGrid[i][j].setNextState(new State(mySharkState, myGrid[i][j].getCellCurrentState().getBreedCount()+1, myGrid[i][j].getCellCurrentState().getStarveCount()+1));
+		} else if (!didMove && !didEat && didBreed) {
+			myGrid[i][j].setNextState(new State(mySharkState, 0, myGrid[i][j].getCellCurrentState().getStarveCount()+1));
 		} else if (!didMove && !didBreed && didEat) {
 			myGrid[eatR][eatC].setCellCurrentState(new State(myEmptyState,0,0));
 			myGrid[eatR][eatC].setNextState(new State(mySharkState,myGrid[i][j].getCellCurrentState().getBreedCount()+1, 0));
@@ -194,8 +196,10 @@ public class PredPrey extends SimulationSuperClass{
 	}
 	
 	private void fishMoves(boolean didMove, boolean didBreed, int i, int j, int moveR, int moveC) {
-		if (!didMove) {
+		if (!didMove && !didBreed) {
 			myGrid[i][j].setNextState(new State(myFishState, myGrid[i][j].getCellCurrentState().getBreedCount()+1, 0));
+		} else if (!didMove && didBreed) {
+			myGrid[i][j].setNextState(new State(myFishState,0,0));
 		} else if (didMove && didBreed) {
 			myGrid[moveR][moveC].setNextState(new State(myFishState,0,0));
 			myGrid[i][j].setNextState(new State(myFishState,0,0));

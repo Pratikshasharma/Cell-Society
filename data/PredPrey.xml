@@ -3,12 +3,12 @@
   <genparam>
     <simname>Predator-Prey</simname>
     <simauthor>Mike Scott</simauthor>
-    <simwidth>50</simwidth>
-    <simheight>50</simheight>
+    <simwidth>8</simwidth>
+    <simheight>8</simheight>
   </genparam>
   <fishturnstobreed>5</fishturnstobreed>
   <sharkturnstobreed>10</sharkturnstobreed>
-  <sharkturnstostarve>13</sharkturnstostarve>
+  <sharkturnstostarve>3</sharkturnstostarve>
   <state id="1">
     <statename>fish</statename>
     <statecolor>GREEN</statecolor>
@@ -16,7 +16,7 @@
   </state>
   <state id="2">
     <statename>shark</statename>
-    <statecolor>YELLOW</statecolor>
+    <statecolor>BROWN</statecolor>
     <percentage>0.1</percentage>
   </state>
   <state id="0">
