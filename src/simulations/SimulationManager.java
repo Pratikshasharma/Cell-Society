@@ -31,6 +31,7 @@ public class SimulationManager {
 	private SimModel mySimModel;
 
 
+
 	/**
 	 * Constructor
 	 * @param myGrid
@@ -61,7 +62,6 @@ public class SimulationManager {
 		State tempState = new State(myGenState.getMyName(),Paint.valueOf(myGenState.getMyColor()),myGenState.getMyStateID());
 		return tempState;
 	}
-
 
 	public void initializeMyCells(String mySimulationName){
 		if (SPREADING_FIRE.equals(mySimulationName)) {
