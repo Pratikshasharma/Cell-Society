@@ -2,6 +2,7 @@
 package gui;
 
 import java.io.File;
+import java.util.Map;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -27,9 +28,9 @@ public class GUIController {
 	private int numCellsHeight;
 	private String mySimulationName;
 	private Timeline animation;
+	private Map<String,Paint> myStateColorMap;
 
-
-	public static final int DEFAULT_FRAMES_PER_SECOND = 3;
+	public static final int DEFAULT_FRAMES_PER_SECOND = 2;
 	public static final int MAX_FRAMES_PER_SECOND = 5;
 	public static final int MIN_FRAMES_PER_SECOND = 1;
 	public static final double SCENE_WIDTH = 800;
@@ -77,8 +78,9 @@ public class GUIController {
 
 	public void chooseSimulationFile() {
 		myChosenFile = myFileChooser.chooseFile();
-		mySimulationController.readFile(myChosenFile);
-
+		//if (myChosenFile!=null){
+			mySimulationController.readFile(myChosenFile);
+		//}
 		this.mySimulationName = mySimulationController.getSimulationName();
 		this.numCellsHeight = mySimulationController.getNumCellsHeight();
 		this.numCellsWidth = mySimulationController.getNumCellsWidth();
@@ -88,7 +90,10 @@ public class GUIController {
 		myGUI.setSimulationName(this.mySimulationName);
 
 		myGridColor = mySimulationController.initializeCellsAndGridVisualization();
-		myScene.setRoot(myGUI.setScene(myGridColor));
+		// Can potentially draw the graph here
+		myStateColorMap = mySimulationController.getStateColorMap();
+		
+		myScene.setRoot(myGUI.setScene(myGridColor, myStateColorMap));
 	}
 
 	private void updateGrid() {
@@ -122,7 +127,10 @@ public class GUIController {
 				myGUI.updateGridColor(i, j, myGridColor[i][j]);
 			}
 		}
+		myGUI.updatePopulationGraph();	
 	}
+
+
 
 	public String getSimulationName() {
 		return this.mySimulationName;
