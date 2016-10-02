@@ -1,10 +1,10 @@
 package simulations;
 import java.util.Random;
 
-import xml.model.GenState;
-import xml.model.SimModel;
 import cellpackage.Cell;
 import cellpackage.State;
+import xml.model.GenState;
+import xml.model.SimModel;
 import gui.MainGUI;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;

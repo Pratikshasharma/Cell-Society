@@ -3,13 +3,13 @@ package gui;
 
 import java.io.File;
 
+import simulations.SimulationController;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.scene.Scene;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.util.Duration;
-import simulations.SimulationController;
 
 /**
  * @author pratiksha sharma

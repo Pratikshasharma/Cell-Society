@@ -1,0 +1,10 @@
+Refactoring
+=======
+
+
+###Things refactored 
+* Naming convention decided on and used within the simulations
+* Updated simulations to remove hardcoded value that is now being given in the constructor with the state class
+
+
+[Refactoring Push](https://git.cs.duke.edu/CompSci308_2016Fall/cellsociety_team12/commit/ca760deb7cd3e4cc159b67b5482ad01de8f9f21e) 

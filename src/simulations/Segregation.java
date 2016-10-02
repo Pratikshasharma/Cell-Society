@@ -1,25 +1,25 @@
 package simulations;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import cellpackage.Cell;
 import cellpackage.State;
-import javafx.scene.paint.Paint;
 
 public class Segregation extends SimulationSuperClass {
 
 	private Cell[][] myGrid;
-	private double percentSatisfaction;
-	private State emptyState;
-	private State race1State;
-	private State race2State;
+	private double myPercentSatisfaction;
+	private State myEmptyState;
+	private State myRace1State;
+	private State myRace2State;
 
-	public Segregation(Cell[][] grid, double s, State s1, State s2, State s3){
-		this.myGrid = grid;
-		this.percentSatisfaction = s;
-		this.emptyState = s1;
-		this.race1State = s2;
-		this.race2State = s3;
+	public Segregation(Cell[][] grid, double spercentSatisfaction, State state1, State state2, State state3){
+		myGrid = grid;
+		myPercentSatisfaction = spercentSatisfaction;
+		myEmptyState = state1;
+		myRace1State = state2;
+		myRace2State = state3;
 	}
 
 	private boolean checkOnGrid(int row, int column){
@@ -27,10 +27,10 @@ public class Segregation extends SimulationSuperClass {
 	}
 	
 	private boolean notEmpty(int row, int column){
-		return myGrid[row][column].getCellCurrentState().getStateID() != 0;
+		return myGrid[row][column].getCellCurrentState().getStateID() != myEmptyState.getStateID();
 	}
 
-	private ArrayList<Integer> getAdjacent(int row, int column){
+	private List<Integer> getAdjacent(int row, int column){
 		ArrayList<Integer> adjacentStates = new ArrayList<Integer>();
 		if (checkOnGrid(row+1, column) && notEmpty(row+1, column)){
 			adjacentStates.add(myGrid[row+1][column].getCellCurrentState().getStateID());
@@ -60,10 +60,10 @@ public class Segregation extends SimulationSuperClass {
 	}
 
 	private boolean isSatisfied(double percent){
-		return percent >= percentSatisfaction;
+		return percent >= myPercentSatisfaction;
 	}
 
-	private double countRace(ArrayList<Integer> adjacent, int race){
+	private double countRace(List<Integer> adjacent, int race){
 		double raceCount = 0.0;
 		for (int state: adjacent){
 			if (race == state){
@@ -82,8 +82,7 @@ public class Segregation extends SimulationSuperClass {
 	}
 
 	private void emptyState(int row, int column){
-		State tempState = new State("EMPTY", Paint.valueOf("WHITE"), 0);
-		myGrid[row][column].setNextState(tempState);
+		myGrid[row][column].setNextState(myEmptyState);
 	}
 
 	private void move(int fromRow, int fromColumn, int toRow, int toColumn){
@@ -97,7 +96,7 @@ public class Segregation extends SimulationSuperClass {
 		for(int i = 0; i<myGrid.length; i++){
 			for (int j = 0; j<myGrid[i].length; j++){
 				if(myGrid[i][j].getNextState() == null && 
-						myGrid[i][j].getCellCurrentState().getStateID() ==0){
+						myGrid[i][j].getCellCurrentState().getStateID() == myEmptyState.getStateID()){
 					move(currentRow, currentColumn, i, j);
 					emptyState(currentRow, currentColumn);
 					return;
@@ -109,8 +108,8 @@ public class Segregation extends SimulationSuperClass {
 	public void updateSimulation(){
 		for(int i = 0; i<myGrid.length; i++){
 			for(int j = 0; j<myGrid[i].length; j++){
-				if(myGrid[i][j].getCellCurrentState().getStateID() != 0){
-					ArrayList<Integer> adjacentStates = getAdjacent(i, j);
+				if(myGrid[i][j].getCellCurrentState().getStateID() != myEmptyState.getStateID()){
+					List<Integer> adjacentStates = getAdjacent(i, j);
 					double myRaceCount = countRace(adjacentStates, myGrid[i][j].getCellCurrentState().getStateID());
 					double otherRaceCount = adjacentStates.size() - myRaceCount;
 					if(otherRaceCount ==0 ||isSatisfied(myRaceCount/(myRaceCount+otherRaceCount))){
