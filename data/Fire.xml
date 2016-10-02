@@ -3,8 +3,8 @@
   <genparam>
     <simname>Spreading of Fire</simname>
     <simauthor>Angela B. Shiflet</simauthor>
-    <simwidth>50</simwidth>
-    <simheight>50</simheight>
+    <simwidth>20</simwidth>
+    <simheight>20</simheight>
   </genparam>
   <probcatch>0.75</probcatch>
   <state id="1">
@@ -15,7 +15,7 @@
   <state id="2">
     <statename>burning</statename>
     <statecolor>BROWN</statecolor>
-    <percentage>0.01</percentage>
+    <percentage>1.0</percentage>
   </state>
   <state id="0">
     <statename>empty</statename>
