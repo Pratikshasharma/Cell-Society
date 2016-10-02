@@ -21,23 +21,6 @@ public class State {
 		myBreedCount = breedCount;
 		myStarveCount = starveCount;
 	}
-	
-//	//fish state
-//	public State(String stateName, Paint myColor, int stateID, int breedCount){
-//		myStateName = stateName;
-//		myStateColor = myColor;
-//		myStateID = stateID;
-//		myBreedCount = breedCount;
-//	}
-//	
-//	//shark state
-//	public State(String stateName, Paint myColor, int stateID, int breedCount, int starveCount){
-//		myStateName = stateName;
-//		myStateColor = myColor;
-//		myStateID = stateID;
-//		myBreedCount = breedCount;
-//		myStarveCount = starveCount;
-//	}
 
 	public String getStateName() {
 		return myStateName;
