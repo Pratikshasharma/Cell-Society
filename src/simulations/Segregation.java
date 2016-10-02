@@ -108,7 +108,7 @@ public class Segregation extends SimulationSuperClass {
 	public void updateSimulation(){
 		for(int i = 0; i<myGrid.length; i++){
 			for(int j = 0; j<myGrid[i].length; j++){
-				if(myGrid[i][j].getCellCurrentState().getStateID() != 0){
+				if(myGrid[i][j].getCellCurrentState().getStateID() != myEmptyState.getStateID()){
 					List<Integer> adjacentStates = getAdjacent(i, j);
 					double myRaceCount = countRace(adjacentStates, myGrid[i][j].getCellCurrentState().getStateID());
 					double otherRaceCount = adjacentStates.size() - myRaceCount;
