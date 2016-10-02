@@ -14,16 +14,16 @@ public class PredPreyModel extends SimModel {
 	private GenState myShark;
 	private GenState myEmptyState;
 	
-	public PredPreyModel(String simName, String simAuthor, String simWidth, String simHeight,
+	public PredPreyModel(String[] genParams,
 			String fishTurnsToBreed, String sharkTurnsToBreed, String sharkTurnsToStarve,
-			GenState fish, GenState shark, GenState emptyState) {
-		super(simName, simAuthor, simWidth, simHeight);
+			GenState[] genStates) {
+		super(genParams);
 		myFishTurnsToBreed = Integer.parseInt(fishTurnsToBreed);
 		mySharkTurnsToBreed = Integer.parseInt(sharkTurnsToBreed);
 		mySharkTurnsToStarve = Integer.parseInt(sharkTurnsToStarve);
-		myFish = fish;
-		myShark = shark;
-		myEmptyState = emptyState;
+		myFish = genStates[0];
+		myShark = genStates[1];
+		myEmptyState = genStates[2];
 	}
 
 	/**
@@ -67,41 +67,5 @@ public class PredPreyModel extends SimModel {
 	public GenState getMyEmptyState() {
 		return myEmptyState;
 	}
-
-	@Override
-	public double getMyProbCatch() {
-		return 0;
-	}
-
-	@Override
-	public GenState getMyTree() {
-		return null;
-	}
-
-	@Override
-	public GenState getMyBurning() {
-		return null;
-	}
-
-	@Override
-	public double getMySatisfaction() {
-		return 0;
-	}
-
-	@Override
-	public GenState getMyRace1() {
-		return null;
-	}
-
-	@Override
-	public GenState getMyRace2() {
-		return null;
-	}
-
-	@Override
-	public GenState getMyFullState() {
-		return null;
-	}
-
 
 }
