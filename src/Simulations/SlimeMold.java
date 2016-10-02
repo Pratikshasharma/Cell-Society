@@ -19,14 +19,6 @@ public class SlimeMold extends SimulationSuperClass{
 	private boolean checkOnGrid(int row, int column){
 		return row>=0 && row<myGrid.length && column >= 0 && column < myGrid[row].length;
 	}
-
-	private void initializeBreedCount(){
-		for(int i = 0; i<myGrid.length; i++){
-			for (int j = 0; j < myGrid[i].length; j++){
-				myGrid[i][j].getCellCurrentState().setBreedCount(0);
-			}
-		}
-	}
 	
 	private void updateCellcAMP(int row, int column, boolean increase){
 		if(increase){
