@@ -36,6 +36,9 @@ public class SegregationXMLFactory extends SimXMLFactory {
     	GenState[] genStates = getSimGenStates(root);
     	String satisfaction = getTextValue(root, "satisfaction");
         
-        return new SegregationModel(genParams, satisfaction, genStates);
+    	checkPositiveNumberParameter(satisfaction, "double", "Satisfaction", true);
+    	double satisfactionDouble = Double.parseDouble(satisfaction);
+    	
+        return new SegregationModel(genParams, satisfactionDouble, genStates);
     }
 }

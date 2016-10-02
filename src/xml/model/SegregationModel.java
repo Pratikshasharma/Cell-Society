@@ -12,9 +12,9 @@ public class SegregationModel extends SimModel {
 	private GenState myRace2;
 	private GenState myEmptyState;
 	
-	public SegregationModel(String[] genParams,	String satisf, GenState[] genStates) {
+	public SegregationModel(String[] genParams,	double satisf, GenState[] genStates) {
 		super(genParams);
-		mySatisfaction = Double.parseDouble(satisf);
+		mySatisfaction = satisf;
 		myRace1 = genStates[0];
 		myRace2 = genStates[1];
 		myEmptyState = genStates[2];

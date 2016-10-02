@@ -12,9 +12,9 @@ public class FireModel extends SimModel {
 	private GenState myBurning;
 	private GenState myEmptyState;
 	
-	public FireModel(String[] genParams, String probCatch, GenState[] genStates) {
+	public FireModel(String[] genParams, double probCatch, GenState[] genStates) {
 		super(genParams);
-		myProbCatch = Double.parseDouble(probCatch);
+		myProbCatch = probCatch;
 		myTree = genStates[0];
 		myBurning = genStates[1];
 		myEmptyState = genStates[2];

@@ -66,9 +66,42 @@ public abstract class SimXMLFactory extends XMLFactory {
     		String simHeight = getTextValue(genpElement, "simheight");
     		
     		String[] genParams = new String[]{simName,simAuthor,simWidth,simHeight};
+    		checkGenParams(genParams);
     		return genParams;
     	}
     	return null;
+    }
+    
+    private void checkGenParams(String[] genParams) throws XMLFactoryException {
+    	int track = 0;
+    	String[] param = new String[]{"simname", "simauthor", "simwidth", "simheight"};
+    	for (String s : genParams) {
+    		if (s.equals("")) {
+    			throw new XMLFactoryException("node \"%s\" was not found in XML, please check general parameters", param[track]);
+    		}
+    		track++;
+    	}
+    	
+    	int width = 0;
+    	int height = 0;
+    	
+    	try {
+    		width = Integer.parseInt(genParams[2]);
+    		height = Integer.parseInt(genParams[3]);
+    	} catch (NumberFormatException e) {
+    		if (e.getMessage().equals("For input string: \""+genParams[2]+"\"")) {
+    			throw new XMLFactoryException("SimWidth value \"%s\" is invalid, must be a positive integer",genParams[2]);
+    		} else if (e.getMessage().equals("For input string: \""+genParams[3]+"\"")) {
+    			throw new XMLFactoryException("SimHeight value \"%s\" is invalid, must be a positive integer",genParams[3]);
+    		}
+    	}
+    	
+    	if (width<0) {
+    		throw new XMLFactoryException("SimWidth must be a positive integer");
+    	}
+    	if (height<0) {
+    		throw new XMLFactoryException("SimHeight must be a positive integer");    		
+    	}
     }
     
     protected GenState[] getSimGenStates(Element root) throws XMLFactoryException {
@@ -95,7 +128,7 @@ public abstract class SimXMLFactory extends XMLFactory {
     	return states;
     }
     
-    @SuppressWarnings("unused")
+	@SuppressWarnings("unused")
 	private void valueCheck(Element e, int n) throws XMLFactoryException{
     	String name = getTextValue(e, "statename");
     	String color = getTextValue(e, "statecolor");
@@ -104,21 +137,42 @@ public abstract class SimXMLFactory extends XMLFactory {
     	
     	if(name.equals("")) {throw new XMLFactoryException("State %d: no name found", n+1);}
     	if(color.equals("")) {throw new XMLFactoryException("State %d: no color found", n+1);}
-    	if(percentage.equals("")) {throw new XMLFactoryException("State %d: no percentage found", n+1);}
-    	if(id.equals("")) {throw new XMLFactoryException("State %d: no state ID found", n+1);}
     	
     	try {
 			Color c = Color.valueOf(color);
-    		double d = Double.parseDouble(percentage);
-    		int i = Integer.parseInt(id);
     	} catch (IllegalArgumentException exc) {
-    		if (exc.getMessage().equals("For input string: \""+percentage+"\"")) {
-    			throw new XMLFactoryException("State %d: Percentage '%s' is invalid, must be a value between 0 and 1", n+1, percentage);
-    		} else if (exc.getMessage().equals("For input string: \""+id+"\"")){
-    			throw new XMLFactoryException("State %d: ID '%s' is invalid, must be an integer", n+1, id);	
-    		} else if (exc.getMessage().equals("Invalid color specification")) {
-    			throw new XMLFactoryException("State %d: Color '%s' is not recognized", n+1, color);
-    		}
-    	} 
-    }
+    			throw new XMLFactoryException("State %d: Color \"%s\" is not recognized", n+1, color);
+    	}
+    	
+    	checkPositiveNumberParameter(percentage, "double", "Percentage", true);
+    	checkPositiveNumberParameter(id, "int", "State ID", false);
+    	
+	}
+	
+	protected void checkPositiveNumberParameter(String param, String type, String description, boolean checkPos) throws XMLFactoryException {
+		
+		if (param.equals("")) {
+			throw new XMLFactoryException("%s value was not found", description);
+		}
+		
+		int i = 0;
+		double d = 0;
+		
+		try {
+			if (type.equals("int")) {
+				i = Integer.parseInt(param);
+			} else if (type.equals("double")) {
+				type = type + " less than 1";
+				d = Double.parseDouble(param);
+			}
+		} catch (NumberFormatException e) {
+			throw new XMLFactoryException("%s value, \"%s\" is not valid. Must be a positive %s", description, param, type);
+		}
+		
+		if (checkPos) {
+			if (i<0 || d<0 || d>1) {
+				throw new XMLFactoryException("%s value, \"%s\" is not valid. Must be a positive %s", description, param, type);
+			}
+		}
+	}
 }

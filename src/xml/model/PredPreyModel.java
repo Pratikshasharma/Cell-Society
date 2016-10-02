@@ -15,12 +15,12 @@ public class PredPreyModel extends SimModel {
 	private GenState myEmptyState;
 	
 	public PredPreyModel(String[] genParams,
-			String fishTurnsToBreed, String sharkTurnsToBreed, String sharkTurnsToStarve,
+			int fishTurnsToBreed, int sharkTurnsToBreed, int sharkTurnsToStarve,
 			GenState[] genStates) {
 		super(genParams);
-		myFishTurnsToBreed = Integer.parseInt(fishTurnsToBreed);
-		mySharkTurnsToBreed = Integer.parseInt(sharkTurnsToBreed);
-		mySharkTurnsToStarve = Integer.parseInt(sharkTurnsToStarve);
+		myFishTurnsToBreed = fishTurnsToBreed;
+		mySharkTurnsToBreed = sharkTurnsToBreed;
+		mySharkTurnsToStarve = sharkTurnsToStarve;
 		myFish = genStates[0];
 		myShark = genStates[1];
 		myEmptyState = genStates[2];

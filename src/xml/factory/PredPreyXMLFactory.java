@@ -37,7 +37,15 @@ public class PredPreyXMLFactory extends SimXMLFactory {
     	String fishBreed = getTextValue(root, "fishturnstobreed");
     	String sharkBreed = getTextValue(root, "sharkturnstobreed");
     	String sharkStarve = getTextValue(root, "sharkturnstostarve");
-        
-        return new PredPreyModel(genParams, fishBreed, sharkBreed, sharkStarve, genStates);
+    	
+    	checkPositiveNumberParameter(fishBreed, "int", "Turns until fish breed", true);
+    	checkPositiveNumberParameter(sharkBreed, "int", "Turns until sharks breed", true);
+    	checkPositiveNumberParameter(sharkStarve, "int", "Turns until sharks starve", true);
+    	
+    	int fishBreedInt = Integer.parseInt(fishBreed);
+    	int sharkBreedInt = Integer.parseInt(sharkBreed);
+    	int sharkStarveInt = Integer.parseInt(sharkStarve);
+    	        
+        return new PredPreyModel(genParams, fishBreedInt, sharkBreedInt, sharkStarveInt, genStates);
     }
 }

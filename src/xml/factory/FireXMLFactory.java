@@ -35,7 +35,11 @@ public class FireXMLFactory extends SimXMLFactory {
     	String[] genParams = getSimGenParams(root);
     	GenState[] genStates = getSimGenStates(root);
     	String probCatch = getTextValue(root, "probcatch");
+    	
+    	checkPositiveNumberParameter(probCatch, "double", "Catch Probability", true);
+    	double probCatchDouble = Double.parseDouble(probCatch);
+
         
-        return new FireModel(genParams, probCatch, genStates);
+        return new FireModel(genParams, probCatchDouble, genStates);
     }
 }
