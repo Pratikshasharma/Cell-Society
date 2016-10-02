@@ -1,9 +1,9 @@
-package Simulations;
+package simulations;
 
 import java.util.Random;
 
-import CellPackage.Cell;
-import CellPackage.State;
+import cellpackage.Cell;
+import cellpackage.State;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
 

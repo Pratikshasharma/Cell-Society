@@ -1,6 +1,6 @@
-package Simulations;
-import CellPackage.Cell;
-import CellPackage.State;
+package simulations;
+import cellpackage.Cell;
+import cellpackage.State;
 
 public class SpreadingOfFire extends SimulationSuperClass{
 

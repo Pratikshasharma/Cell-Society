@@ -1,10 +1,10 @@
-package Simulations;
+package simulations;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import CellPackage.Cell;
-import CellPackage.State;
+import cellpackage.Cell;
+import cellpackage.State;
 
 public class Segregation extends SimulationSuperClass {
 

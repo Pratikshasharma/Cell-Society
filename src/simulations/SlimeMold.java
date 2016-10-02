@@ -1,7 +1,7 @@
-package Simulations;
+package simulations;
 
-import CellPackage.Cell;
-import CellPackage.State;
+import cellpackage.Cell;
+import cellpackage.State;
 
 public class SlimeMold extends SimulationSuperClass{
 
