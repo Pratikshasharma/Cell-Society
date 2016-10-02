@@ -72,6 +72,7 @@ public abstract class SimXMLFactory extends XMLFactory {
     protected GenState[] getSimGenStates(Element root) throws XMLFactoryException {
     	NodeList nList = root.getElementsByTagName("state");
     	GenState[] states = new GenState[nList.getLength()];
+    	double checkPercentages = 0;
     	
     	for (int temp = 0; temp < nList.getLength(); temp++) {
     		Node nNode = nList.item(temp);
@@ -79,8 +80,13 @@ public abstract class SimXMLFactory extends XMLFactory {
     			Element eElement = (Element) nNode;
     			states[temp] = new GenState(getTextValue(eElement, "statename"), getTextValue(eElement, "statecolor"),
     					getTextValue(eElement, "percentage"), eElement.getAttribute("id"));
+    			checkPercentages += Double.parseDouble(getTextValue(eElement, "percentage"));
     		}
-    	} 
+    	}
+    	
+    	if (checkPercentages != 1) {
+    		throw new XMLFactoryException("State Percentages add up to %.2f, not 1", checkPercentages);
+    	}
     	
     	return states;
     }

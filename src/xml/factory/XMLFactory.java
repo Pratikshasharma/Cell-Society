@@ -1,7 +1,6 @@
 package xml.factory;
 
 import org.w3c.dom.Element;
-import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 
@@ -15,11 +14,12 @@ import org.w3c.dom.NodeList;
  * @author Robert Duvall
  */
 public abstract class XMLFactory {
+	
     /**
      * @return if this is a valid XML file for this specific XML object type
      */
     protected abstract boolean isValidFile (Element root);
-	//protected abstract boolean isValidFile (Node root);
+    
     /**
      * Get the value of an attribute.
      * 

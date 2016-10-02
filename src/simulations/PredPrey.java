@@ -13,9 +13,9 @@ import cellpackage.*;
  */
 public class PredPrey extends SimulationSuperClass{
 
-	private static final int FISH = 1;
-	private static final int SHARK = 2;
-	private static final int EMPTY = 0;
+	private static int FISH;
+	private static int SHARK;
+	private static int EMPTY;
 	private Cell[][] myGrid;
 	private int myFishTurnsToBreed;
 	private int mySharkTurnsToBreed;
@@ -32,6 +32,9 @@ public class PredPrey extends SimulationSuperClass{
 		myEmptyState = s1;
 		myFishState = s2;
 		mySharkState = s3;
+		EMPTY = s1.getStateID();
+		FISH = s2.getStateID();
+		SHARK = s3.getStateID();
 	}
 	
 	private boolean checkOnGrid(int row, int column){

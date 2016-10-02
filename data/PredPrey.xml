@@ -12,7 +12,7 @@
   <state id="1">
     <statename>fish</statename>
     <statecolor>GREEN</statecolor>
-    <percentage>0.5</percentage>
+    <percentage>0.4</percentage>
   </state>
   <state id="2">
     <statename>shark</statename>
