@@ -19,8 +19,8 @@ public class SimulationController {
 	private String mySimulationName;
 	private Paint [][] myGridColor;
 	private SimulationSuperClass mySuperClass;
-	private int numCellsWidth;
-	private int numCellsHeight;
+	private int myNumCellsWidth;
+	private int myNumCellsHeight;
 	private Map<String,Paint> myStateColorMap = new HashMap<String,Paint>();
 
 	public SimulationController(){
@@ -30,9 +30,9 @@ public class SimulationController {
 	public void readFile(File myFile){
 		mySimModel = myXMLReader.xmlRead(myFile);
 		mySimulationManager = new SimulationManager(mySimModel);
-		this.mySimulationName = mySimModel.getMySimName();
-		this.numCellsHeight = mySimModel.getMySimHeight();
-		this.numCellsWidth = mySimModel.getMySimWidth();
+		mySimulationName = mySimModel.getMySimName();
+		myNumCellsHeight = mySimModel.getMySimHeight();
+		myNumCellsWidth = mySimModel.getMySimWidth();
 	}
 
 	private void getMyCellsColor(Cell[][] myCell) {
@@ -44,7 +44,7 @@ public class SimulationController {
 		}
 	}
 
-	public Paint[][] initializeCellsAndGridVisualization(){
+	public Paint[][] initializeCellsAndGridVisualization() {
 		mySimulationManager.initializeMyCells(mySimModel.getMySimName());
 		mySuperClass = mySimulationManager.getSimulationType(mySimulationName);
 		myGridColor= new Paint[mySimModel.getMySimHeight()][mySimModel.getMySimWidth()];
@@ -61,14 +61,14 @@ public class SimulationController {
 		return myGridColor;
 	}
 	public int getNumCellsWidth(){
-		return this.numCellsWidth;
+		return myNumCellsWidth;
 	}
 
 	public int getNumCellsHeight(){
-		return this.numCellsHeight;
+		return myNumCellsHeight;
 	}
 	public String getSimulationName(){
-		return this.mySimulationName;
+		return mySimulationName;
 	}
 
 	private void createStateColorMap(String stateName, Paint stateColor){
@@ -76,8 +76,9 @@ public class SimulationController {
 			myStateColorMap.put(stateName, stateColor);
 		}
 	}
+	
 	public Map<String,Paint> getStateColorMap(){
-		return this.myStateColorMap;
+		return myStateColorMap;
 	}
 
 }
