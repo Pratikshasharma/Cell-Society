@@ -5,13 +5,11 @@ import cellpackage.State;
 
 public class GameOfLife extends SimulationSuperClass {
 
-	//private Cell[][] super.getGrid();
 	private State myEmptyState;
 	private State myFullState;
 
 	public GameOfLife(Cell[][] grid, State state1, State state2){
 		super(grid);
-		//myGrid = grid;
 		myEmptyState = state1;
 		myFullState = state2;
 	}

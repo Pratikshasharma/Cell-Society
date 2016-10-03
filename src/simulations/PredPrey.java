@@ -42,16 +42,16 @@ public class PredPrey extends SimulationSuperClass{
 	
 	private ArrayList<Coordinates> checkNeighborCurrentState(int r, int c, int stateID) {
 		ArrayList<Coordinates> stateLoc = new ArrayList<Coordinates>();
-		if (checkOnGrid(r+1,c) && (myGrid[r+1][c].getCellCurrentState().getStateID() == stateID)) {
+		if (checkOnGrid(r+1,c) && (super.getGrid()[r+1][c].getCellCurrentState().getStateID() == stateID)) {
 			stateLoc.add(new Coordinates(r+1,c));
 		}
-		if (checkOnGrid(r,c+1) && (myGrid[r][c+1].getCellCurrentState().getStateID() == stateID)) {
+		if (checkOnGrid(r,c+1) && (super.getGrid()[r][c+1].getCellCurrentState().getStateID() == stateID)) {
 			stateLoc.add(new Coordinates(r,c+1));
 		}
-		if (checkOnGrid(r-1,c) && (myGrid[r-1][c].getCellCurrentState().getStateID() == stateID)) {
+		if (checkOnGrid(r-1,c) && (super.getGrid()[r-1][c].getCellCurrentState().getStateID() == stateID)) {
 			stateLoc.add(new Coordinates(r-1,c));
 		}
-		if (checkOnGrid(r,c-1) && (myGrid[r][c-1].getCellCurrentState().getStateID() == stateID)) {
+		if (checkOnGrid(r,c-1) && (super.getGrid()[r][c-1].getCellCurrentState().getStateID() == stateID)) {
 			stateLoc.add(new Coordinates(r,c-1));
 		}
 		return stateLoc;
@@ -59,16 +59,16 @@ public class PredPrey extends SimulationSuperClass{
 	
 	private ArrayList<Coordinates> checkEmptyNextState(int r, int c) {
 		ArrayList<Coordinates> emptyLoc = new ArrayList<Coordinates>();
-		if (checkOnGrid(r+1,c) && ((myGrid[r+1][c].getNextState() == null) || (myGrid[r+1][c].getNextState().getStateID() == EMPTY))) {
+		if (checkOnGrid(r+1,c) && ((super.getGrid()[r+1][c].getNextState() == null) || (super.getGrid()[r+1][c].getNextState().getStateID() == EMPTY))) {
 			emptyLoc.add(new Coordinates(r+1,c));
 		}
-		if (checkOnGrid(r,c+1) && ((myGrid[r][c+1].getNextState() == null) || (myGrid[r][c+1].getNextState().getStateID() == EMPTY))) {
+		if (checkOnGrid(r,c+1) && ((super.getGrid()[r][c+1].getNextState() == null) || (super.getGrid()[r][c+1].getNextState().getStateID() == EMPTY))) {
 			emptyLoc.add(new Coordinates(r,c+1));
 		}
-		if (checkOnGrid(r-1,c) && ((myGrid[r-1][c].getNextState() == null) || (myGrid[r-1][c].getNextState().getStateID() == EMPTY))) {
+		if (checkOnGrid(r-1,c) && ((super.getGrid()[r-1][c].getNextState() == null) || (super.getGrid()[r-1][c].getNextState().getStateID() == EMPTY))) {
 			emptyLoc.add(new Coordinates(r-1,c));
 		}
-		if (checkOnGrid(r,c-1) && ((myGrid[r][c-1].getNextState() == null) || (myGrid[r][c-1].getNextState().getStateID() == EMPTY))) {
+		if (checkOnGrid(r,c-1) && ((super.getGrid()[r][c-1].getNextState() == null) || (super.getGrid()[r][c-1].getNextState().getStateID() == EMPTY))) {
 			emptyLoc.add(new Coordinates(r,c-1));
 		}
 		return emptyLoc;

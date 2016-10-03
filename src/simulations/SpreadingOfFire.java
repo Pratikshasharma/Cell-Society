@@ -4,7 +4,6 @@ import cellpackage.State;
 
 public class SpreadingOfFire extends SimulationSuperClass{
 
-//	private Cell[][] myGrid;
 	private double myProbCatch;
 	private State myEmptyState;
 	private State myTreeState;
@@ -12,7 +11,6 @@ public class SpreadingOfFire extends SimulationSuperClass{
 
 	public SpreadingOfFire(Cell[][] grid, double probCatch, State state1, State state2, State state3){
 		super(grid);
-	//	myGrid = grid;
 		myProbCatch = probCatch;
 		myEmptyState = state1;
 		myTreeState = state2;
