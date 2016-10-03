@@ -32,8 +32,6 @@ public class SimulationManager {
 	public final String SLIMEMOLD = "Slime Mold";
 	private SimModel mySimModel;
 
-
-
 	/**
 	 * Constructor
 	 * @param myGrid

@@ -54,7 +54,6 @@ public class GUIController {
 		return myScene;
 	}
 
-
 	private void resetSimulation() {
 		myGridColor = mySimulationController.initializeCellsAndGridVisualization();
 		updateGridVisualization(true);
@@ -76,15 +75,8 @@ public class GUIController {
 	public void chooseSimulationFile() {
 		myChosenFile = myFileChooser.chooseFile();
 		mySimulationController.readFile(myChosenFile);
-		this.mySimulationName = mySimulationController.getSimulationName();
-		this.numCellsHeight = mySimulationController.getNumCellsHeight();
-		this.numCellsWidth = mySimulationController.getNumCellsWidth();
-
-		myGUI.setNumCellsHeight(this.numCellsHeight);
-		myGUI.setNumCellsWidth(this.numCellsWidth);
-		myGUI.setSimulationName(this.mySimulationName);
-
-		myGridColor = mySimulationController.initializeCellsAndGridVisualization();
+		initializeInstanceVariables();
+		myGridColor = mySimulationController.initializeCellsAndGridVisualization();	
 		myStateColorMap = mySimulationController.getStateColorMap();
 		myScene.setRoot(myGUI.setScene(myGridColor, myStateColorMap));
 	}
@@ -104,7 +96,6 @@ public class GUIController {
 
 	/**
 	 * Possibly for the Simulation package to load Chosen XML File
-	 * 
 	 * @return
 	 */
 	public File getFile() {
@@ -122,16 +113,26 @@ public class GUIController {
 		}
 		myGUI.updatePopulationGraph(resetLineGraph);	
 	}
+
 	public String getSimulationName() {
 		return this.mySimulationName;
 	}
-	
+
 	private void setEventHandlersOnButtons() {
 		initialScreen.getOpenFileButton().setOnAction(e -> chooseSimulationFile());
 		myGUI.getResetButton().setOnAction(e -> resetSimulation());
 		myGUI.getStartSimulationButton().setOnAction(e -> runContinuousSimulation());
 		myGUI.getStepSimulationButton().setOnAction(e -> updateGrid());
 		myGUI.getStopSimulationButton().setOnAction(e -> stopSimulation());
+	}
 
+	private void initializeInstanceVariables(){
+		this.mySimulationName = mySimulationController.getSimulationName();
+		this.numCellsHeight = mySimulationController.getNumCellsHeight();
+		this.numCellsWidth = mySimulationController.getNumCellsWidth();
+
+		myGUI.setNumCellsHeight(this.numCellsHeight);
+		myGUI.setNumCellsWidth(this.numCellsWidth);
+		myGUI.setSimulationName(this.mySimulationName);
 	}
 }

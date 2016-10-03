@@ -49,6 +49,7 @@ public class SimulationController {
 		mySuperClass = mySimulationManager.getSimulationType(mySimulationName);
 		myGridColor= new Paint[mySimModel.getMySimHeight()][mySimModel.getMySimWidth()];
 		getMyCellsColor(mySimulationManager.getMyGrid());
+		
 		return myGridColor;
 	}
 
