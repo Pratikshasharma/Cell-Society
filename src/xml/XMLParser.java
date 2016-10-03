@@ -26,7 +26,6 @@ public class XMLParser {
      * @return the root element in the xmlFile
      */
     public Element getRootElement (String xmlFilename) {
-    //public Node getRootElement (String xmlFilename) {
     	try {
             DOCUMENT_BUILDER.reset();
             Document xmlDocument = DOCUMENT_BUILDER.parse(xmlFilename);
