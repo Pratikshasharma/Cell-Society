@@ -20,10 +20,6 @@ public class SpreadingOfFire extends SimulationSuperClass{
 	private boolean checkIfTree(int row, int column){
 		return super.getGrid()[row][column].getCellCurrentState().getStateID() ==myTreeState.getStateID();
 	}
-	
-	private boolean checkOnGrid(int row, int column){
-		return row>=0 && row<super.getGrid().length && column >= 0 && column < super.getGrid()[row].length;
-	}
 
 	private void checkSpreadFire( int row, int column){
 		if(checkOnGrid(row + 1, column)  && checkIfTree(row+1, column) && setFire()){
@@ -69,17 +65,6 @@ public class SpreadingOfFire extends SimulationSuperClass{
 		return super.getGrid()[row][column].getCellCurrentState().getStateID() ==myBurningState.getStateID() ;
 	} 
 
-	private void updateCells(){
-		for (int row = 0; row<super.getGrid().length; row++){
-			for(int column = 0; column<super.getGrid()[row].length; column++){
-				if(super.getGrid()[row][column].getNextState() != null){
-					super.getGrid()[row][column].setCellCurrentState(super.getGrid()[row][column].getNextState());
-					super.getGrid()[row][column].setNextState(null);
-				}
-			}
-		}
-	}
-	
 	@Override
 	public void updateSimulation(){
 		checkBurningCells();
