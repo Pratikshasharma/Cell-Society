@@ -28,15 +28,6 @@ public abstract class SimulationSuperClass {
 	}
 
 	public abstract void updateSimulation();
-
-	public void printGrid(){
-		for (int i = 0; i < myGrid.length;i++){
-			System.out.println();
-			for(int j = 0 ; j<myGrid[i].length; j++){
-				System.out.print(myGrid[i][j].getCellCurrentState().getStateID());
-			}
-		}
-	}
 }
 
 
