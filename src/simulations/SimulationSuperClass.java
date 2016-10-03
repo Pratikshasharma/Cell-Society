@@ -2,13 +2,12 @@ package simulations;
 import cellpackage.Cell;
 
 
-
+/**
+ * Superclass for individual Simulation classes
+ * @author Ryan Anders
+ *@author Blake Becerra
+ */
 public abstract class SimulationSuperClass {
-
-	//protected genState myGenState; -- This holds the State and the percentages
-	//	public SimulationSuperClass(Cell[][] myGrid){
-	//		this.myGrid = myGrid;
-	//	}
 
 	private Cell[][] myGrid;
 
@@ -16,10 +15,6 @@ public abstract class SimulationSuperClass {
 		myGrid = grid;
 	}
 
-	//	/**
-	//	 * Abstract Class for Calling Simulation
-	//	 */
-	//
 	public Cell[][] getGrid(){
 		return myGrid;
 	}
