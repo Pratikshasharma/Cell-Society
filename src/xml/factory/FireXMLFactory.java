@@ -8,8 +8,6 @@ import org.w3c.dom.Element;
 /**
  * Creates Fire object from an XML file.
  *
- * @author Rhondu Smithwick
- * @author Robert Duvall
  * @author Ryan Anders
  */
 public class FireXMLFactory extends SimXMLFactory {
@@ -17,15 +15,12 @@ public class FireXMLFactory extends SimXMLFactory {
 
 
     /**
-     * Create factory capable of generating Professor objects.
+     * Create factory capable of generating Spreading of Fire objects.
      */
     public FireXMLFactory () {
         super(XML_TAG_NAME);
     }
 
-    /**
-     * @see PersonXMLFactory#getPerson()
-     */
     @Override
     public FireModel getSim (Element root) throws XMLFactoryException {  
     	if (! isValidFile(root)) {

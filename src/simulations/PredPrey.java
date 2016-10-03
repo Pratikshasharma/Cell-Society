@@ -40,44 +40,36 @@ public class PredPrey extends SimulationSuperClass{
 		return row>=0 && row<super.getGrid().length && column >= 0 && column < super.getGrid()[row].length;
 	}
 	
-	private ArrayList<Integer> checkNeighborCurrentState(int r, int c, int stateID) {
-		ArrayList<Integer> stateLoc = new ArrayList<Integer>();
-		if (checkOnGrid(r+1,c) && (super.getGrid()[r+1][c].getCellCurrentState().getStateID() == stateID)) {
-			stateLoc.add(r+1);
-			stateLoc.add(c);
+	private ArrayList<Coordinates> checkNeighborCurrentState(int r, int c, int stateID) {
+		ArrayList<Coordinates> stateLoc = new ArrayList<Coordinates>();
+		if (checkOnGrid(r+1,c) && (myGrid[r+1][c].getCellCurrentState().getStateID() == stateID)) {
+			stateLoc.add(new Coordinates(r+1,c));
 		}
-		if (checkOnGrid(r,c+1) && (super.getGrid()[r][c+1].getCellCurrentState().getStateID() == stateID)) {
-			stateLoc.add(r);
-			stateLoc.add(c+1);
+		if (checkOnGrid(r,c+1) && (myGrid[r][c+1].getCellCurrentState().getStateID() == stateID)) {
+			stateLoc.add(new Coordinates(r,c+1));
 		}
-		if (checkOnGrid(r-1,c) && (super.getGrid()[r-1][c].getCellCurrentState().getStateID() == stateID)) {
-			stateLoc.add(r-1);
-			stateLoc.add(c);
+		if (checkOnGrid(r-1,c) && (myGrid[r-1][c].getCellCurrentState().getStateID() == stateID)) {
+			stateLoc.add(new Coordinates(r-1,c));
 		}
-		if (checkOnGrid(r,c-1) && (super.getGrid()[r][c-1].getCellCurrentState().getStateID() == stateID)) {
-			stateLoc.add(r);
-			stateLoc.add(c-1);
+		if (checkOnGrid(r,c-1) && (myGrid[r][c-1].getCellCurrentState().getStateID() == stateID)) {
+			stateLoc.add(new Coordinates(r,c-1));
 		}
 		return stateLoc;
 	}
 	
-	private ArrayList<Integer> checkEmptyNextState(int r, int c) {
-		ArrayList<Integer> emptyLoc = new ArrayList<Integer>();
-		if (checkOnGrid(r+1,c) && ((super.getGrid()[r+1][c].getNextState() == null) || (super.getGrid()[r+1][c].getNextState().getStateID() == EMPTY))) {
-			emptyLoc.add(r+1);
-			emptyLoc.add(c);
+	private ArrayList<Coordinates> checkEmptyNextState(int r, int c) {
+		ArrayList<Coordinates> emptyLoc = new ArrayList<Coordinates>();
+		if (checkOnGrid(r+1,c) && ((myGrid[r+1][c].getNextState() == null) || (myGrid[r+1][c].getNextState().getStateID() == EMPTY))) {
+			emptyLoc.add(new Coordinates(r+1,c));
 		}
-		if (checkOnGrid(r,c+1) && ((super.getGrid()[r][c+1].getNextState() == null) || (super.getGrid()[r][c+1].getNextState().getStateID() == EMPTY))) {
-			emptyLoc.add(r);
-			emptyLoc.add(c+1);
+		if (checkOnGrid(r,c+1) && ((myGrid[r][c+1].getNextState() == null) || (myGrid[r][c+1].getNextState().getStateID() == EMPTY))) {
+			emptyLoc.add(new Coordinates(r,c+1));
 		}
-		if (checkOnGrid(r-1,c) && ((super.getGrid()[r-1][c].getNextState() == null) || (super.getGrid()[r-1][c].getNextState().getStateID() == EMPTY))) {
-			emptyLoc.add(r-1);
-			emptyLoc.add(c);
+		if (checkOnGrid(r-1,c) && ((myGrid[r-1][c].getNextState() == null) || (myGrid[r-1][c].getNextState().getStateID() == EMPTY))) {
+			emptyLoc.add(new Coordinates(r-1,c));
 		}
-		if (checkOnGrid(r,c-1) && ((super.getGrid()[r][c-1].getNextState() == null) || (super.getGrid()[r][c-1].getNextState().getStateID() == EMPTY))) {
-			emptyLoc.add(r);
-			emptyLoc.add(c-1);
+		if (checkOnGrid(r,c-1) && ((myGrid[r][c-1].getNextState() == null) || (myGrid[r][c-1].getNextState().getStateID() == EMPTY))) {
+			emptyLoc.add(new Coordinates(r,c-1));
 		}
 		return emptyLoc;
 	}
@@ -96,7 +88,7 @@ public class PredPrey extends SimulationSuperClass{
 					int eatR = -1;
 					int eatC = -1;
 					
-					ArrayList<Integer> fishLoc = checkNeighborCurrentState(i,j, FISH);
+					ArrayList<Coordinates> fishLoc = checkNeighborCurrentState(i,j, FISH);
 
 					
 					if(super.getGrid()[i][j].getCellCurrentState().getStarveCount() == mySharkTurnsToStarve) {
@@ -107,13 +99,13 @@ public class PredPrey extends SimulationSuperClass{
 						
 							//find adjacent that will be empty next turn and move to it
 							
-							ArrayList<Integer> emptyLoc = checkEmptyNextState(i,j);
+							ArrayList<Coordinates> emptyLoc = checkEmptyNextState(i,j);
 						
 							if(emptyLoc.size() != 0) {
 								didMove = true;
-								int randInt = rand.nextInt(emptyLoc.size()/2);
-								moveR = emptyLoc.get(randInt*2);
-								moveC = emptyLoc.get((randInt*2)+1);
+								int randInt = rand.nextInt(emptyLoc.size());
+								moveR = emptyLoc.get(randInt).getX();
+								moveC = emptyLoc.get(randInt).getY();
 							}
 
 					
@@ -123,9 +115,9 @@ public class PredPrey extends SimulationSuperClass{
 							//(reset starve count) and move shark to it on next turn
 						
 							didEat = true;
-							int randInt = rand.nextInt(fishLoc.size()/2);
-							eatR = fishLoc.get(randInt*2);
-							eatC = fishLoc.get((randInt*2)+1);
+							int randInt = rand.nextInt(fishLoc.size());
+							eatR = fishLoc.get(randInt).getX();
+							eatC = fishLoc.get(randInt).getY();
 
 						}
 					
@@ -174,14 +166,14 @@ public class PredPrey extends SimulationSuperClass{
 					int moveR = -1;
 					int moveC = -1;
 					
-					ArrayList<Integer> emptyLoc = checkEmptyNextState(i,j);
+					ArrayList<Coordinates> emptyLoc = checkEmptyNextState(i,j);
 					
 					// are there open adjacent spaces
-					if (emptyLoc.size() != 0) {
+					if (emptyLoc.size() > 0) {
 						didMove = true;
-						int randInt = rand.nextInt(emptyLoc.size()/2);
-						moveR = emptyLoc.get(randInt*2);
-						moveC = emptyLoc.get((randInt*2)+1);
+						int randInt = rand.nextInt(emptyLoc.size());
+						moveR = emptyLoc.get(randInt).getX();
+						moveC = emptyLoc.get(randInt).getY();
 					}
 					
 					// did fish breed

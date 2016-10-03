@@ -8,8 +8,6 @@ import org.w3c.dom.Element;
 /**
  * Creates Segregation object from an XML file.
  *
- * @author Rhondu Smithwick
- * @author Robert Duvall
  * @author Ryan Anders
  */
 public class SegregationXMLFactory extends SimXMLFactory {
@@ -17,15 +15,12 @@ public class SegregationXMLFactory extends SimXMLFactory {
 
 
     /**
-     * Create factory capable of generating Professor objects.
+     * Create factory capable of generating Segregation objects.
      */
     public SegregationXMLFactory () {
         super(XML_TAG_NAME);
     }
 
-    /**
-     * @see PersonXMLFactory#getPerson()
-     */
     @Override
     public SegregationModel getSim (Element root) throws XMLFactoryException {  
     	if (! isValidFile(root)) {
