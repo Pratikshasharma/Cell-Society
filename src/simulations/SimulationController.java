@@ -30,6 +30,7 @@ public class SimulationController {
 	public void readFile(File myFile){
 		mySimModel = myXMLReader.xmlRead(myFile);
 		mySimulationManager = new SimulationManager(mySimModel);
+		
 		this.mySimulationName = mySimModel.getMySimName();
 		this.numCellsHeight = mySimModel.getMySimHeight();
 		this.numCellsWidth = mySimModel.getMySimWidth();
@@ -47,9 +48,9 @@ public class SimulationController {
 	public Paint[][] initializeCellsAndGridVisualization(){
 		mySimulationManager.initializeMyCells(mySimModel.getMySimName());
 		mySuperClass = mySimulationManager.getSimulationType(mySimulationName);
-		
 		myGridColor= new Paint[mySimModel.getMySimHeight()][mySimModel.getMySimWidth()];
 		getMyCellsColor(mySimulationManager.getMyGrid());
+		
 		return myGridColor;
 	}
 

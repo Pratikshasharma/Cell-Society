@@ -30,8 +30,6 @@ public class SimulationManager {
 	public final String GAMEOFLIFE = "Game of Life";
 	private SimModel mySimModel;
 
-
-
 	/**
 	 * Constructor
 	 * @param myGrid

@@ -21,14 +21,12 @@ public class ChooseFile {
 		fileChooser.getExtensionFilters().add(extentionFilter);
 		File chosenFile = fileChooser.showOpenDialog(myStage);
 		if (chosenFile == null) {
-			//throw new IllegalArgumentException(CHOOSE_FILE_ERROR); 
 			myStartScreen.exitSimulation();
+			myStage.close();
 		}
 		return chosenFile;
 	}
 	
-
-
 	public FileChooser getFileChooser() {
 		return this.fileChooser;
 	}

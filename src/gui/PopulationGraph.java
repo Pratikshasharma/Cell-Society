@@ -40,20 +40,18 @@ public class PopulationGraph {
 					series.setName(key);
 					myPopulationChart.getData().add(series);
 				}else{
-					for (int i =0; i<myStatePopulationMap.size()-1;i++){
+					for (int i = 0; i<myStatePopulationMap.size();i++){
 						XYChart.Series<Number,Number> series = myPopulationChart.getData().get(i);
 						if(series.getName().equals(key)){
-						//System.out.println(" Value Passed " + myStatePopulationMap.get(key));
-						addData(series,myStatePopulationMap.get(key));
+							addData(series,myStatePopulationMap.get(key));
 						}
 					}
 				}
 			}
 		}
+		myXAxisCounter+=1;
 	}
 	private void addData(XYChart.Series<Number,Number> series, Integer dataPoint){
 		series.getData().add(new XYChart.Data<>(myXAxisCounter,dataPoint));
-		myXAxisCounter+=1;
-	
 	}
 }

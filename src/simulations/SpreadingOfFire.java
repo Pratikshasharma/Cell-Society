@@ -55,8 +55,7 @@ public class SpreadingOfFire extends SimulationSuperClass{
 		}
 	}
 
-
-	private void checkBurningCells(){
+ void checkBurningCells(){
 		for(int i = 0; i<myGrid.length;i++){
 			for(int j = 0; j<myGrid[i].length;j++){
 				if (myGrid[i][j].getCellCurrentState().getStateID() == myBurningState.getStateID()){
@@ -80,7 +79,6 @@ public class SpreadingOfFire extends SimulationSuperClass{
 			}
 		}
 	}
-	
 	public void updateSimulation(){
 		checkBurningCells();
 		spreadFire();
