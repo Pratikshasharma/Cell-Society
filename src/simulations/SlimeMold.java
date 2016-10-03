@@ -8,13 +8,11 @@ import cellpackage.State;
 
 public class SlimeMold extends SimulationSuperClass{
 
-//	private Cell[][] super.getGrid();
 	private State myNoAmoebeState;
 	private State myAmeobeState;
 
 	public SlimeMold(Cell[][] grid, State state1, State state2){
 		super(grid);
-		//myGrid = grid;
 		myNoAmoebeState = state1;
 		myAmeobeState = state2;
 	}

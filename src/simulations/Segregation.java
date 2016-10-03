@@ -9,18 +9,13 @@ import cellpackage.State;
 
 public class Segregation extends SimulationSuperClass {
 
-	//private Cell[][] super.getGrid();
 	private double myPercentSatisfaction;
 	private State myEmptyState;
-	private State myRace1State;
-	private State myRace2State;
 
-	public Segregation(Cell[][] grid, double spercentSatisfaction, State state1, State state2, State state3){
+	public Segregation(Cell[][] grid, double spercentSatisfaction, State state1){
 		super(grid);
 		myPercentSatisfaction = spercentSatisfaction;
 		myEmptyState = state1;
-		myRace1State = state2;
-		myRace2State = state3;
 	}
 
 	private boolean checkOnGrid(int row, int column){
