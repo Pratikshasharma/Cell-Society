@@ -1,7 +1,5 @@
 package simulations;
 
-import javafx.scene.paint.Color;
-
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -212,12 +210,11 @@ public class PredPrey extends SimulationSuperClass{
 		for (int row = 0; row<myGrid.length; row++){
 			for(int column = 0; column<myGrid[row].length; column++){
 				if(myGrid[row][column].getNextState() == null) {
-					State empty = new State ("empty",Color.WHITE,EMPTY);
+					State empty = new State(myEmptyState,0,0);
 					myGrid[row][column].setCellCurrentState(empty);
 				} else {
 					myGrid[row][column].setCellCurrentState(myGrid[row][column].getNextState());
 					myGrid[row][column].setNextState(null);
-					//Give GUI row & column
 				}
 				
 			}
