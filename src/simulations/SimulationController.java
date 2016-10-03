@@ -44,7 +44,7 @@ public class SimulationController {
 		}
 	}
 
-	public Paint[][] initializeCellsAndGridVisualization(){
+	public Paint[][] initializeCellsAndGridVisualization() {
 		mySimulationManager.initializeMyCells(mySimModel.getMySimName());
 		mySuperClass = mySimulationManager.getSimulationType(mySimulationName);
 		
