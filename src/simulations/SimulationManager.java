@@ -65,41 +65,37 @@ public class SimulationManager {
 
 	public void initializeMyCells(String mySimulationName){
 		if (SPREADING_FIRE.equals(mySimulationName)) {
-			// First Initialize Cells Before Calling in Constructor
-			this.myGrid = initializeCells(mySimModel.getMyTree(),mySimModel.getMyBurning(),mySimModel.getMyEmptyState());
+			this.myGrid = getCellsBySimulation(mySimModel.getMyTree(),mySimModel.getMyBurning(),mySimModel.getMyEmptyState());
 			this.mySpreadingFire = new SpreadingOfFire(myGrid, mySimModel.getMyProbCatch(), getCellState(mySimModel.getMyEmptyState()),
 					getCellState(mySimModel.getMyTree()), getCellState(mySimModel.getMyBurning()));
 		}
 
 		if (SEGREGATION.equals(mySimulationName)) {
 			// First Initialize Cells Before Calling in Constructor
-			this.myGrid = initializeCells(mySimModel.getMyRace1(),mySimModel.getMyRace2(),mySimModel.getMyEmptyState());
+			this.myGrid = getCellsBySimulation(mySimModel.getMyRace1(),mySimModel.getMyRace2(),mySimModel.getMyEmptyState());
 			this.mySegregation = new Segregation(myGrid, mySimModel.getMySatisfaction(), getCellState(mySimModel.getMyEmptyState()), getCellState(mySimModel.getMyRace1()),
 					getCellState(mySimModel.getMyRace2()));
 		}
-		
+
 		if (PREDPREY.equals(mySimulationName)) {
-			this.myGrid = initializeCells(mySimModel.getMyFish(),mySimModel.getMyShark(),mySimModel.getMyEmptyState());
+			this.myGrid = getCellsBySimulation(mySimModel.getMyFish(),mySimModel.getMyShark(),mySimModel.getMyEmptyState());
 			this.myPredPrey = new PredPrey(myGrid, mySimModel.getMyFishTurnsToBreed(), mySimModel.getMySharkTurnsToBreed(), mySimModel.getMySharkTurnsToStarve(),
 					getCellState(mySimModel.getMyEmptyState()), getCellState(mySimModel.getMyFish()), getCellState(mySimModel.getMyShark()));
 		}
-		
 		if(GAMEOFLIFE.equals(mySimulationName)) {
-			this.myGrid = initializeCells(mySimModel.getMyFullState(),null,mySimModel.getMyEmptyState());
+			this.myGrid = getCellsBySimulation(mySimModel.getMyFullState(),null,mySimModel.getMyEmptyState());
 			this.myGameOfLife = new GameOfLife(myGrid,getCellState(mySimModel.getMyEmptyState()), getCellState(mySimModel.getMyFullState()));
 		}
-
 	}
-
-	public Cell[][] initializeCells(GenState myGenState1, GenState myGenState2, GenState myGenState3){
+	public Cell[][] getCellsBySimulation(GenState myGenState1, GenState myGenState2, GenState myGenState3){
 		this.myGrid = new Cell[numCellsWidth][numCellsHeight];
-		if(myGenState1!=null){addGenState(myGenState1);}
-		if(myGenState2!=null){addGenState(myGenState2);}
+		if(myGenState1!=null){addGeneralStateCells(myGenState1);}
+		if(myGenState2!=null){addGeneralStateCells(myGenState2);}
 		if(myGenState3!=null){addEmptyCells(myGenState3);}
 		return this.myGrid;
 	}
 
-	private void addGenState(GenState myGenState){
+	private void addGeneralStateCells(GenState myGenState){
 		double percentage = 0.0;
 		double counter = 0.0;
 		while ( percentage < myGenState.getMyPercentage()){
@@ -113,7 +109,7 @@ public class SimulationManager {
 			percentage = counter/(numCellsWidth*numCellsHeight);
 		}
 	}
-	
+
 	private void addEmptyCells(GenState myGenState){
 		for( int i = 0; i<=numCellsWidth-1;i++ ){
 			for (int j=0;j<=numCellsHeight-1;j++){
@@ -134,7 +130,7 @@ public class SimulationManager {
 	private boolean isEmpty(Cell cell){
 		return cell==null;
 	}
-	
+
 	private Cell createNewCell(GenState myGenState){
 		State myCellState = getCellState(myGenState);
 		myRectangle = new Rectangle(MainGUI.GRID_WIDTH/numCellsWidth,MainGUI.GRID_HEIGHT/numCellsHeight);
@@ -149,7 +145,6 @@ public class SimulationManager {
 		return myGrid;
 	}
 }
-
 
 
 

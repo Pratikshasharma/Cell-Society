@@ -1,5 +1,8 @@
 package button;
+import java.io.File;
 import java.util.ResourceBundle;
+
+import gui.MainGUI;
 import javafx.scene.control.Button;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
@@ -10,13 +13,11 @@ import javafx.scene.text.FontWeight;
  */
 
 public  class ButtonClass {
-	public final String BUTTON_RESOURCE_PACKAGE = "resources/Button";
 	private ResourceBundle myResources;  
-	
 	protected Button myButton;
 
 	public ButtonClass(String property) {
-		this.myResources= ResourceBundle.getBundle(BUTTON_RESOURCE_PACKAGE);
+		this.myResources= ResourceBundle.getBundle(MainGUI.DEFAULT_RESOURCE_PACKAGE + File.separator + "Button");
 		String label = myResources.getString(property);
 		this.myButton = new Button(label);
 	}

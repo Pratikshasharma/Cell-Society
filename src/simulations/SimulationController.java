@@ -26,7 +26,7 @@ public class SimulationController {
 	public SimulationController(){
 		myXMLReader = new MainXML();		
 	}
-	
+
 	public void readFile(File myFile){
 		mySimModel = myXMLReader.xmlRead(myFile);
 		mySimulationManager = new SimulationManager(mySimModel);
@@ -47,6 +47,7 @@ public class SimulationController {
 	public Paint[][] initializeCellsAndGridVisualization(){
 		mySimulationManager.initializeMyCells(mySimModel.getMySimName());
 		mySuperClass = mySimulationManager.getSimulationType(mySimulationName);
+		
 		myGridColor= new Paint[mySimModel.getMySimHeight()][mySimModel.getMySimWidth()];
 		getMyCellsColor(mySimulationManager.getMyGrid());
 		return myGridColor;
@@ -70,7 +71,7 @@ public class SimulationController {
 	public String getSimulationName(){
 		return this.mySimulationName;
 	}
-	
+
 	private void createStateColorMap(String stateName, Paint stateColor){
 		if(!myStateColorMap.containsKey(stateName)){
 			myStateColorMap.put(stateName, stateColor);
@@ -79,5 +80,5 @@ public class SimulationController {
 	public Map<String,Paint> getStateColorMap(){
 		return this.myStateColorMap;
 	}
-	
+
 }
