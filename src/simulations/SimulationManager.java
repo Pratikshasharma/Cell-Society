@@ -78,8 +78,7 @@ public class SimulationManager {
 		if (SEGREGATION.equals(mySimulationName)) {
 			// First Initialize Cells Before Calling in Constructor
 			myGrid = getCellsBySimulation(mySimModel.getMyRace1(),mySimModel.getMyRace2(),mySimModel.getMyEmptyState());
-			mySegregation = new Segregation(myGrid, mySimModel.getMySatisfaction(), getCellState(mySimModel.getMyEmptyState()), getCellState(mySimModel.getMyRace1()),
-					getCellState(mySimModel.getMyRace2()));
+			mySegregation = new Segregation(myGrid, mySimModel.getMySatisfaction(), getCellState(mySimModel.getMyEmptyState()));
 		}
 		if (PREDPREY.equals(mySimulationName)) {
 			myGrid = getCellsBySimulation(mySimModel.getMyFish(),mySimModel.getMyShark(),mySimModel.getMyEmptyState());
