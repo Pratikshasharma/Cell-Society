@@ -26,6 +26,8 @@ public class ChooseFile {
 		}
 		return chosenFile;
 	}
+	
+
 
 	public FileChooser getFileChooser() {
 		return this.fileChooser;

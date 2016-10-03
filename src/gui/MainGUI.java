@@ -27,6 +27,8 @@ import javafx.scene.text.Text;
 public class MainGUI {
 	public static final int GRID_WIDTH = 400;
 	public static final int GRID_HEIGHT = 400;
+	public static final String DEFAULT_RESOURCE_PACKAGE = "resources";
+
 	private VBox myVBox;
 	private Start myStartSimulationButton;
 	private Step myStepSimulationButton;
@@ -53,20 +55,15 @@ public class MainGUI {
 	public Group setScene(Paint[][] myGridColor, Map<String,Paint> myStateColorMap) {
 		this.myStateColorMap = myStateColorMap;
 		Group root = new Group();
-		myVBox = new VBox(10);
+		myVBox = new VBox(20);
 		HBox tempHBox = new HBox(20);
 		myVBox.setPadding(new Insets(10));
 		myGrid = new Grid(this.numCellsWidth, this.numCellsHeight);
-		// gets the number of Color cells while initializing- faster to loop through only once ?
 		this.myStatePopulationMap = myGrid.createGrid(myGridColor, myStateColorMap);
-		//System.out.println(" State counter map size" + myStateColorCounterMap.size());
-		
-		// Call in the method to add data in the graph
-		myPopulationGraph.createLineChart(myStatePopulationMap);
+		myPopulationGraph.createLineChart(myStatePopulationMap,numCellsWidth);
 		tempHBox.getChildren().addAll(myGrid.getGrid(),myPopulationGraph.getMyStatePopulationChart());
-		// Call in the 
 		myVBox.getChildren().addAll(addSimulationTitle(),tempHBox);
-	
+
 		addButtons();
 		addSlider();
 		myVBox.getChildren().add(myHBox);
@@ -141,20 +138,26 @@ public class MainGUI {
 
 	public void updateGridColor(int row, int col, Paint color) {
 		myGrid.changeMyGridColor(row, col, color);
-		
 	}
-		public void updatePopulationGraph(){
-		for(String key: myStateColorMap.keySet()){
-			Integer populationCounter = myStatePopulationMap.get(key);
-			if(populationCounter!=null){
+
+	public void updatePopulationCount(Paint color){
+		Integer populationCounter;
+		for(String key: myStatePopulationMap.keySet()){
+			if(myStateColorMap.get(key).equals(color)){
+				populationCounter = myStatePopulationMap.get(key);
 				populationCounter+=1;
-				myStatePopulationMap.remove(key);
 				myStatePopulationMap.put(key, populationCounter);
 			}
 		}
-		// update the line graph, create a new one
-		myPopulationGraph.drawLineGraph(myStatePopulationMap,false);
-
 	}
 
+	public void updatePopulationGraph(boolean resetLineGraph){
+		myPopulationGraph.drawLineGraph(myStatePopulationMap,resetLineGraph);
+	}
+
+	public void resetStatePopulationMap(){
+		for(String key: myStatePopulationMap.keySet()){
+			myStatePopulationMap.put(key, 0);
+		}
+	}
 }

@@ -11,15 +11,17 @@ public class PopulationGraph {
 	private Axis<Number> yAxis = new NumberAxis();
 	private LineChart<Number, Number> myPopulationChart;
 	private final String EMPTY_STATE = "empty";
-	private int myXAxisCounter =1;
+	private double myXAxisCounter ;
 
 
-	public void createLineChart( Map<String,Integer> myStatePopulationMap){
+	public void createLineChart( Map<String,Integer> myStatePopulationMap, int numCellsWidth){
 		myPopulationChart = new LineChart<Number,Number>(xAxis, yAxis);
 		myPopulationChart.setTitle("Population of Different States");
-		myPopulationChart.setPrefHeight(300);
-		myPopulationChart.setPrefWidth(300);
-		xAxis.setTickLabelsVisible(false);
+		myPopulationChart.setPrefHeight(400);
+		myPopulationChart.setPrefWidth(600);
+		xAxis.setTickLabelsVisible(true);
+		xAxis.setLabel("Time");
+		yAxis.setLabel("Population");
 		drawLineGraph(myStatePopulationMap,true);
 	}
 
@@ -27,10 +29,12 @@ public class PopulationGraph {
 		return this.myPopulationChart;	
 	}
 
-	public void drawLineGraph(Map<String,Integer> myStatePopulationMap, boolean firstTime){
+	public void drawLineGraph(Map<String,Integer> myStatePopulationMap, boolean resetLineGraph){
 		for(String key:myStatePopulationMap.keySet()){
 			if(!key.toString().equals(EMPTY_STATE)){
-				if(firstTime){
+				if(resetLineGraph){
+					myXAxisCounter = 0.5;
+					myPopulationChart.getData().remove(0, myPopulationChart.getData().size()-1);
 					XYChart.Series<Number,Number> series = new XYChart.Series<>();
 					addData(series,myStatePopulationMap.get(key));
 					series.setName(key);
@@ -39,6 +43,7 @@ public class PopulationGraph {
 					for (int i =0; i<myStatePopulationMap.size()-1;i++){
 						XYChart.Series<Number,Number> series = myPopulationChart.getData().get(i);
 						if(series.getName().equals(key)){
+						//System.out.println(" Value Passed " + myStatePopulationMap.get(key));
 						addData(series,myStatePopulationMap.get(key));
 						}
 					}
@@ -46,9 +51,9 @@ public class PopulationGraph {
 			}
 		}
 	}
-
 	private void addData(XYChart.Series<Number,Number> series, Integer dataPoint){
 		series.getData().add(new XYChart.Data<>(myXAxisCounter,dataPoint));
 		myXAxisCounter+=1;
+	
 	}
 }

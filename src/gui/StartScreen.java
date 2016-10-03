@@ -30,6 +30,8 @@ public class StartScreen {
 		Group root = new Group();
 		myExitButton.getButton().setOnAction(e-> exitSimulation());
 		ImageView myStartImage = new ImageView(new Image(getClass().getClassLoader().getResourceAsStream(CELL_IMAGE)));
+		myStartImage.setFitWidth(GUIController.SCENE_WIDTH);
+		myStartImage.setFitHeight(GUIController.SCENE_WIDTH);
 		root.getChildren().add(myStartImage);
 		root.getChildren().add(myOpenFileButton.getButton());
 		root.getChildren().add(myExitButton.getButton());

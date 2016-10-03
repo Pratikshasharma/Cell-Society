@@ -24,11 +24,12 @@ public class Grid implements GridInterface {
 
 	public Map<String,Integer> createGrid(Paint[][] myGridColor, Map<String,Paint> myStateColorMap) {
 		Map<String,Integer> myStateNumberMap = new HashMap<String,Integer>();
-		int counter = 0;
+		myGrid.setStyle("-fx-border: 15px solid; -fx-border-color: black; -fx-padding: 10");
 		myGrid.setGridLinesVisible(true);
 		myGrid.setAlignment(Pos.BASELINE_LEFT);
 		
 		for(String key: myStateColorMap.keySet()){
+			int counter = 0;
 			for (int i = 0; i <= numCellsWidth -1 ; i++) {
 				for (int j = 0; j <= numCellsHeight -1; j++){
 					myShape = new Rectangle(GRID_WIDTH / numCellsWidth, GRID_HEIGHT / numCellsHeight);
