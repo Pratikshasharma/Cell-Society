@@ -3,10 +3,10 @@
   <genparam>
     <simname>Predator-Prey</simname>
     <simauthor>Mike Scott</simauthor>
-    <simwidth>10</simwidth>
-    <simheight>10</simheight>
+    <simwidth>25</simwidth>
+    <simheight>25</simheight>
   </genparam>
-  <fishturnstobreed>5</fishturnstobreed>
+  <fishturnstobreed>2</fishturnstobreed>
   <sharkturnstobreed>10</sharkturnstobreed>
   <sharkturnstostarve>3</sharkturnstostarve>
   <state id="1">
