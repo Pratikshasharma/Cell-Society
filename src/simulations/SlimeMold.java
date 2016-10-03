@@ -6,13 +6,13 @@ import cellpackage.State;
 public class SlimeMold extends SimulationSuperClass{
 
 	private Cell[][] myGrid;
-	private State myNoAmoebeState;
-	private State myAmeobeState;
+	private State myNoAmoebaState;
+	private State myAmoebeState;
 
 	public SlimeMold(Cell[][] grid, State state1, State state2){
 		myGrid = grid;
-		myNoAmoebeState = state1;
-		myAmeobeState = state2;
+		myNoAmoebaState = state1;
+		myAmoebeState = state2;
 	}
 
 	private boolean checkOnGrid(int row, int column){
@@ -21,18 +21,18 @@ public class SlimeMold extends SimulationSuperClass{
 
 	private void updateCellcAMP(int row, int column, boolean increase){
 		if(increase){
-			System.out.println("SHOULD UPDATE cAMP at (" + row + ", " + column + ")");
+			//System.out.println("SHOULD UPDATE cAMP at (" + row + ", " + column + ")");
 			int val = myGrid[row][column].getCellCurrentState().getBreedCount();
 			val += 1;
 			myGrid[row][column].getCellCurrentState().setBreedCount(val);
-			System.out.println(myGrid[row][column].getCellCurrentState().getBreedCount());
+			//System.out.println(myGrid[row][column].getCellCurrentState().getBreedCount());
 		}else{
 			myGrid[row][column].getCellCurrentState().setBreedCount(myGrid[row][column].getCellCurrentState().getBreedCount() - 1);
 		}
 	}
 
 	private void emptyState(int row, int column){
-		myGrid[row][column].setNextState(myNoAmoebeState);
+		myGrid[row][column].setNextState(myNoAmoebaState);
 		myGrid[row][column].getNextState().setBreedCount(myGrid[row][column].getCellCurrentState().getBreedCount());
 	}
 
@@ -40,8 +40,8 @@ public class SlimeMold extends SimulationSuperClass{
 		for(int i = 0; i<myGrid.length; i++){
 			for (int j = 0; j<myGrid[i].length; j++){
 				if(myGrid[i][j].getNextState() == null &&
-						myGrid[i][j].getCellCurrentState().getStateID() == myNoAmoebeState.getStateID()){
-					moveAmeobe(currentRow, currentColumn, i, j);
+						myGrid[i][j].getCellCurrentState().getStateID() == myNoAmoebaState.getStateID()){
+					moveAmoebe(currentRow, currentColumn, i, j);
 					emptyState(currentRow, currentColumn);
 					return;
 				}
@@ -49,43 +49,13 @@ public class SlimeMold extends SimulationSuperClass{
 		}
 	}
 
-	private void moveAmeobe(int fromRow, int fromColumn, int toRow, int toColumn){
+	private void moveAmoebe(int fromRow, int fromColumn, int toRow, int toColumn){
 		State tempState = new State(myGrid[fromRow][fromColumn].getCellCurrentState().getStateName(),
 				myGrid[fromRow][fromColumn].getCellCurrentState().getStateColor(),
 				myGrid[fromRow][fromColumn].getCellCurrentState().getStateID());
 		tempState.setBreedCount(myGrid[fromRow][fromColumn].getCellCurrentState().getBreedCount());
 		myGrid[toRow][toColumn].setNextState(tempState);
 	}
-	/*
-	private List<Cell> getAvailableNeighbors(int row, int column){
-		ArrayList<Cell> neighbors = new ArrayList<Cell>();
-		if (checkOnGrid(row+1, column) && isEmpty(row+1, column) && noNextState(row+1, column)){
-			neighbors.add(myGrid[row+1][column]);
-		}
-		if (checkOnGrid(row-1, column) && isEmpty(row-1, column) && noNextState(row-1, column)){
-			neighbors.add(myGrid[row-1][column]);
-		}
-		if (checkOnGrid(row, column+1) && isEmpty(row, column+1) && noNextState(row, column+1)){
-			neighbors.add(myGrid[row][column+1]);
-		}
-		if (checkOnGrid(row, column-1) &&isEmpty(row, column-1) &&noNextState(row, column-1)){
-			neighbors.add(myGrid[row][column-1]);
-		}
-		if (checkOnGrid(row+1, column+1) && isEmpty(row+1, column+1) && noNextState(row+1, column+1)){
-			neighbors.add(myGrid[row+1][column+1]);
-		}
-		if (checkOnGrid(row+1, column-1) && isEmpty(row+1, column-1) && noNextState(row+1, column-1)){
-			neighbors.add(myGrid[row+1][column-1]);
-		}
-		if (checkOnGrid(row-1, column+1) && isEmpty(row-1, column+1) && noNextState(row-1, column+1)){
-			neighbors.add(myGrid[row-1][column+1]);
-		}
-		if (checkOnGrid(row-1, column-1) && isEmpty(row-1, column-1) && noNextState(row-1, column-1)){
-			neighbors.add(myGrid[row-1][column-1]);
-		}
-		return neighbors;
-	}
-	 */
 
 	private void updateCells(){
 		for (int row = 0; row<myGrid.length; row++){
@@ -103,7 +73,7 @@ public class SlimeMold extends SimulationSuperClass{
 	public void updateSimulation() {
 		for(int i = 0; i<myGrid.length;i++){
 			for (int j = 0; j<myGrid[i].length; j++){
-				if(myGrid[i][j].getCellCurrentState().getStateID() == myAmeobeState.getStateID()){
+				if(myGrid[i][j].getCellCurrentState().getStateID() == myAmoebeState.getStateID()){
 					updateCellcAMP(i, j, true);
 					findEmptyCell(i, j);
 				}
@@ -116,25 +86,25 @@ public class SlimeMold extends SimulationSuperClass{
 	}
 
 	private void printGridcAMP(){
-		System.out.println("Breed Count Grid");
+		//System.out.println("Breed Count Grid");
 		for (int i = 0; i < myGrid.length;i++){
-			System.out.println();
+			//System.out.println();
 			for(int j = 0 ; j<myGrid[i].length; j++){
-				System.out.print(myGrid[i][j].getCellCurrentState().getBreedCount());
+				//System.out.print(myGrid[i][j].getCellCurrentState().getBreedCount());
 			}
 		}
-		System.out.println();
+		//System.out.println();
 	}
 
 	@Override
 	public void printGrid() {
 		for (int i = 0; i < myGrid.length;i++){
-			System.out.println();
+			//System.out.println();
 			for(int j = 0 ; j<myGrid[i].length; j++){
-				System.out.print(myGrid[i][j].getCellCurrentState().getStateID());
+				//System.out.print(myGrid[i][j].getCellCurrentState().getStateID());
 			}
 		}
-		System.out.println();
+		//System.out.println();
 		printGridcAMP();
 	}
 

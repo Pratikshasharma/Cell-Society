@@ -149,4 +149,13 @@ public abstract class SimModel {
 		return null;
 	}
 
+	// Slime Mold
+	
+	/**
+	 * @return mold state (slime mold)
+	 */
+	public GenState getMyMoldState() {
+		return null;
+	}
+
 }

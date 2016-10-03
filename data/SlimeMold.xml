@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root SimType="slimemold">
+  <genparam>
+    <simname>Slime Mold</simname>
+    <simauthor>MIT Media lab</simauthor>
+    <simwidth>10</simwidth>
+    <simheight>10</simheight>
+  </genparam>
+  <state id="1">
+    <statename>amoeba</statename>
+    <statecolor>GREEN</statecolor>
+    <percentage>0.4</percentage>
+  </state>
+  <state id="0">
+    <statename>empty</statename>
+    <statecolor>BLACK</statecolor>
+    <percentage>0.6</percentage>
+  </state>
+</root>

@@ -8,8 +8,6 @@ import org.w3c.dom.Element;
 /**
  * Creates PredPrey object from an XML file.
  *
- * @author Rhondu Smithwick
- * @author Robert Duvall
  * @author Ryan Anders
  */
 public class PredPreyXMLFactory extends SimXMLFactory {
@@ -17,15 +15,12 @@ public class PredPreyXMLFactory extends SimXMLFactory {
 
 
     /**
-     * Create factory capable of generating Professor objects.
+     * Create factory capable of generating Predator-Prey objects.
      */
     public PredPreyXMLFactory () {
         super(XML_TAG_NAME);
     }
 
-    /**
-     * @see PersonXMLFactory#getPerson()
-     */
     @Override
     public PredPreyModel getSim (Element root) throws XMLFactoryException {  
     	if (! isValidFile(root)) {

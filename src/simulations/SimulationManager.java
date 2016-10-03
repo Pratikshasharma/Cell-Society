@@ -18,6 +18,7 @@ public class SimulationManager {
 	private SpreadingOfFire mySpreadingFire;
 	private GameOfLife myGameOfLife;
 	private PredPrey myPredPrey;
+	private SlimeMold mySlimeMold;
 	private Cell[][] myGrid;
 
 	private int numCellsWidth;
@@ -28,6 +29,7 @@ public class SimulationManager {
 	public final String SEGREGATION = "Segregation";
 	public final String PREDPREY = "Predator-Prey";
 	public final String GAMEOFLIFE = "Game of Life";
+	public final String SLIMEMOLD = "Slime Mold";
 	private SimModel mySimModel;
 
 
@@ -55,6 +57,9 @@ public class SimulationManager {
 		if (GAMEOFLIFE.equals(mySimulationName)){
 			return myGameOfLife;	
 		}
+		if (SLIMEMOLD.equals(mySimulationName)){
+			return mySlimeMold;
+		}
 		return null;
 	}
 
@@ -70,14 +75,12 @@ public class SimulationManager {
 			mySpreadingFire = new SpreadingOfFire(myGrid, mySimModel.getMyProbCatch(), getCellState(mySimModel.getMyEmptyState()),
 					getCellState(mySimModel.getMyTree()), getCellState(mySimModel.getMyBurning()));
 		}
-
 		if (SEGREGATION.equals(mySimulationName)) {
 			// First Initialize Cells Before Calling in Constructor
 			myGrid = getCellsBySimulation(mySimModel.getMyRace1(),mySimModel.getMyRace2(),mySimModel.getMyEmptyState());
 			mySegregation = new Segregation(myGrid, mySimModel.getMySatisfaction(), getCellState(mySimModel.getMyEmptyState()), getCellState(mySimModel.getMyRace1()),
 					getCellState(mySimModel.getMyRace2()));
 		}
-
 		if (PREDPREY.equals(mySimulationName)) {
 			myGrid = getCellsBySimulation(mySimModel.getMyFish(),mySimModel.getMyShark(),mySimModel.getMyEmptyState());
 			myPredPrey = new PredPrey(myGrid, mySimModel.getMyFishTurnsToBreed(), mySimModel.getMySharkTurnsToBreed(), mySimModel.getMySharkTurnsToStarve(),
@@ -86,6 +89,10 @@ public class SimulationManager {
 		if(GAMEOFLIFE.equals(mySimulationName)) {
 			myGrid = getCellsBySimulation(mySimModel.getMyFullState(),null,mySimModel.getMyEmptyState());
 			myGameOfLife = new GameOfLife(myGrid,getCellState(mySimModel.getMyEmptyState()), getCellState(mySimModel.getMyFullState()));
+		}
+		if(SLIMEMOLD.equals(mySimulationName)) {
+			myGrid = getCellsBySimulation(mySimModel.getMyMoldState(),null,mySimModel.getMyEmptyState());
+			mySlimeMold = new SlimeMold(myGrid, getCellState(mySimModel.getMyEmptyState()), getCellState(mySimModel.getMyMoldState()));
 		}
 	}
 
