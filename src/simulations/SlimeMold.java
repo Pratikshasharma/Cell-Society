@@ -36,7 +36,7 @@ public class SlimeMold extends SimulationSuperClass{
 			for (int j = 0; j<super.getGrid()[i].length; j++){
 				if(super.getGrid()[i][j].getNextState() == null &&
 						super.getGrid()[i][j].getCellCurrentState().getStateID() == myNoAmoebeState.getStateID()){
-					
+					emptyCells.add(new Coordinates(i, j));
 				}
 			}
 		}

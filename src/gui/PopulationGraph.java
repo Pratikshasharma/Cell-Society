@@ -40,7 +40,7 @@ public class PopulationGraph {
 					series.setName(key);
 					myPopulationChart.getData().add(series);
 				}else{
-					for (int i = 0; i<myStatePopulationMap.size();i++){
+					for (int i = 0; i<myStatePopulationMap.size()-1;i++){
 						XYChart.Series<Number,Number> series = myPopulationChart.getData().get(i);
 						if(series.getName().equals(key)){
 							addData(series,myStatePopulationMap.get(key));

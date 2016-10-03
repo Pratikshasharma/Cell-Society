@@ -30,9 +30,9 @@ public class GUIController {
 	private Timeline animation;
 	private Map<String,Paint> myStateColorMap;
 
-	public static final int DEFAULT_FRAMES_PER_SECOND = 2;
-	public static final int MAX_FRAMES_PER_SECOND = 5;
-	public static final int MIN_FRAMES_PER_SECOND = 1;
+	public static final int DEFAULT_FRAMES_PER_SECOND = 7;
+	public static final int MAX_FRAMES_PER_SECOND = 12;
+	public static final int MIN_FRAMES_PER_SECOND = 5;
 	public static final double SCENE_WIDTH = 1100;
 	public static final double SCENE_HEIGHT = 600;
 
