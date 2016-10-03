@@ -8,8 +8,6 @@ import org.w3c.dom.Element;
 /**
  * Creates Game of Life object from an XML file.
  *
- * @author Rhondu Smithwick
- * @author Robert Duvall
  * @author Ryan Anders
  */
 public class GameOfLifeXMLFactory extends SimXMLFactory {
@@ -17,15 +15,12 @@ public class GameOfLifeXMLFactory extends SimXMLFactory {
 
 
     /**
-     * Create factory capable of generating Professor objects.
+     * Create factory capable of generating Game Of Life objects.
      */
     public GameOfLifeXMLFactory () {
         super(XML_TAG_NAME);
     }
 
-    /**
-     * @see PersonXMLFactory#getPerson()
-     */
     @Override
     public GameOfLifeModel getSim (Element root) throws XMLFactoryException {  
     	if (! isValidFile(root)) {

@@ -10,7 +10,6 @@ public class GameOfLifeModel extends SimModel {
 	private GenState myEmptyState;
 	
 	public GameOfLifeModel() {
-		
 	}
 	
 	public GameOfLifeModel(String[] genParams, GenState[] genStates) {
