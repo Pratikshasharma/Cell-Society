@@ -93,6 +93,7 @@ public class Segregation extends SimulationSuperClass {
 	}
 
 	private void findEmptyCell(int currentRow, int currentColumn){
+		
 		for(int i = 0; i<myGrid.length; i++){
 			for (int j = 0; j<myGrid[i].length; j++){
 				if(myGrid[i][j].getNextState() == null && 
@@ -130,12 +131,10 @@ public class Segregation extends SimulationSuperClass {
 				if(myGrid[row][column].getNextState() != null){
 					myGrid[row][column].setCellCurrentState(myGrid[row][column].getNextState());
 					myGrid[row][column].setNextState(null);
-					//Give GUI row & column
 				}
 			}
 		}
 	}
-	//help
 
 	public void printGrid(){
 		for (int i = 0; i < myGrid.length;i++){
@@ -148,7 +147,6 @@ public class Segregation extends SimulationSuperClass {
 
 	@Override
 	public Cell[][] getGrid() {
-		// TODO Auto-generated method stub
 		return myGrid;
 	}
 }

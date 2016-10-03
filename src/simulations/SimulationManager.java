@@ -98,11 +98,10 @@ public class SimulationManager {
 	private void addGeneralStateCells(GenState myGenState){
 		double percentage = 0.0;
 		double counter = 0.0;
-		while ( percentage <= myGenState.getMyPercentage()){
+		while ( percentage < myGenState.getMyPercentage()){
 			Random rand = new Random();
-			
-			int i = rand.nextInt(numCellsWidth-1);
-			int j = rand.nextInt(numCellsHeight-1);
+			int i = rand.nextInt(numCellsWidth);
+			int j = rand.nextInt(numCellsHeight);
 			if(isEmpty(myGrid[i][j])){
 				myGrid [i][j] = createNewCell(myGenState);
 				counter = counter+1;
@@ -146,7 +145,6 @@ public class SimulationManager {
 		return myGrid;
 	}
 }
-
 
 
 

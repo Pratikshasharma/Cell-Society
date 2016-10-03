@@ -18,8 +18,8 @@ public class SpreadingOfFire extends SimulationSuperClass{
 		myBurningState = state3;
 	}
 
-	private boolean checkCell(int row, int column){
-		return myGrid[row][column].getCellCurrentState().getStateID() ==1;
+	private boolean checkIfTree(int row, int column){
+		return myGrid[row][column].getCellCurrentState().getStateID() ==myTreeState.getStateID();
 	}
 	
 	private boolean checkOnGrid(int row, int column){
@@ -27,29 +27,27 @@ public class SpreadingOfFire extends SimulationSuperClass{
 	}
 
 	private void checkSpreadFire( int row, int column){
-		//ArrayList<Cell> listAdjacentTree = new ArrayList<Cell>();
-		if(checkOnGrid(row + 1, column) && checkIfFire(row, column) && checkCell(row+1, column) && setFire()){
+		if(checkOnGrid(row + 1, column)  && checkIfTree(row+1, column) && setFire()){
 			myGrid[row+1][column].setNextState(myBurningState);
 		}
-		if(checkOnGrid(row - 1, column) && checkIfFire(row, column) && checkCell(row-1, column) && setFire()){
+		if(checkOnGrid(row - 1, column)  && checkIfTree(row-1, column) && setFire()){
 			myGrid[row-1][column].setNextState(myBurningState);
 		}
-		if(checkOnGrid(row, column + 1) && checkIfFire(row, column) && checkCell(row, column+1) && setFire()){
+		if(checkOnGrid(row, column + 1) && checkIfTree(row, column+1) && setFire()){
 			myGrid[row][column+1].setNextState(myBurningState);
 		}
-		if(checkOnGrid(row, column -1) && checkIfFire(row, column) && checkCell(row, column-1) && setFire()){
+		if(checkOnGrid(row, column -1)  && checkIfTree(row, column-1) && setFire()){
 			myGrid[row][column-1].setNextState(myBurningState);
 		}
-		//return listAdjacentTree;
 	}
 
 	private boolean setFire(){
-		return Math.random()<=myProbCatch;
+		return  Math.random()<=myProbCatch;
 	}
 
 	private void spreadFire(){
-		for(int i = 0; i<6;i++){
-			for (int j = 0; j<6; j++){
+		for(int i = 0; i<myGrid.length;i++){
+			for (int j = 0; j<myGrid.length; j++){
 				if (checkIfFire(i,j)){
 					checkSpreadFire( i, j);
 				}
@@ -61,7 +59,7 @@ public class SpreadingOfFire extends SimulationSuperClass{
 	private void checkBurningCells(){
 		for(int i = 0; i<myGrid.length;i++){
 			for(int j = 0; j<myGrid[i].length;j++){
-				if (myGrid[i][j].getCellCurrentState().getStateID() == 2){
+				if (myGrid[i][j].getCellCurrentState().getStateID() == myBurningState.getStateID()){
 					myGrid[i][j].setNextState(myEmptyState);
 				}
 			}
@@ -69,7 +67,7 @@ public class SpreadingOfFire extends SimulationSuperClass{
 	}
 
 	private boolean checkIfFire(int row, int column){
-		return myGrid[row][column].getCellCurrentState().getStateID() == 2;
+		return myGrid[row][column].getCellCurrentState().getStateID() ==myBurningState.getStateID() ;
 	} 
 
 	private void updateCells(){
@@ -78,7 +76,6 @@ public class SpreadingOfFire extends SimulationSuperClass{
 				if(myGrid[row][column].getNextState() != null){
 					myGrid[row][column].setCellCurrentState(myGrid[row][column].getNextState());
 					myGrid[row][column].setNextState(null);
-					//Give GUI row & column
 				}
 			}
 		}
@@ -100,7 +97,6 @@ public class SpreadingOfFire extends SimulationSuperClass{
 	}
 	@Override
 	public Cell[][] getGrid() {
-		// TODO Auto-generated method stub
 		return myGrid;
 	}
 }

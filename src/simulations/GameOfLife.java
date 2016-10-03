@@ -69,7 +69,6 @@ public class GameOfLife extends SimulationSuperClass {
 		for (int i = 0; i< myGrid.length; i++){
 			for (int j = 0; j < myGrid[i].length; j++){
 				int numAlive = countAlive(i, j);
-				//System.out.println("number of alive " + numAlive + " at row " + i + " and column " + j);
 				if (checkAlive(i, j) && (numAlive<2 || numAlive>3)){
 					updateState(i,j, 0);
 
@@ -87,7 +86,6 @@ public class GameOfLife extends SimulationSuperClass {
 				if(myGrid[row][column].getNextState() != null){
 					myGrid[row][column].setCellCurrentState(myGrid[row][column].getNextState());
 					myGrid[row][column].setNextState(null);
-					//Give GUI row & column
 				}
 			}
 		}
@@ -103,7 +101,6 @@ public class GameOfLife extends SimulationSuperClass {
 	}
 	@Override
 	public Cell[][] getGrid() {
-		// TODO Auto-generated method stub
 		return myGrid;
 	}
 }

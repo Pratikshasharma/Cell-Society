@@ -3,8 +3,8 @@
   <genparam>
     <simname>Game of Life</simname>
     <simauthor>John Horton Conway</simauthor>
-    <simwidth>50</simwidth>
-    <simheight>50</simheight>
+    <simwidth>10</simwidth>
+    <simheight>10</simheight>
   </genparam>
   <state id="1">
     <statename>full</statename>

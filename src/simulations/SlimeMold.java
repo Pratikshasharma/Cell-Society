@@ -13,13 +13,12 @@ public class SlimeMold extends SimulationSuperClass{
 		myGrid = grid;
 		myNoAmoebeState = state1;
 		myAmeobeState = state2;
-		//initializeBreedCount();
 	}
 
 	private boolean checkOnGrid(int row, int column){
 		return row>=0 && row<myGrid.length && column >= 0 && column < myGrid[row].length;
 	}
-	
+
 	private void updateCellcAMP(int row, int column, boolean increase){
 		if(increase){
 			System.out.println("SHOULD UPDATE cAMP at (" + row + ", " + column + ")");
@@ -34,12 +33,9 @@ public class SlimeMold extends SimulationSuperClass{
 
 	private void emptyState(int row, int column){
 		myGrid[row][column].setNextState(myNoAmoebeState);
-		//myGrid[row][column].getNextState().setStateColor(myNoAmoebeState.getStateColor());
-		//myGrid[row][column].getNextState().setStateID(myNoAmoebeState.getStateID());
-		
 		myGrid[row][column].getNextState().setBreedCount(myGrid[row][column].getCellCurrentState().getBreedCount());
 	}
-	
+
 	private void findEmptyCell(int currentRow, int currentColumn){
 		for(int i = 0; i<myGrid.length; i++){
 			for (int j = 0; j<myGrid[i].length; j++){
@@ -52,7 +48,7 @@ public class SlimeMold extends SimulationSuperClass{
 			}
 		}
 	}
-	
+
 	private void moveAmeobe(int fromRow, int fromColumn, int toRow, int toColumn){
 		State tempState = new State(myGrid[fromRow][fromColumn].getCellCurrentState().getStateName(),
 				myGrid[fromRow][fromColumn].getCellCurrentState().getStateColor(),
@@ -89,15 +85,14 @@ public class SlimeMold extends SimulationSuperClass{
 		}
 		return neighbors;
 	}
-	*/
-	
+	 */
+
 	private void updateCells(){
 		for (int row = 0; row<myGrid.length; row++){
 			for(int column = 0; column<myGrid[row].length; column++){
 				if(myGrid[row][column].getNextState() != null){
 					myGrid[row][column].setCellCurrentState(myGrid[row][column].getNextState());
 					myGrid[row][column].setNextState(null);
-					//Give GUI row & column
 				}
 			}
 		}
@@ -110,7 +105,6 @@ public class SlimeMold extends SimulationSuperClass{
 			for (int j = 0; j<myGrid[i].length; j++){
 				if(myGrid[i][j].getCellCurrentState().getStateID() == myAmeobeState.getStateID()){
 					updateCellcAMP(i, j, true);
-					//List<Cell> available = getAvailableNeighbors(i, j);
 					findEmptyCell(i, j);
 				}
 				else {
@@ -120,7 +114,7 @@ public class SlimeMold extends SimulationSuperClass{
 		}
 		updateCells();
 	}
-	
+
 	private void printGridcAMP(){
 		System.out.println("Breed Count Grid");
 		for (int i = 0; i < myGrid.length;i++){

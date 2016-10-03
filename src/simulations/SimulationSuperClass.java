@@ -19,7 +19,7 @@ public abstract class SimulationSuperClass {
 //
 	public abstract Cell[][] getGrid();
 	
-	public abstract  void updateSimulation();
+	public abstract void updateSimulation();
 	
 	public abstract void printGrid();
 }
