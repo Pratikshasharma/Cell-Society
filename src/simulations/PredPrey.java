@@ -14,7 +14,8 @@ public class PredPrey extends SimulationSuperClass{
 	private static int FISH;
 	private static int SHARK;
 	private static int EMPTY;
-	private Cell[][] myGrid;
+//	private Cell[][] super.getGrid();
+
 	private int myFishTurnsToBreed;
 	private int mySharkTurnsToBreed;
 	private int mySharkTurnsToStarve;
@@ -23,7 +24,7 @@ public class PredPrey extends SimulationSuperClass{
 	private State mySharkState;
 	
 	public PredPrey(Cell[][] gr, int fishBreed, int sharkBreed, int sharkStarve, State s1, State s2, State s3) {
-		myGrid = gr;
+		super(gr);
 		myFishTurnsToBreed = fishBreed;
 		mySharkTurnsToBreed = sharkBreed;
 		mySharkTurnsToStarve = sharkStarve;
@@ -36,24 +37,24 @@ public class PredPrey extends SimulationSuperClass{
 	}
 	
 	private boolean checkOnGrid(int row, int column){
-		return row>=0 && row<myGrid.length && column >= 0 && column < myGrid[row].length;
+		return row>=0 && row<super.getGrid().length && column >= 0 && column < super.getGrid()[row].length;
 	}
 	
 	private ArrayList<Integer> checkNeighborCurrentState(int r, int c, int stateID) {
 		ArrayList<Integer> stateLoc = new ArrayList<Integer>();
-		if (checkOnGrid(r+1,c) && (myGrid[r+1][c].getCellCurrentState().getStateID() == stateID)) {
+		if (checkOnGrid(r+1,c) && (super.getGrid()[r+1][c].getCellCurrentState().getStateID() == stateID)) {
 			stateLoc.add(r+1);
 			stateLoc.add(c);
 		}
-		if (checkOnGrid(r,c+1) && (myGrid[r][c+1].getCellCurrentState().getStateID() == stateID)) {
+		if (checkOnGrid(r,c+1) && (super.getGrid()[r][c+1].getCellCurrentState().getStateID() == stateID)) {
 			stateLoc.add(r);
 			stateLoc.add(c+1);
 		}
-		if (checkOnGrid(r-1,c) && (myGrid[r-1][c].getCellCurrentState().getStateID() == stateID)) {
+		if (checkOnGrid(r-1,c) && (super.getGrid()[r-1][c].getCellCurrentState().getStateID() == stateID)) {
 			stateLoc.add(r-1);
 			stateLoc.add(c);
 		}
-		if (checkOnGrid(r,c-1) && (myGrid[r][c-1].getCellCurrentState().getStateID() == stateID)) {
+		if (checkOnGrid(r,c-1) && (super.getGrid()[r][c-1].getCellCurrentState().getStateID() == stateID)) {
 			stateLoc.add(r);
 			stateLoc.add(c-1);
 		}
@@ -62,19 +63,19 @@ public class PredPrey extends SimulationSuperClass{
 	
 	private ArrayList<Integer> checkEmptyNextState(int r, int c) {
 		ArrayList<Integer> emptyLoc = new ArrayList<Integer>();
-		if (checkOnGrid(r+1,c) && ((myGrid[r+1][c].getNextState() == null) || (myGrid[r+1][c].getNextState().getStateID() == EMPTY))) {
+		if (checkOnGrid(r+1,c) && ((super.getGrid()[r+1][c].getNextState() == null) || (super.getGrid()[r+1][c].getNextState().getStateID() == EMPTY))) {
 			emptyLoc.add(r+1);
 			emptyLoc.add(c);
 		}
-		if (checkOnGrid(r,c+1) && ((myGrid[r][c+1].getNextState() == null) || (myGrid[r][c+1].getNextState().getStateID() == EMPTY))) {
+		if (checkOnGrid(r,c+1) && ((super.getGrid()[r][c+1].getNextState() == null) || (super.getGrid()[r][c+1].getNextState().getStateID() == EMPTY))) {
 			emptyLoc.add(r);
 			emptyLoc.add(c+1);
 		}
-		if (checkOnGrid(r-1,c) && ((myGrid[r-1][c].getNextState() == null) || (myGrid[r-1][c].getNextState().getStateID() == EMPTY))) {
+		if (checkOnGrid(r-1,c) && ((super.getGrid()[r-1][c].getNextState() == null) || (super.getGrid()[r-1][c].getNextState().getStateID() == EMPTY))) {
 			emptyLoc.add(r-1);
 			emptyLoc.add(c);
 		}
-		if (checkOnGrid(r,c-1) && ((myGrid[r][c-1].getNextState() == null) || (myGrid[r][c-1].getNextState().getStateID() == EMPTY))) {
+		if (checkOnGrid(r,c-1) && ((super.getGrid()[r][c-1].getNextState() == null) || (super.getGrid()[r][c-1].getNextState().getStateID() == EMPTY))) {
 			emptyLoc.add(r);
 			emptyLoc.add(c-1);
 		}
@@ -84,9 +85,9 @@ public class PredPrey extends SimulationSuperClass{
 	private void findSharks() {
 		Random rand = new Random();
 		
-		for(int i = 0; i<myGrid.length; i++) {
-			for(int j = 0; j<myGrid[i].length; j++) {
-				if(myGrid[i][j].getCellCurrentState().getStateID() == SHARK) {
+		for(int i = 0; i<super.getGrid().length; i++) {
+			for(int j = 0; j<super.getGrid()[i].length; j++) {
+				if(super.getGrid()[i][j].getCellCurrentState().getStateID() == SHARK) {
 					boolean didMove = false;
 					boolean didEat = false;
 					boolean didBreed = false;
@@ -98,8 +99,8 @@ public class PredPrey extends SimulationSuperClass{
 					ArrayList<Integer> fishLoc = checkNeighborCurrentState(i,j, FISH);
 
 					
-					if(myGrid[i][j].getCellCurrentState().getStarveCount() == mySharkTurnsToStarve) {
-						myGrid[i][j].setCellCurrentState(new State(myEmptyState, 0, 0));
+					if(super.getGrid()[i][j].getCellCurrentState().getStarveCount() == mySharkTurnsToStarve) {
+						super.getGrid()[i][j].setCellCurrentState(new State(myEmptyState, 0, 0));
 					} else {
 					
 						if(fishLoc.size() == 0) {
@@ -128,7 +129,7 @@ public class PredPrey extends SimulationSuperClass{
 
 						}
 					
-						if (myGrid[i][j].getCellCurrentState().getBreedCount() == mySharkTurnsToBreed) {
+						if (super.getGrid()[i][j].getCellCurrentState().getBreedCount() == mySharkTurnsToBreed) {
 							didBreed = true;
 					
 						}
@@ -142,21 +143,21 @@ public class PredPrey extends SimulationSuperClass{
 	
 	private void sharkMoves( boolean didMove, boolean didEat, boolean didBreed, int i, int j, int moveR, int moveC, int eatR, int eatC) {
 		if (didMove && didBreed && !didEat) {
-			myGrid[i][j].setNextState(new State(mySharkState,0,0));
-			myGrid[moveR][moveC].setNextState(new State(mySharkState,0,myGrid[i][j].getCellCurrentState().getStarveCount()+1));
+			super.getGrid()[i][j].setNextState(new State(mySharkState,0,0));
+			super.getGrid()[moveR][moveC].setNextState(new State(mySharkState,0,super.getGrid()[i][j].getCellCurrentState().getStarveCount()+1));
 		} else if (didMove && !didBreed && !didEat) {
-			myGrid[moveR][moveC].setNextState(new State(mySharkState, myGrid[i][j].getCellCurrentState().getBreedCount()+1, myGrid[i][j].getCellCurrentState().getStarveCount()+1));
+			super.getGrid()[moveR][moveC].setNextState(new State(mySharkState, super.getGrid()[i][j].getCellCurrentState().getBreedCount()+1, super.getGrid()[i][j].getCellCurrentState().getStarveCount()+1));
 		} else if (!didMove && !didEat && !didBreed) {
-			myGrid[i][j].setNextState(new State(mySharkState, myGrid[i][j].getCellCurrentState().getBreedCount()+1, myGrid[i][j].getCellCurrentState().getStarveCount()+1));
+			super.getGrid()[i][j].setNextState(new State(mySharkState, super.getGrid()[i][j].getCellCurrentState().getBreedCount()+1, super.getGrid()[i][j].getCellCurrentState().getStarveCount()+1));
 		} else if (!didMove && !didEat && didBreed) {
-			myGrid[i][j].setNextState(new State(mySharkState, 0, myGrid[i][j].getCellCurrentState().getStarveCount()+1));
+			super.getGrid()[i][j].setNextState(new State(mySharkState, 0, super.getGrid()[i][j].getCellCurrentState().getStarveCount()+1));
 		} else if (!didMove && !didBreed && didEat) {
-			myGrid[eatR][eatC].setCellCurrentState(new State(myEmptyState,0,0));
-			myGrid[eatR][eatC].setNextState(new State(mySharkState,myGrid[i][j].getCellCurrentState().getBreedCount()+1, 0));
+			super.getGrid()[eatR][eatC].setCellCurrentState(new State(myEmptyState,0,0));
+			super.getGrid()[eatR][eatC].setNextState(new State(mySharkState,super.getGrid()[i][j].getCellCurrentState().getBreedCount()+1, 0));
 		} else if (!didMove && didBreed && didEat) {
-			myGrid[eatR][eatC].setCellCurrentState(new State(myFishState,0,0));
-			myGrid[eatR][eatC].setNextState(new State(mySharkState,0,0));
-			myGrid[i][j].setNextState(new State(mySharkState,0,0));
+			super.getGrid()[eatR][eatC].setCellCurrentState(new State(myFishState,0,0));
+			super.getGrid()[eatR][eatC].setNextState(new State(mySharkState,0,0));
+			super.getGrid()[i][j].setNextState(new State(mySharkState,0,0));
 		}
 	
 	}
@@ -164,9 +165,9 @@ public class PredPrey extends SimulationSuperClass{
 	private void findFish() {
 		Random rand = new Random();
 		
-		for(int i = 0; i<myGrid.length; i++) {
-			for(int j = 0; j<myGrid[i].length; j++) {
-				if(myGrid[i][j].getCellCurrentState().getStateID() == FISH) {
+		for(int i = 0; i<super.getGrid().length; i++) {
+			for(int j = 0; j<super.getGrid()[i].length; j++) {
+				if(super.getGrid()[i][j].getCellCurrentState().getStateID() == FISH) {
 					
 					boolean didMove = false;
 					boolean didBreed = false;
@@ -184,7 +185,7 @@ public class PredPrey extends SimulationSuperClass{
 					}
 					
 					// did fish breed
-					if (myGrid[i][j].getCellCurrentState().getBreedCount() == myFishTurnsToBreed) {
+					if (super.getGrid()[i][j].getCellCurrentState().getBreedCount() == myFishTurnsToBreed) {
 						didBreed = true;
 					}
 				fishMoves(didMove, didBreed, i, j, moveR, moveC);
@@ -195,50 +196,36 @@ public class PredPrey extends SimulationSuperClass{
 	
 	private void fishMoves(boolean didMove, boolean didBreed, int i, int j, int moveR, int moveC) {
 		if (!didMove && !didBreed) {
-			myGrid[i][j].setNextState(new State(myFishState, myGrid[i][j].getCellCurrentState().getBreedCount()+1, 0));
+			super.getGrid()[i][j].setNextState(new State(myFishState, super.getGrid()[i][j].getCellCurrentState().getBreedCount()+1, 0));
 		} else if (!didMove && didBreed) {
-			myGrid[i][j].setNextState(new State(myFishState,0,0));
+			super.getGrid()[i][j].setNextState(new State(myFishState,0,0));
 		} else if (didMove && didBreed) {
-			myGrid[moveR][moveC].setNextState(new State(myFishState,0,0));
-			myGrid[i][j].setNextState(new State(myFishState,0,0));
+			super.getGrid()[moveR][moveC].setNextState(new State(myFishState,0,0));
+			super.getGrid()[i][j].setNextState(new State(myFishState,0,0));
 		} else if (didMove && !didBreed) {
-			myGrid[moveR][moveC].setNextState(new State(myFishState, myGrid[i][j].getCellCurrentState().getBreedCount()+1,0));
+			super.getGrid()[moveR][moveC].setNextState(new State(myFishState, super.getGrid()[i][j].getCellCurrentState().getBreedCount()+1,0));
 		}
 	}
 	
 	private void updateCells(){
-		for (int row = 0; row<myGrid.length; row++){
-			for(int column = 0; column<myGrid[row].length; column++){
-				if(myGrid[row][column].getNextState() == null) {
+		for (int row = 0; row<super.getGrid().length; row++){
+			for(int column = 0; column<super.getGrid()[row].length; column++){
+				if(super.getGrid()[row][column].getNextState() == null) {
 					State empty = new State(myEmptyState,0,0);
-					myGrid[row][column].setCellCurrentState(empty);
+					super.getGrid()[row][column].setCellCurrentState(empty);
 				} else {
-					myGrid[row][column].setCellCurrentState(myGrid[row][column].getNextState());
-					myGrid[row][column].setNextState(null);
+					super.getGrid()[row][column].setCellCurrentState(super.getGrid()[row][column].getNextState());
+					super.getGrid()[row][column].setNextState(null);
 				}
 				
 			}
 		}
 	}
 	
+	@Override
 	public void updateSimulation(){
 		findSharks();
 		findFish();
 		updateCells();
 	}
-
-	public void printGrid(){
-		for (int i = 0; i < myGrid.length;i++){
-			System.out.println();
-			for(int j = 0 ; j<myGrid[i].length; j++){
-				System.out.print(myGrid[i][j].getCellCurrentState().getStateID());
-			}
-		}
-	}
-	
-	@Override
-	public Cell[][] getGrid() {
-		return myGrid;
-	}
-	
 }

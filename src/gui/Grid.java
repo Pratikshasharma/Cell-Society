@@ -27,14 +27,14 @@ public class Grid implements GridInterface {
 		myGrid.setStyle("-fx-border: 15px solid; -fx-border-color: black; -fx-padding: 10");
 		myGrid.setGridLinesVisible(true);
 		myGrid.setAlignment(Pos.BASELINE_LEFT);
-		
+
 		for(String key: myStateColorMap.keySet()){
 			int counter = 0;
 			for (int i = 0; i <= numCellsWidth -1 ; i++) {
 				for (int j = 0; j <= numCellsHeight -1; j++){
 					myShape = new Rectangle(GRID_WIDTH / numCellsWidth, GRID_HEIGHT / numCellsHeight);
 					myShape.setFill(myGridColor[i][j]);
-					myGrid.add(myShape, i, j);
+					myGrid.add(myShape, j, i);
 					if(myGridColor[i][j].equals(myStateColorMap.get(key))){
 						counter+=1;	
 					}
@@ -47,22 +47,22 @@ public class Grid implements GridInterface {
 		return myStateNumberMap;
 	}
 
-		private boolean checkNodeIDNull(Node tempNode) {
-			return (GridPane.getColumnIndex(tempNode) != null || GridPane.getRowIndex(tempNode) != null);
-		}
+	private boolean checkNodeIDNull(Node tempNode) {
+		return (GridPane.getColumnIndex(tempNode) != null || GridPane.getRowIndex(tempNode) != null);
+	}
 
-		public void changeMyGridColor(int row, int col, Paint color) {
-			for (Node node : myGrid.getChildren()) {
-				if (checkNodeIDNull(node)) {
-					if (GridPane.getColumnIndex(node) == col && GridPane.getRowIndex(node) == row) {
-						((Rectangle) node).setFill(color);
-					}
+	public void changeMyGridColor(int row, int col, Paint color) {
+		for (Node node : myGrid.getChildren()) {
+			if (checkNodeIDNull(node)) {
+				if (GridPane.getColumnIndex(node) == col && GridPane.getRowIndex(node) == row) {
+					((Rectangle) node).setFill(color);
 				}
 			}
 		}
-
-		public GridPane getGrid() {
-			return this.myGrid;
-		}
-
 	}
+
+	public GridPane getGrid() {
+		return this.myGrid;
+	}
+
+}

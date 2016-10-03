@@ -63,7 +63,6 @@ public class MainGUI {
 		myPopulationGraph.createLineChart(myStatePopulationMap,numCellsWidth);
 		tempHBox.getChildren().addAll(myGrid.getGrid(),myPopulationGraph.getMyStatePopulationChart());
 		myVBox.getChildren().addAll(addSimulationTitle(),tempHBox);
-
 		addButtons();
 		addSlider();
 		myVBox.getChildren().add(myHBox);
