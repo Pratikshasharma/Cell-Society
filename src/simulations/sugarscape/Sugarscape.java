@@ -6,6 +6,7 @@ import java.util.Map;
 import java.util.Random;
 
 import cellpackage.*;
+import simulations.Coordinates;
 import simulations.SimulationSuperClass;
 
 /**

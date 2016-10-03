@@ -1,4 +1,4 @@
-package simulations.sugarscape;
+package simulations;
 
 /**
  * simple class to hold coordinates for HashMap key
