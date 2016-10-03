@@ -14,13 +14,8 @@ public class GameOfLife extends SimulationSuperClass {
 		myFullState = state2;
 	}
 
-	private boolean checkAlive(int row, int column){
-		return super.getGrid()[row][column].getCellCurrentState().getStateID() == myFullState.getStateID();
-	}
-
-
-	private boolean checkDead(int row, int column){
-		return super.getGrid()[row][column].getCellCurrentState().getStateID() == myEmptyState.getStateID();
+	private boolean checState(int row, int column, int id){
+		return super.getGrid()[row][column].getCellCurrentState().getStateID() == id;
 	}
 
 	public void updateState(int row, int column, int id){
@@ -31,34 +26,30 @@ public class GameOfLife extends SimulationSuperClass {
 		}
 	}
 
-	public boolean onGrid(int row, int column){
-		return row>=0 && row<super.getGrid().length && column >= 0 && column < super.getGrid()[row].length;
-	}
-
 	public int countAlive(int row, int column){
 		int numAlive = 0;
-		if (onGrid(row+1, column) && checkAlive(row+1, column)){
+		if (checkOnGrid(row+1, column) && checState(row+1, column, myFullState.getStateID())){
 			numAlive++;
 		}
-		if (onGrid(row-1, column) && checkAlive(row-1, column)){
+		if (checkOnGrid(row-1, column) && checState(row-1, column, myFullState.getStateID())){
 			numAlive++;
 		}
-		if (onGrid(row, column+1) && checkAlive(row, column+1)){
+		if (checkOnGrid(row, column+1) && checState(row, column+1, myFullState.getStateID())){
 			numAlive++;
 		}
-		if (onGrid(row, column-1) && checkAlive(row, column-1)){
+		if (checkOnGrid(row, column-1) && checState(row, column-1, myFullState.getStateID())){
 			numAlive++;
 		}
-		if (onGrid(row+1, column+1) && checkAlive(row+1, column+1)){
+		if (checkOnGrid(row+1, column+1) && checState(row+1, column+1, myFullState.getStateID())){
 			numAlive++;
 		}
-		if (onGrid(row+1, column-1) && checkAlive(row+1, column-1)){
+		if (checkOnGrid(row+1, column-1) && checState(row+1, column-1, myFullState.getStateID())){
 			numAlive++;
 		}
-		if (onGrid(row-1, column+1) && checkAlive(row-1, column+1)){
+		if (checkOnGrid(row-1, column+1) && checState(row-1, column+1, myFullState.getStateID())){
 			numAlive++;
 		}
-		if (onGrid(row-1, column-1) && checkAlive(row-1, column-1)){
+		if (checkOnGrid(row-1, column-1) && checState(row-1, column-1, myFullState.getStateID())){
 			numAlive++;
 		}
 		return numAlive;
@@ -69,25 +60,14 @@ public class GameOfLife extends SimulationSuperClass {
 		for (int i = 0; i< super.getGrid().length; i++){
 			for (int j = 0; j < super.getGrid()[i].length; j++){
 				int numAlive = countAlive(i, j);
-				if (checkAlive(i, j) && (numAlive<2 || numAlive>3)){
+				if (checState(i, j, myFullState.getStateID()) && (numAlive<2 || numAlive>3)){
 					updateState(i,j, 0);
 
-				}else if(checkAlive(i,j) || (checkDead(i, j) && numAlive ==3)){
+				}else if(checState(i,j, myFullState.getStateID()) || (checState(i, j, myEmptyState.getStateID()) && numAlive ==3)){
 					updateState(i, j, 1);
 				}
 			}
 		}
 		updateCells();
-	}
-
-	private void updateCells(){
-		for (int row = 0; row<super.getGrid().length; row++){
-			for(int column = 0; column<super.getGrid()[row].length; column++){
-				if(super.getGrid()[row][column].getNextState() != null){
-					super.getGrid()[row][column].setCellCurrentState(super.getGrid()[row][column].getNextState());
-					super.getGrid()[row][column].setNextState(null);
-				}
-			}
-		}
 	}
 }

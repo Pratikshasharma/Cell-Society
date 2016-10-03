@@ -36,10 +36,6 @@ public class PredPrey extends SimulationSuperClass{
 		SHARK = s3.getStateID();
 	}
 	
-	private boolean checkOnGrid(int row, int column){
-		return row>=0 && row<super.getGrid().length && column >= 0 && column < super.getGrid()[row].length;
-	}
-	
 	private ArrayList<Coordinates> checkNeighborCurrentState(int r, int c, int stateID) {
 		ArrayList<Coordinates> stateLoc = new ArrayList<Coordinates>();
 		if (checkOnGrid(r+1,c) && (super.getGrid()[r+1][c].getCellCurrentState().getStateID() == stateID)) {
@@ -199,7 +195,8 @@ public class PredPrey extends SimulationSuperClass{
 		}
 	}
 	
-	private void updateCells(){
+	@Override
+	protected void updateCells(){
 		for (int row = 0; row<super.getGrid().length; row++){
 			for(int column = 0; column<super.getGrid()[row].length; column++){
 				if(super.getGrid()[row][column].getNextState() == null) {
@@ -209,7 +206,6 @@ public class PredPrey extends SimulationSuperClass{
 					super.getGrid()[row][column].setCellCurrentState(super.getGrid()[row][column].getNextState());
 					super.getGrid()[row][column].setNextState(null);
 				}
-				
 			}
 		}
 	}

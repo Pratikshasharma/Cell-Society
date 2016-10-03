@@ -53,18 +53,6 @@ public class SlimeMold extends SimulationSuperClass{
 		super.getGrid()[toRow][toColumn].setNextState(tempState);
 	}
 
-	private void updateCells(){
-		for (int row = 0; row<super.getGrid().length; row++){
-			for(int column = 0; column<super.getGrid()[row].length; column++){
-				if(super.getGrid()[row][column].getNextState() != null){
-					super.getGrid()[row][column].setCellCurrentState(super.getGrid()[row][column].getNextState());
-					super.getGrid()[row][column].setNextState(null);
-				}
-			}
-		}
-	}
-
-
 	@Override
 	public void updateSimulation() {
 		for(int i = 0; i<super.getGrid().length;i++){

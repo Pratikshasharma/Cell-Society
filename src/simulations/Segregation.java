@@ -18,10 +18,6 @@ public class Segregation extends SimulationSuperClass {
 		myEmptyState = state1;
 	}
 
-	private boolean checkOnGrid(int row, int column){
-		return row>=0 && row<super.getGrid().length && column >= 0 && column < super.getGrid()[row].length;
-	}
-
 	private boolean notEmpty(int row, int column){
 		return super.getGrid()[row][column].getCellCurrentState().getStateID() != myEmptyState.getStateID();
 	}
@@ -120,17 +116,6 @@ public class Segregation extends SimulationSuperClass {
 			}
 		}
 		updateCells();
-	}
-
-	private void updateCells(){
-		for (int row = 0; row<super.getGrid().length; row++){
-			for(int column = 0; column<super.getGrid()[row].length; column++){
-				if(super.getGrid()[row][column].getNextState() != null){
-					super.getGrid()[row][column].setCellCurrentState(super.getGrid()[row][column].getNextState());
-					super.getGrid()[row][column].setNextState(null);
-				}
-			}
-		}
 	}
 
 	public void printGrid(){
