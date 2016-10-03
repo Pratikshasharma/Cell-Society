@@ -67,7 +67,6 @@ public class MainGUI {
 		
 		tempHBox.getChildren().addAll(myGrid.getGrid(),myPopulationGraph.getMyStatePopulationChart());
 		myVBox.getChildren().addAll(addSimulationTitle(),tempHBox);
-
 		addButtons();
 		addSlider();
 		myVBox.getChildren().add(myHBox);

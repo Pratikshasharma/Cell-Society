@@ -34,7 +34,6 @@ public class Grid implements GridInterface {
 				for (int j = 0; j <= numCellsHeight -1; j++){
 					myShape = new Rectangle(GRID_WIDTH / numCellsWidth, GRID_HEIGHT / numCellsHeight);
 					myShape.setFill(myGridColor[i][j]);
-					myShape.setStyle("-fx-border-color: black;");
 					myGrid.add(myShape, j, i);
 					if(myGridColor[i][j].equals(myStateColorMap.get(key))){
 						counter+=1;	
@@ -61,6 +60,7 @@ public class Grid implements GridInterface {
 			}
 		}
 	}
+
 	public GridPane getGrid() {
 		return this.myGrid;
 	}

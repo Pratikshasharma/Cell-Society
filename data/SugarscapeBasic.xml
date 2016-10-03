@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root SimType="sugarbasic">
+  <genparam>
+    <simname>Sugarscape - Preset 1</simname>
+    <simauthor>Joshua M. Epstein and Robert Axtell</simauthor>
+    <simwidth>51</simwidth>
+    <simheight>51</simheight>
+  </genparam>
+  <sugargrowbackrate>1</sugargrowbackrate>
+  <sugargrowbackinterval>1</sugargrowbackinterval>
+  <mininitsugar>5</mininitsugar>
+  <maxinitsugar>25</maxinitsugar>
+  <maxvision>6</maxvision>
+  <maxmetabolism>4</maxmetabolism>
+  <state id="1">
+    <statename>agent</statename>
+    <statecolor>RED</statecolor>
+    <percentage>0.3</percentage>
+  </state>
+  <state id="0">
+    <statename>empty</statename>
+    <statecolor>WHITE</statecolor>
+    <percentage>0.7</percentage>
+  </state>
+</root>

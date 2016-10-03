@@ -12,13 +12,12 @@ public class SegregationModel extends SimModel {
 	private GenState myRace2;
 	private GenState myEmptyState;
 	
-	public SegregationModel(String simName, String simAuthor, String simWidth, String simHeight,
-						String satisf, GenState race1, GenState race2, GenState emptyState) {
-		super(simName, simAuthor, simWidth, simHeight);
-		mySatisfaction = Double.parseDouble(satisf);
-		myRace1 = race1;
-		myRace2 = race2;
-		myEmptyState = emptyState;
+	public SegregationModel(String[] genParams,	double satisf, GenState[] genStates) {
+		super(genParams);
+		mySatisfaction = satisf;
+		myRace1 = genStates[0];
+		myRace2 = genStates[1];
+		myEmptyState = genStates[2];
 	}
 
 	/**
@@ -48,50 +47,4 @@ public class SegregationModel extends SimModel {
 	public GenState getMyEmptyState() {
 		return myEmptyState;
 	}
-
-	@Override
-	public double getMyProbCatch() {
-		return 0;
-	}
-
-	@Override
-	public GenState getMyTree() {
-		return null;
-	}
-
-	@Override
-	public GenState getMyBurning() {
-		return null;
-	}
-
-	@Override
-	public int getMyFishTurnsToBreed() {
-		return 0;
-	}
-
-	@Override
-	public int getMySharkTurnsToBreed() {
-		return 0;
-	}
-
-	@Override
-	public int getMySharkTurnsToStarve() {
-		return 0;
-	}
-
-	@Override
-	public GenState getMyFish() {
-		return null;
-	}
-
-	@Override
-	public GenState getMyShark() {
-		return null;
-	}
-
-	@Override
-	public GenState getMyFullState() {
-		return null;
-	}
-
 }
