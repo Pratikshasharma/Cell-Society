@@ -1,7 +1,9 @@
 package button;
 
 import gui.GUIController;
-
+/**
+ * @author pratiksha sharma
+ */
 public class Start extends ButtonClass{
 
 	public Start(){

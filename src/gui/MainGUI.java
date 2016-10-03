@@ -5,12 +5,9 @@ import button.Reset;
 import button.Start;
 import button.Step;
 import button.Stop;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.geometry.Insets;
 import javafx.scene.Group;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -35,7 +32,6 @@ public class MainGUI {
 	private Stop myStopSimulationButton;
 	private Reset myResetButton;
 	private HBox myHBox;
-	private Slider simulationSpeedSlider;
 	private String mySimulationName;
 	private int numCellsWidth;
 	private int numCellsHeight;
@@ -43,6 +39,7 @@ public class MainGUI {
 	private PopulationGraph myPopulationGraph;
 	private Map<String, Paint> myStateColorMap;
 	private Map<String,Integer>myStatePopulationMap;
+	private SimulationSpeedSlider mySpeedSlider;
 
 	public MainGUI() {
 		this.myStartSimulationButton = new Start();
@@ -68,7 +65,8 @@ public class MainGUI {
 		tempHBox.getChildren().addAll(myGrid.getGrid(),myPopulationGraph.getMyStatePopulationChart());
 		myVBox.getChildren().addAll(addSimulationTitle(),tempHBox);
 		addButtons();
-		addSlider();
+		mySpeedSlider = new SimulationSpeedSlider();
+		myHBox.getChildren().addAll(mySpeedSlider.mySlider,mySpeedSlider.mySliderCaption,mySpeedSlider.mySliderValue);
 		myVBox.getChildren().add(myHBox);
 		root.getChildren().add(myVBox);
 		return root;
@@ -86,22 +84,6 @@ public class MainGUI {
 				myResetButton.getButton(), myStepSimulationButton.getButton());
 	}
 
-	private void addSlider() {
-		simulationSpeedSlider = new Slider(GUIController.MIN_FRAMES_PER_SECOND, GUIController.MAX_FRAMES_PER_SECOND,
-				GUIController.DEFAULT_FRAMES_PER_SECOND);
-		simulationSpeedSlider.setMajorTickUnit(10);
-		Label speedCaption = new Label("Simulation Speed :");
-		Label speedValue = new Label(Double.toString(simulationSpeedSlider.getValue()));
-
-		simulationSpeedSlider.valueProperty().addListener(new ChangeListener<Number>() {
-			public void changed(ObservableValue<? extends Number> ov, Number old_val, Number new_val) {
-				simulationSpeedSlider.setValue((double) new_val);
-				speedValue.textProperty().setValue(String.valueOf((int) simulationSpeedSlider.getValue()));
-			}
-		});
-
-		myHBox.getChildren().addAll(simulationSpeedSlider, speedCaption, speedValue);
-	}
 
 	public Button getResetButton() {
 		return this.myResetButton.getButton() ;
@@ -120,7 +102,7 @@ public class MainGUI {
 	}
 
 	public Slider getSimulationSpeedSlider() {
-		return simulationSpeedSlider;
+		return mySpeedSlider.mySlider;
 	}
 
 	public void setNumCellsWidth(int numCells) {

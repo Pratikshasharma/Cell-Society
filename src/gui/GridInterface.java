@@ -1,5 +1,9 @@
 package gui;
 
+/**
+ * @author pratiksha sharma
+ */
+
 import javafx.scene.paint.Paint;
 
 public interface GridInterface {

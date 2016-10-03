@@ -1,7 +1,10 @@
 package button;
 
 import gui.GUIController;
+/**
+ * @author pratiksha sharma
 
+ */
 public class Stop extends ButtonClass{
 
 	public Stop(){

@@ -1,7 +1,10 @@
 package button;
 
 import gui.GUIController;
-
+/**
+ * @author pratiksha sharma
+ *
+ */
 public class OpenFile extends ButtonClass{
 
 	public OpenFile(){

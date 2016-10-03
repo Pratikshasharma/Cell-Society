@@ -35,6 +35,7 @@ public class GUIController {
 	public static final int MIN_FRAMES_PER_SECOND = 5;
 	public static final double SCENE_WIDTH = 1100;
 	public static final double SCENE_HEIGHT = 600;
+	public static final double TIME_VALUE = 5000;
 
 	private Paint[][] myGridColor;
 
@@ -88,7 +89,7 @@ public class GUIController {
 
 	private void runContinuousSimulation() {
 		animation = new Timeline();
-		KeyFrame frame = new KeyFrame(Duration.millis(5000 / myGUI.getSimulationSpeedSlider().getValue()),e -> this.updateGrid());
+		KeyFrame frame = new KeyFrame(Duration.millis(TIME_VALUE / myGUI.getSimulationSpeedSlider().getValue()),e -> this.updateGrid());
 		animation.setCycleCount(Timeline.INDEFINITE);
 		animation.getKeyFrames().add(frame);
 		animation.play();
