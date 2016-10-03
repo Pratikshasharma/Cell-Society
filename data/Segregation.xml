@@ -3,8 +3,8 @@
   <genparam>
     <simname>Segregation</simname>
     <simauthor>Frank McCown</simauthor>
-    <simwidth>50</simwidth>
-    <simheight>50</simheight>
+    <simwidth>10</simwidth>
+    <simheight>10</simheight>
   </genparam>
   <satisfaction>0.5</satisfaction>
   <state id="1">
@@ -19,7 +19,7 @@
   </state>
   <state id="0">
     <statename>empty</statename>
-    <statecolor>WHITE</statecolor>
+    <statecolor>BLACK</statecolor>
     <percentage>0.3</percentage>
   </state>
 </root>

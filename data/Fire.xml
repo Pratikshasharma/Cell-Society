@@ -3,23 +3,23 @@
   <genparam>
     <simname>Spreading of Fire</simname>
     <simauthor>Angela B. Shiflet</simauthor>
-    <simwidth>50</simwidth>
-    <simheight>50</simheight>
+    <simwidth>10</simwidth>
+    <simheight>10</simheight>
   </genparam>
-  <probcatch>0.75</probcatch>
+  <probcatch>1.0</probcatch>
   <state id="1">
     <statename>tree</statename>
     <statecolor>GREEN</statecolor>
-    <percentage>0.5</percentage>
+    <percentage>0.99</percentage>
   </state>
   <state id="2">
     <statename>burning</statename>
-    <statecolor>BROWN</statecolor>
+    <statecolor>RED</statecolor>
     <percentage>0.01</percentage>
   </state>
   <state id="0">
     <statename>empty</statename>
-    <statecolor>WHITE</statecolor>
-    <percentage>0.49</percentage>
+    <statecolor>YELLOW</statecolor>
+    <percentage>0.0</percentage>
   </state>
 </root>

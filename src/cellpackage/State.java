@@ -77,6 +77,10 @@ public class State {
 	public int getStarveCount() {
 		return myStarveCount;
 	}
+	
+	public void setBreedCount(int breedCount){
+		myStarveCount = breedCount;
+	}
 
 	public int getSugarAmt() {
 		return mySugarAmt;

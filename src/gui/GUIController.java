@@ -2,14 +2,15 @@
 package gui;
 
 import java.io.File;
+import java.util.Map;
 
+import simulations.SimulationController;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.scene.Scene;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.util.Duration;
-import simulations.SimulationController;
 
 /**
  * @author pratiksha sharma
@@ -27,12 +28,12 @@ public class GUIController {
 	private int numCellsHeight;
 	private String mySimulationName;
 	private Timeline animation;
+	private Map<String,Paint> myStateColorMap;
 
-
-	public static final int DEFAULT_FRAMES_PER_SECOND = 3;
+	public static final int DEFAULT_FRAMES_PER_SECOND = 2;
 	public static final int MAX_FRAMES_PER_SECOND = 5;
 	public static final int MIN_FRAMES_PER_SECOND = 1;
-	public static final double SCENE_WIDTH = 800;
+	public static final double SCENE_WIDTH = 1100;
 	public static final double SCENE_HEIGHT = 600;
 
 	private Paint[][] myGridColor;
@@ -56,7 +57,7 @@ public class GUIController {
 
 	private void resetSimulation() {
 		myGridColor = mySimulationController.initializeCellsAndGridVisualization();
-		updateGridVisualization();
+		updateGridVisualization(true);
 		stopSimulation();
 	}
 
@@ -68,17 +69,13 @@ public class GUIController {
 		return this.TITLE;
 	}
 
-
-
 	public void stopSimulation() {
 		if (animation != null)
 			animation.stop();
 	}
-
 	public void chooseSimulationFile() {
 		myChosenFile = myFileChooser.chooseFile();
 		mySimulationController.readFile(myChosenFile);
-
 		this.mySimulationName = mySimulationController.getSimulationName();
 		this.numCellsHeight = mySimulationController.getNumCellsHeight();
 		this.numCellsWidth = mySimulationController.getNumCellsWidth();
@@ -88,13 +85,13 @@ public class GUIController {
 		myGUI.setSimulationName(this.mySimulationName);
 
 		myGridColor = mySimulationController.initializeCellsAndGridVisualization();
-		myScene.setRoot(myGUI.setScene(myGridColor));
+		myStateColorMap = mySimulationController.getStateColorMap();
+		myScene.setRoot(myGUI.setScene(myGridColor, myStateColorMap));
 	}
 
 	private void updateGrid() {
 		mySimulationController.updateCells();
-		// Call the updated Color Array
-		updateGridVisualization();
+		updateGridVisualization(false);
 	}
 
 	private void runContinuousSimulation() {
@@ -103,7 +100,6 @@ public class GUIController {
 		animation.setCycleCount(Timeline.INDEFINITE);
 		animation.getKeyFrames().add(frame);
 		animation.play();
-
 	}
 
 	/**
@@ -115,19 +111,21 @@ public class GUIController {
 		return this.myChosenFile;
 	}
 
-	private void updateGridVisualization() {
+	private void updateGridVisualization(boolean resetLineGraph) {
 		myGridColor = mySimulationController.getColorGrid();
+		myGUI.resetStatePopulationMap();
 		for (int i = 0; i < myGridColor[0].length; i++) {
 			for (int j = 0; j < myGridColor.length; j++) {
 				myGUI.updateGridColor(i, j, myGridColor[i][j]);
+				myGUI.updatePopulationCount(myGridColor[i][j]);
 			}
 		}
+		myGUI.updatePopulationGraph(resetLineGraph);	
 	}
-
 	public String getSimulationName() {
 		return this.mySimulationName;
 	}
-
+	
 	private void setEventHandlersOnButtons() {
 		initialScreen.getOpenFileButton().setOnAction(e -> chooseSimulationFile());
 		myGUI.getResetButton().setOnAction(e -> resetSimulation());

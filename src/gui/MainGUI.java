@@ -1,4 +1,6 @@
 package gui;
+import java.util.Map;
+
 import button.Reset;
 import button.Start;
 import button.Step;
@@ -25,6 +27,8 @@ import javafx.scene.text.Text;
 public class MainGUI {
 	public static final int GRID_WIDTH = 400;
 	public static final int GRID_HEIGHT = 400;
+	public static final String DEFAULT_RESOURCE_PACKAGE = "resources";
+
 	private VBox myVBox;
 	private Start myStartSimulationButton;
 	private Step myStepSimulationButton;
@@ -36,27 +40,34 @@ public class MainGUI {
 	private int numCellsWidth;
 	private int numCellsHeight;
 	private Grid myGrid;
+	private PopulationGraph myPopulationGraph;
+	private Map<String, Paint> myStateColorMap;
+	private Map<String,Integer>myStatePopulationMap;
 
 	public MainGUI() {
 		this.myStartSimulationButton = new Start();
 		this.myStepSimulationButton = new Step();
 		this.myStopSimulationButton = new Stop();
 		this.myResetButton = new Reset();
+		myPopulationGraph = new PopulationGraph();
 	}
 
-	public Group setScene(Paint[][] myGridColor) {
+	public Group setScene(Paint[][] myGridColor, Map<String,Paint> myStateColorMap) {
+		this.myStateColorMap = myStateColorMap;
 		Group root = new Group();
-		myVBox = new VBox(10);
-		myHBox = new HBox(10);
+		myVBox = new VBox(20);
+		HBox tempHBox = new HBox(20);
 		myVBox.setPadding(new Insets(10));
 		myGrid = new Grid(this.numCellsWidth, this.numCellsHeight);
-		myGrid.createGrid(myGridColor);
+		this.myStatePopulationMap = myGrid.createGrid(myGridColor, myStateColorMap);
+		myPopulationGraph.createLineChart(myStatePopulationMap,numCellsWidth);
+		tempHBox.getChildren().addAll(myGrid.getGrid(),myPopulationGraph.getMyStatePopulationChart());
+		myVBox.getChildren().addAll(addSimulationTitle(),tempHBox);
 
-		myVBox.getChildren().addAll(addSimulationTitle(), myGrid.getGrid());
 		addButtons();
 		addSlider();
-		root.getChildren().add(myVBox);
 		myVBox.getChildren().add(myHBox);
+		root.getChildren().add(myVBox);
 		return root;
 	}
 
@@ -67,6 +78,7 @@ public class MainGUI {
 	}
 
 	private void addButtons() {
+		myHBox = new HBox(10);
 		myHBox.getChildren().addAll(myStopSimulationButton.getButton(), myStartSimulationButton.getButton(),
 				myResetButton.getButton(), myStepSimulationButton.getButton());
 	}
@@ -128,6 +140,24 @@ public class MainGUI {
 		myGrid.changeMyGridColor(row, col, color);
 	}
 
+	public void updatePopulationCount(Paint color){
+		Integer populationCounter;
+		for(String key: myStatePopulationMap.keySet()){
+			if(myStateColorMap.get(key).equals(color)){
+				populationCounter = myStatePopulationMap.get(key);
+				populationCounter+=1;
+				myStatePopulationMap.put(key, populationCounter);
+			}
+		}
+	}
 
-	
+	public void updatePopulationGraph(boolean resetLineGraph){
+		myPopulationGraph.drawLineGraph(myStatePopulationMap,resetLineGraph);
+	}
+
+	public void resetStatePopulationMap(){
+		for(String key: myStatePopulationMap.keySet()){
+			myStatePopulationMap.put(key, 0);
+		}
+	}
 }
