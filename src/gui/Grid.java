@@ -2,7 +2,6 @@ package gui;
 
 import java.util.HashMap;
 import java.util.Map;
-
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.layout.GridPane;
@@ -10,6 +9,9 @@ import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
 
+/**
+ * @author pratiksha sharma
+ */
 public class Grid implements GridInterface {
 	private Shape myShape;
 	private GridPane myGrid;

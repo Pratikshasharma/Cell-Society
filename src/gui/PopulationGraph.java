@@ -6,6 +6,11 @@ import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 
+/**
+ * @author pratiksha sharma
+ *
+ */
+
 public class PopulationGraph {
 	private Axis<Number> xAxis = new NumberAxis();
 	private Axis<Number> yAxis = new NumberAxis();

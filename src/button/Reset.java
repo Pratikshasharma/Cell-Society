@@ -1,7 +1,9 @@
 package button;
 
 import gui.GUIController;
-
+/**
+ * @author pratiksha sharma
+ */
 public class Reset extends ButtonClass {
 	public Reset(){
 		super("ResetSimulationCommand");

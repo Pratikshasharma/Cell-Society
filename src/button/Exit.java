@@ -1,7 +1,10 @@
 package button;
 
 import gui.GUIController;
-
+/**
+ * @author pratiksha sharma
+ *
+ */
 public class Exit extends ButtonClass {
 	public Exit(){
 		super("ExitCommand");

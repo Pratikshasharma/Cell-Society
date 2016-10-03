@@ -5,7 +5,7 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 /**
- * @author pratikshasharma
+ * @author pratiksha sharma
  *
  */
 public class ChooseFile {
