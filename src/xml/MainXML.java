@@ -36,6 +36,12 @@ public class MainXML {
         			SimXMLFactory factory = new PredPreyXMLFactory();
         			SimModel p = (PredPreyModel) factory.getSim(root);
         			return p;
+        		} else if (simType.equals("")) {
+        			String noSimType = "No simulation type specified";
+        			throw new XMLFactoryException(noSimType);
+        		} else {
+        			String notRec = "Simulation type '%s' not recognized";
+        			throw new XMLFactoryException(notRec, simType);
         		}
         	}
         	catch (XMLFactoryException e) {

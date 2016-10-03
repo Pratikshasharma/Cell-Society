@@ -10,35 +10,35 @@ import javafx.scene.shape.Shape;
  */
 public class Cell {
 	private Shape myCellShape;
-	private State cellCurrentState; 
-	private State cellNextState;
+	private State myCellCurrentState; 
+	private State myCellNextState;
 
 	public Cell(Shape myShape, State myState){
-		this.myCellShape = myShape;
-		this.cellCurrentState = myState;	
+		myCellShape = myShape;
+		myCellCurrentState = myState;
 	}
-
+	
 	public void setShape(Shape myShape){
-		this.myCellShape = myShape;
+		myCellShape = myShape;
 	}
 
 	public Shape getShape(){
-		return this.myCellShape;
+		return myCellShape;
 	}
 
 	public State getCellCurrentState() {
-		return cellCurrentState;
+		return myCellCurrentState;
 	}
 
 	public void setCellCurrentState(State cellCurrentState) {
-		this.cellCurrentState = cellCurrentState;
+		myCellCurrentState = cellCurrentState;
 	}
 	
 	public State getNextState(){
-		return cellNextState;
+		return myCellNextState;
 	}
 	
 	public void setNextState(State cellNextState){
-		this.cellNextState = cellNextState;
+		myCellNextState = cellNextState;
 	}
 }

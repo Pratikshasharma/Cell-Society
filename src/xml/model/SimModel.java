@@ -15,11 +15,11 @@ public abstract class SimModel {
     	
     }
     
-    public SimModel (String simName, String simAuthor, String simWidth, String simHeight) {
-        mySimName = simName;
-        mySimAuthor = simAuthor;
-        mySimWidth = Integer.parseInt(simWidth);
-        mySimHeight = Integer.parseInt(simHeight);
+    public SimModel (String[] genParams) {
+        mySimName = genParams[0];
+        mySimAuthor = genParams[1];
+        mySimWidth = Integer.parseInt(genParams[2]);
+        mySimHeight = Integer.parseInt(genParams[3]);
     }
 
 	/**
@@ -52,33 +52,101 @@ public abstract class SimModel {
 	
 	//gameoflife
 	
-	public abstract GenState getMyFullState();
+	/**
+	 * @return Full State (game of life)
+	 */
+	public GenState getMyFullState() {
+		return null;
+	}
+	
+	/**
+	 * @return Empty State
+	 */
+	public GenState getMyEmptyState() {
+		return null;
+	}
 	
 	//fire
-	public abstract double getMyProbCatch();
 	
-	public abstract GenState getMyTree();
+	/**
+	 * @return Probability of Catching Fire (Spreading of Fire)
+	 */
+	public double getMyProbCatch() {
+		return 0;
+	}
 	
-	public abstract GenState getMyBurning();
+	/**
+	 * @return Tree State (Spreading of Fire)
+	 */
+	public GenState getMyTree() {
+		return null;
+	}
 	
-	public abstract GenState getMyEmptyState();
+	/**
+	 * @return Burning State (Spreading of Fire)
+	 */
+	public GenState getMyBurning() {
+		return null;
+	}
 
 	//predprey
-	public abstract int getMyFishTurnsToBreed();
 	
-	public abstract int getMySharkTurnsToBreed();
-
-	public abstract int getMySharkTurnsToStarve();
+	/**
+	 * @return Turns it takes for Fish to breed (Predator-Prey)
+	 */
+	public int getMyFishTurnsToBreed() {
+		return 0;
+	}
 	
-	public abstract GenState getMyFish();
+	/**
+	 * @return Turns it takes for Sharks to breed (Predator-Prey)
+	 */
+	public int getMySharkTurnsToBreed() {
+		return 0;
+	}
+	
+	/**
+	 * @return Turns it takes for Sharks to starve (Predator-Prey)
+	 */
+	public int getMySharkTurnsToStarve() {
+		return 0;
+	}
+	
+	/**
+	 * @return Fish State (Predator-Prey)
+	 */
+	public GenState getMyFish() {
+		return null;
+	}
 
-	public abstract GenState getMyShark();
+	/**
+	 * @return Shark State (Predator-Prey)
+	 */
+	public GenState getMyShark() {
+		return null;
+	}
 	
 	//Segregation
-	public abstract double getMySatisfaction();
 	
-	public abstract GenState getMyRace1();
+	/**
+	 * @return Satisfaction requirement (Segregation)
+	 */
+	public double getMySatisfaction() {
+		return 0;
+	}
 	
-	public abstract GenState getMyRace2();
+	/**
+	 * @return Race1 State (Segregation)
+	 */
+	public GenState getMyRace1() {
+		return null;
+	}
+	
+	/**
+	 * @return Race2 State (Segregation)
+	 */
+	public GenState getMyRace2() {
+		return null;
+	}
 
 }
