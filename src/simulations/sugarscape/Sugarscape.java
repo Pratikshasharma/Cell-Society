@@ -99,7 +99,7 @@ public class Sugarscape extends SimulationSuperClass{
 	
 	private void moveAgent(Agent agent, Coordinates target, int currentX, int currentY) {
 		myGrid[currentX][currentY].setCellCurrentState(new State(myGrid[currentX][currentY].getCellCurrentState(), EMPTY));
-		myGrid[target.getX()][target.getY()].setCellCurrentState();
+		//myGrid[target.getX()][target.getY()].setCellCurrentState();
 	}
 	
 	private void updateCells(){

@@ -29,7 +29,7 @@ public class State {
 	public State(Agent a, State s, int tick) {
 		myStateName = s.getStateName();
 		myStateColor = s.getStateColor();
-		myStateID = ;
+		myStateID = 1;
 		mySugarAmt = s.getSugarAmt();
 		mySugarCapacity = s.getSugarCapacity();
 		myAgent = a;
