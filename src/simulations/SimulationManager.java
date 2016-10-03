@@ -1,6 +1,6 @@
 package simulations;
-import java.util.Random;
 
+import java.util.Random;
 import cellpackage.Cell;
 import cellpackage.State;
 import xml.model.GenState;
@@ -44,23 +44,23 @@ public class SimulationManager {
 		numCellsHeight = simModel.getMySimHeight();
 	}
 
-	public SimulationSuperClass getSimulationType(String mySimulationName){
-		if (SPREADING_FIRE.equals(mySimulationName)){
-			return mySpreadingFire;
-		}
-		if (SEGREGATION.equals(mySimulationName)){
-			return mySegregation;
-		}
-		if (PREDPREY.equals(mySimulationName)){	
-			return myPredPrey;
-		}
-		if (GAMEOFLIFE.equals(mySimulationName)){
-			return myGameOfLife;	
-		}
-		if (SLIMEMOLD.equals(mySimulationName)){
-			return mySlimeMold;
-		}
-		return null;
+	public SimulationSuperClass getSimulationType(String mySimulationName) {
+			if (SPREADING_FIRE.equals(mySimulationName)){
+				return mySpreadingFire;
+			}
+			if (SEGREGATION.equals(mySimulationName)){
+				return mySegregation;
+			}
+			if (PREDPREY.equals(mySimulationName)){	
+				return myPredPrey;
+			}
+			if (GAMEOFLIFE.equals(mySimulationName)){
+				return myGameOfLife;	
+			}
+			if (SLIMEMOLD.equals(mySimulationName)){
+				return mySlimeMold;
+			}
+			return null;
 	}
 
 	private State getCellState(GenState myGenState){

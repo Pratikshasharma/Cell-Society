@@ -1,9 +1,7 @@
 package simulations.sugarscape;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Random;
 
 import cellpackage.*;
 import simulations.Coordinates;
@@ -26,6 +24,7 @@ public class Sugarscape extends SimulationSuperClass{
 	public Sugarscape(Cell[][] gr, int sugarGrowBackRate, int sugarGrowBackInterval, State s1, State s2) {
 		myGrid = gr;
 		myEmptyState = s1;
+		myAgentState = s2;
 		EMPTY = s1.getStateID();
 		AGENT = s2.getStateID();
 		mySugarGrowBackRate = sugarGrowBackRate;
