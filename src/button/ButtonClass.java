@@ -9,10 +9,9 @@ import javafx.scene.text.FontWeight;
 
 /**
  * @author pratiksha sharma
- *
  */
 
-public  class ButtonClass {
+public abstract class ButtonClass {
 	private ResourceBundle myResources;  
 	protected Button myButton;
 

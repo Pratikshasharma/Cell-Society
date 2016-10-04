@@ -2,7 +2,6 @@ package simulations;
 import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
-
 import cellpackage.Cell;
 import javafx.scene.paint.Paint;
 import xml.MainXML;
@@ -19,22 +18,19 @@ public class SimulationController {
 	private String mySimulationName;
 	private Paint [][] myGridColor;
 	private SimulationSuperClass mySuperClass;
-	private int myNumCellsWidth;
-	private int myNumCellsHeight;
 	private Map<String,Paint> myStateColorMap = new HashMap<String,Paint>();
 
+
 	public SimulationController(){
-		myXMLReader = new MainXML();		
+		myXMLReader = new MainXML();	
 	}
 
 	public void readFile(File myFile){
 		mySimModel = myXMLReader.xmlRead(myFile);
 		mySimulationManager = new SimulationManager(mySimModel);
 		mySimulationName = mySimModel.getMySimName();
-		myNumCellsHeight = mySimModel.getMySimHeight();
-		myNumCellsWidth = mySimModel.getMySimWidth();
 	}
-
+	
 	private void getMyCellsColor(Cell[][] myCell) {
 		for( int i = 0; i<mySimulationManager.getNumCellsWidth();i++ ){
 			for (int j= 0;j<mySimulationManager.getNumCellsHeight();j++){
@@ -44,10 +40,17 @@ public class SimulationController {
 		}
 	}
 
-	public Paint[][] initializeCellsAndGridVisualization() {
-		mySimulationManager.initializeMyCells(mySimModel.getMySimName());
+	public Paint[][] initializeCellsAndGridVisualization(int numCellsWidth, int numCellsHeight) {
+		
+		System.out.println(" Simulation Name Passed " + mySimulationName);
+		System.out.println(" sim model name null ? : " + mySimModel.getMySimName());
+		
+		mySimulationManager.initializeMyCells(mySimulationName,numCellsWidth, numCellsHeight);
+		
 		mySuperClass = mySimulationManager.getSimulationType(mySimulationName);
-		myGridColor= new Paint[mySimModel.getMySimHeight()][mySimModel.getMySimWidth()];
+
+		myGridColor= new Paint[numCellsWidth][numCellsHeight];
+
 		getMyCellsColor(mySimulationManager.getMyGrid());
 		
 		return myGridColor;
@@ -61,16 +64,11 @@ public class SimulationController {
 	public Paint[][] getColorGrid(){
 		return myGridColor;
 	}
-	public int getNumCellsWidth(){
-		return myNumCellsWidth;
-	}
 
-	public int getNumCellsHeight(){
-		return myNumCellsHeight;
-	}
 	public String getSimulationName(){
 		return mySimulationName;
 	}
+	
 
 	private void createStateColorMap(String stateName, Paint stateColor){
 		if(!myStateColorMap.containsKey(stateName)){

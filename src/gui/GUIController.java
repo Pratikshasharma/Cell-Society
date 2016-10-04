@@ -36,8 +36,12 @@ public class GUIController {
 	public static final double SCENE_WIDTH = 1100;
 	public static final double SCENE_HEIGHT = 600;
 	public static final double TIME_VALUE = 5000;
+	public static final int MIN_GRID_SIZE = 10;
+	public static final int MAX_GRID_SIZE = 40;
+	public static final int DEFAULT_GRID_SIZE = 20;
 
 	private Paint[][] myGridColor;
+	
 
 	/**
 	 * Constructor
@@ -56,7 +60,11 @@ public class GUIController {
 	}
 
 	private void resetSimulation() {
-		myGridColor = mySimulationController.initializeCellsAndGridVisualization();
+		if(myGUI.getNumCellsWidth()==0 && myGUI.getNumCellsHeight()==0 ){
+			myGridColor = mySimulationController.initializeCellsAndGridVisualization(DEFAULT_GRID_SIZE,DEFAULT_GRID_SIZE);
+		}else{
+			myGridColor = mySimulationController.initializeCellsAndGridVisualization(myGUI.getNumCellsWidth(),myGUI.getNumCellsHeight());
+		}
 		updateGridVisualization(true);
 		stopSimulation();
 	}
@@ -76,8 +84,15 @@ public class GUIController {
 	public void chooseSimulationFile() {
 		myChosenFile = myFileChooser.chooseFile();
 		mySimulationController.readFile(myChosenFile);
-		initializeInstanceVariables();
-		myGridColor = mySimulationController.initializeCellsAndGridVisualization();	
+		
+		initializeInstanceVariables();	
+		initializeGrid(DEFAULT_GRID_SIZE, DEFAULT_GRID_SIZE);
+	}
+
+	public void initializeGrid(int numCellsWidth, int numCellsHeight){
+		myGridColor = mySimulationController.initializeCellsAndGridVisualization(numCellsWidth,numCellsHeight);
+	
+		//myGridColor = mySimulationController.initializeCellsAndGridVisualization(myGUI.getNumCellsWidth(),myGUI.getNumCellsHeight());	
 		myStateColorMap = mySimulationController.getStateColorMap();
 		myScene.setRoot(myGUI.setScene(myGridColor, myStateColorMap));
 	}
@@ -129,11 +144,11 @@ public class GUIController {
 
 	private void initializeInstanceVariables(){
 		this.mySimulationName = mySimulationController.getSimulationName();
-		this.numCellsHeight = mySimulationController.getNumCellsHeight();
-		this.numCellsWidth = mySimulationController.getNumCellsWidth();
+		//this.numCellsHeight = mySimulationController.getNumCellsHeight();
+		//this.numCellsWidth = mySimulationController.getNumCellsWidth();
 
-		myGUI.setNumCellsHeight(this.numCellsHeight);
-		myGUI.setNumCellsWidth(this.numCellsWidth);
-		myGUI.setSimulationName(this.mySimulationName);
+		//myGUI.setNumCellsHeight(this.numCellsHeight);
+		//myGUI.setNumCellsWidth(this.numCellsWidth);
+		//myGUI.setSimulationName(this.mySimulationName);
 	}
 }

@@ -40,6 +40,8 @@ public class MainGUI {
 	private Map<String, Paint> myStateColorMap;
 	private Map<String,Integer>myStatePopulationMap;
 	private SimulationSpeedSlider mySpeedSlider;
+	
+	private GridSizeSlider myGridSizeSlider;
 
 	public MainGUI() {
 		this.myStartSimulationButton = new Start();
@@ -56,8 +58,17 @@ public class MainGUI {
 		HBox tempHBox = new HBox(20);
 		myVBox.setPadding(new Insets(10));
 		
-		myGrid = new Grid(this.numCellsWidth, this.numCellsHeight);
+		/***
+		 * SLIDER STUFF
+		 */
+		mySpeedSlider = new SimulationSpeedSlider();
+		addNumberOfCellsSlider();
+		HBox sizeHBox = new HBox();
+		sizeHBox.getChildren().addAll(myGridSizeSlider.mySliderCaption,myGridSizeSlider.mySlider,myGridSizeSlider.mySliderValue);
 		
+		
+		myGrid = new Grid(this.numCellsWidth, this.numCellsHeight);
+
 		this.myStatePopulationMap = myGrid.createGrid(myGridColor, myStateColorMap);
 		
 		myPopulationGraph.createLineChart(myStatePopulationMap,numCellsWidth);
@@ -65,9 +76,13 @@ public class MainGUI {
 		tempHBox.getChildren().addAll(myGrid.getGrid(),myPopulationGraph.getMyStatePopulationChart());
 		myVBox.getChildren().addAll(addSimulationTitle(),tempHBox);
 		addButtons();
-		mySpeedSlider = new SimulationSpeedSlider();
+		
 		myHBox.getChildren().addAll(mySpeedSlider.mySlider,mySpeedSlider.mySliderCaption,mySpeedSlider.mySliderValue);
 		myVBox.getChildren().add(myHBox);
+		
+		// SLIDER
+		myVBox.getChildren().add(sizeHBox);	
+		
 		root.getChildren().add(myVBox);
 		return root;
 	}
@@ -105,13 +120,13 @@ public class MainGUI {
 		return mySpeedSlider.mySlider;
 	}
 
-	public void setNumCellsWidth(int numCells) {
-		this.numCellsWidth = numCells;
-	}
-
-	public void setNumCellsHeight(int numCells) {
-		this.numCellsHeight = numCells;
-	}
+//	public void setNumCellsWidth(int numCells) {
+//		this.numCellsWidth = numCells;
+//	}
+//
+//	public void setNumCellsHeight(int numCells) {
+//		this.numCellsHeight = numCells;
+//	}
 
 	public void setSimulationName(String simulationName) {
 		this.mySimulationName = simulationName;
@@ -144,5 +159,26 @@ public class MainGUI {
 		for(String key: myStatePopulationMap.keySet()){
 			myStatePopulationMap.put(key, 0);
 		}
+	}
+
+	private void addNumberOfCellsSlider(){
+		myGridSizeSlider = new GridSizeSlider(GUIController.MIN_GRID_SIZE,GUIController.MAX_GRID_SIZE,GUIController.DEFAULT_GRID_SIZE);
+		this.numCellsHeight = myGridSizeSlider.getMySlider().valueProperty().intValue();
+		this.numCellsWidth = myGridSizeSlider.getMySlider().valueProperty().intValue();
+	}
+	
+	public void setNumCellsHeight(int numCellsHeight){
+		this.numCellsHeight = numCellsHeight;
+	}
+	
+	public int getNumCellsWidth(){
+		return this.numCellsWidth ;
+	}
+	public int getNumCellsHeight(){
+		return this.numCellsHeight;
+	}
+	
+	public void setNumCellsWidth(int numCellsWidth){
+		this.numCellsWidth = numCellsWidth;
 	}
 }

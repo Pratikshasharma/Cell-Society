@@ -9,7 +9,6 @@ import javafx.scene.image.ImageView;
 
 /**
  * @author pratiksha sharma
- *
  */
 public class StartScreen {
 	private final String TITLE = "Cell Society Simulation";
@@ -49,5 +48,4 @@ public class StartScreen {
 		Platform.exit();
 		System.exit(0);
 	}
-
 }

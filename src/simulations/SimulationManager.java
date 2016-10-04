@@ -38,8 +38,8 @@ public class SimulationManager {
 	 */
 	public SimulationManager( SimModel simModel){
 		mySimModel = simModel;
-		numCellsWidth = simModel.getMySimWidth();
-		numCellsHeight = simModel.getMySimHeight();
+		//numCellsWidth = simModel.getMySimWidth();
+		//numCellsHeight = simModel.getMySimHeight();
 	}
 
 	public SimulationSuperClass getSimulationType(String mySimulationName) {
@@ -66,9 +66,19 @@ public class SimulationManager {
 		return tempState;
 	}
 
-	public void initializeMyCells(String mySimulationName){
+	public void initializeMyCells(String mySimulationName, int numCellsWidth, int numCellsHeight){
+		
+		this.numCellsWidth=numCellsWidth;
+		this.numCellsHeight=numCellsHeight;
+	
+		System.out.println(" HERE ? ");
+		System.out.println(" SIM NAME out " + mySimModel.getMySimName());
+		
 		if (SPREADING_FIRE.equals(mySimulationName)) {
 			// First Initialize Cells Before Calling in Constructor
+			System.out.println(" GOES HERE " );
+			System.out.println(" SIM NAME " + mySimModel.getMySimName());
+			
 			myGrid = getCellsBySimulation(mySimModel.getMyTree(),mySimModel.getMyBurning(),mySimModel.getMyEmptyState());
 			mySpreadingFire = new SpreadingOfFire(myGrid, mySimModel.getMyProbCatch(), getCellState(mySimModel.getMyEmptyState()),
 					getCellState(mySimModel.getMyTree()), getCellState(mySimModel.getMyBurning()));
@@ -95,6 +105,7 @@ public class SimulationManager {
 
 	public Cell[][] getCellsBySimulation(GenState myGenState1, GenState myGenState2, GenState myGenState3){
 		this.myGrid = new Cell[numCellsWidth][numCellsHeight];
+		System.out.println(" MyGrid Width " + myGrid[0].length);
 		if(myGenState1!=null){addGeneralStateCells(myGenState1);}
 		if(myGenState2!=null){addGeneralStateCells(myGenState2);}
 		if(myGenState3!=null){addEmptyCells(myGenState3);}
