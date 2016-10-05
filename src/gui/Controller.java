@@ -100,7 +100,7 @@ public class Controller {
 	 * @return 
 	 */
 	public String getTitle() {
-		return this.TITLE;
+		return TITLE;
 	}
 
 	private void stopSimulation() {

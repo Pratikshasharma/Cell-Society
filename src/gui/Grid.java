@@ -17,8 +17,8 @@ import javafx.scene.shape.Shape;
 public class Grid implements GridInterface {
 	private Shape myShape;
 	private GridPane myGrid;
-	private int numberOfColumns;
-	private int numberOfRows;
+	private int myNumberOfColumns;
+	private int myNumberOfRows;
 
 	/**
 	 * Constructor: Creates an instance of Grid Object that contains Shape
@@ -27,8 +27,8 @@ public class Grid implements GridInterface {
 	 */
 	public Grid(int noOfColumns, int noOfRows) {
 		myGrid = new GridPane();
-		this.numberOfRows = noOfRows;
-		this.numberOfColumns = noOfColumns;
+		myNumberOfRows = noOfRows;
+		myNumberOfColumns = noOfColumns;
 	}
 
 	/**
@@ -43,9 +43,9 @@ public class Grid implements GridInterface {
 		styleGrid();
 		for(String key: myStateColorMap.keySet()){
 			int counter = 0;
-			for (int i = 0; i <= numberOfRows -1; i++) {
-				for (int j = 0; j <= numberOfColumns -1; j++){
-					myShape = new Rectangle(GRID_WIDTH / numberOfRows, GRID_HEIGHT / numberOfColumns);
+			for (int i = 0; i <= myNumberOfRows -1; i++) {
+				for (int j = 0; j <= myNumberOfColumns -1; j++){
+					myShape = new Rectangle(GRID_WIDTH / myNumberOfRows, GRID_HEIGHT / myNumberOfColumns);
 					myShape.setFill(myGridColor[i][j]);
 					myGrid.add(myShape, j, i);
 					if(myGridColor[i][j].equals(myStateColorMap.get(key))){
@@ -85,7 +85,7 @@ public class Grid implements GridInterface {
 	 * @return GridPane to be displayed in the Scene which represents the Cells[][] in back end
 	 */
 	public GridPane getGrid() {
-		return this.myGrid;
+		return myGrid;
 	}
 
 	private void styleGrid(){
