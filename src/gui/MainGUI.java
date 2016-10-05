@@ -34,8 +34,8 @@ public class MainGUI {
 	private Reset myResetButton;
 	private HBox myHBox;
 	private String mySimulationName;
-	private int numberOfColumns;
-	private int numberOfRows;
+	private int myNumberOfColumns;
+	private int myNumberOfRows;
 	private Grid myGrid;
 	private PopulationGraph myPopulationGraph;
 	private Map<String, Paint> myStateColorMap;
@@ -48,14 +48,14 @@ public class MainGUI {
 	 * from the Controller
 	 */
 	public MainGUI(List<String> myParameterList) {
-		this.mySimulationName = myParameterList.get(0);
-		this.numberOfRows = Integer.parseInt(myParameterList.get(1));
-		this.numberOfColumns = Integer.parseInt(myParameterList.get(2));
+		mySimulationName = myParameterList.get(0);
+		myNumberOfRows = Integer.parseInt(myParameterList.get(1));
+		myNumberOfColumns = Integer.parseInt(myParameterList.get(2));
 		
-		this.myStartSimulationButton = new Start();
-		this.myStepSimulationButton = new Step();
-		this.myStopSimulationButton = new Stop();
-		this.myResetButton = new Reset();
+		myStartSimulationButton = new Start();
+		myStepSimulationButton = new Step();
+		myStopSimulationButton = new Stop();
+		myResetButton = new Reset();
 		myPopulationGraph = new PopulationGraph();
 	}
 
@@ -65,14 +65,14 @@ public class MainGUI {
 	 * @param myStateColorMap
 	 * @return Group : Returns the main root of the Scene for Simulation
 	 */
-	public Group setScene(Paint[][] myGridColor, Map<String,Paint> myStateColorMap) {
-		this.myStateColorMap = myStateColorMap;
+	public Group setScene(Paint[][] myGridColor, Map<String,Paint> stateColorMap) {
+		myStateColorMap = stateColorMap;
 		Group root = new Group();
 		myVBox = new VBox(30);
 		HBox tempHBox = new HBox(20);
 		myVBox.setPadding(new Insets(10));
-		myGrid = new Grid(numberOfColumns,numberOfRows );
-		this.myStatePopulationMap = myGrid.createGrid(myGridColor, myStateColorMap);
+		myGrid = new Grid(myNumberOfColumns,myNumberOfRows );
+		myStatePopulationMap = myGrid.createGrid(myGridColor, myStateColorMap);
 		myPopulationGraph.createLineChart(myStatePopulationMap);
 		tempHBox.getChildren().addAll(myGrid.getGrid(),myPopulationGraph.getMyStatePopulationChart());
 		myVBox.getChildren().addAll(addSimulationTitle(),tempHBox);
@@ -100,19 +100,19 @@ public class MainGUI {
 	 * @return Reset Button
 	 */
 	public Button getResetButton() {
-		return this.myResetButton.getButton() ;
+		return myResetButton.getButton() ;
 	}
 
 	public Button getStopSimulationButton() {
-		return this.myStopSimulationButton.getButton();
+		return myStopSimulationButton.getButton();
 	}
 
 	public Button getStepSimulationButton() {
-		return this.myStepSimulationButton.getButton();
+		return myStepSimulationButton.getButton();
 	}
 
 	public Button getStartSimulationButton() {
-		return this.myStartSimulationButton.getButton();
+		return myStartSimulationButton.getButton();
 	}
 
 	public Slider getSimulationSpeedSlider() {
