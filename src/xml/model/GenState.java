@@ -1,3 +1,12 @@
+// This entire file is part of my masterpiece.
+// Ryan Anders
+
+/*
+ * This is the GenState class I created to hold information
+ * about a simulation's specific states. See comments in
+ * FireXMLFactory.java for full explanation.
+ */
+
 package xml.model;
 
 /**

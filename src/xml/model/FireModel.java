@@ -1,3 +1,11 @@
+// This entire file is part of my masterpiece.
+// Ryan Anders
+
+/*
+ * This is one of the Model Classes I created for each simulation.
+ * See comments in FireXMLFactory.java for a full explanation.
+ */
+
 package xml.model;
 
 /**
