@@ -10,7 +10,9 @@ import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
 
 /**
- * @author Pratiksha Sharma (ps179)
+ * @author Pratiksha Sharma
+ * @author Ryan Anders
+ * @author Blake Becerra
  * Dependencies: Classes related to specific simulations: Segregation, SpreadingOfFire, GameOfLife, PredPrey, SLimeMold
  * Manages execution between the specific Simulations, Instantiates Cell[][] in the super class based on the simulation parameters
  * where each Cell has a State, and its other attributes as needed
