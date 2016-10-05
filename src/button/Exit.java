@@ -7,7 +7,7 @@ import gui.Controller;
  * Assumption: Assumes ButtonClass has setButonSettings() method
  * Dependencies: ButtonClass (Super Class)
  */
-public class Exit extends ButtonClass {
+public class Exit extends ButtonCreater {
 	public Exit(){
 		super("ExitCommand");
 		setButtonSettings(0.7 * Controller.SCENE_WIDTH, Controller.SCENE_HEIGHT / 2, 20);

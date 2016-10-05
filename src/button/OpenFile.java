@@ -7,7 +7,7 @@ import gui.Controller;
  * Assumption: Assumes ButtonClass has setButonSettings() method
  * Dependencies: ButtonClass (Super Class)
  */
-public class OpenFile extends ButtonClass{
+public class OpenFile extends ButtonCreater{
 
 	public OpenFile(){
 		super("ChooseFileCommand");

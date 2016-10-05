@@ -7,7 +7,7 @@ import gui.Controller;
  * Assumption: Assumes ButtonClass has setButonSettings() method
  * Dependencies: ButtonClass (Super Class)
  */
-public class Start extends ButtonClass{
+public class Start extends ButtonCreater{
 
 	public Start(){
 		super("StartSimulationCommand");	
