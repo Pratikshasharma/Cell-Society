@@ -21,6 +21,12 @@ public class GameOfLifeXMLFactory extends SimXMLFactory {
         super(XML_TAG_NAME);
     }
 
+    /**
+     * read xml document detailing a Game of Life simulation
+     * 
+     * @param root node
+     * @return GameOfLifeModel object containing general parameters, alive state and empty state
+     */
     @Override
     public GameOfLifeModel getSim (Element root) throws XMLFactoryException {  
     	if (! isValidFile(root)) {

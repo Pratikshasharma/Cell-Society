@@ -11,6 +11,13 @@ public class GenState {
 	private double myPercentage;
 	private int myStateID;
 	
+	/**
+	 * create a state
+	 * @param name - String name of state
+	 * @param color - String color of cell in this state
+	 * @param perc - String percentage (0-1) of cells to be initialized in this state
+	 * @param stateID - String ID for this state (integer)
+	 */
 	public GenState (String name, String color, String perc, String stateID) {
 		myName = name;
 		myColor = color;

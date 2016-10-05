@@ -21,6 +21,12 @@ public class FireXMLFactory extends SimXMLFactory {
         super(XML_TAG_NAME);
     }
 
+    /**
+     * read xml document detailing a Spreading of Fire simulation
+     * 
+     * @param root node
+     * @return FireModel object containing general parameters, tree state, burning state, empty state, and probCatch
+     */
     @Override
     public FireModel getSim (Element root) throws XMLFactoryException {  
     	if (! isValidFile(root)) {
