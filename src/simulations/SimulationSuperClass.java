@@ -35,9 +35,6 @@ public abstract class SimulationSuperClass {
 			}
 		}
 	}
-
-
-
 }
 
 
