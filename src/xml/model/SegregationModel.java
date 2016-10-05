@@ -12,6 +12,13 @@ public class SegregationModel extends SimModel {
 	private GenState myRace2;
 	private GenState myEmptyState;
 	
+	/**
+	 * create SegregationModel object containing general parameters, satisfaction, and States
+	 * 
+	 * @param genParams - String[] of general parameters
+	 * @param satisf - double of satisfaction
+	 * @param genStates - GenState[] of states necessary for simulation
+	 */
 	public SegregationModel(String[] genParams,	double satisf, GenState[] genStates) {
 		super(genParams);
 		mySatisfaction = satisf;

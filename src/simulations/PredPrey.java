@@ -14,8 +14,6 @@ public class PredPrey extends SimulationSuperClass{
 	private static int FISH;
 	private static int SHARK;
 	private static int EMPTY;
-//	private Cell[][] super.getGrid();
-
 	private int myFishTurnsToBreed;
 	private int mySharkTurnsToBreed;
 	private int mySharkTurnsToStarve;
@@ -23,6 +21,16 @@ public class PredPrey extends SimulationSuperClass{
 	private State myFishState;
 	private State mySharkState;
 	
+	/**
+	 * create a predator prey simulation
+	 * @param gr - Cell[][] grid to be operated upon
+	 * @param fishBreed - int turns until fish breed
+	 * @param sharkBreed - int turns until sharks breed
+	 * @param sharkStarve - int turns until sharks starve
+	 * @param s1 - State empty state
+	 * @param s2 - State fish state
+	 * @param s3 - State shark state
+	 */
 	public PredPrey(Cell[][] gr, int fishBreed, int sharkBreed, int sharkStarve, State s1, State s2, State s3) {
 		super(gr);
 		myFishTurnsToBreed = fishBreed;
@@ -195,6 +203,9 @@ public class PredPrey extends SimulationSuperClass{
 		}
 	}
 	
+	/**
+	 * update cells one step (slightly different algorithm)
+	 */
 	@Override
 	protected void updateCells(){
 		for (int row = 0; row<super.getGrid().length; row++){
@@ -210,6 +221,9 @@ public class PredPrey extends SimulationSuperClass{
 		}
 	}
 	
+	/**
+	 * perform logic on current grid layout, then update the grid
+	 */
 	@Override
 	public void updateSimulation(){
 		findSharks();

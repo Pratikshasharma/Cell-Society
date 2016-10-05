@@ -20,6 +20,12 @@ public class SlimeMoldXMLFactory extends SimXMLFactory {
 		super(XML_TAG_NAME);
 	}
 	
+	/**
+     * read xml document detailing a Slime Mold simulation
+     * 
+     * @param root node
+     * @return SlimeMoldModel object containing general parameters, amoeba state and empty state
+     */
 	@Override
 	public SlimeMoldModel getSim(Element root) throws XMLFactoryException {
 		if (! isValidFile(root)) {

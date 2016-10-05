@@ -12,6 +12,12 @@ public class GameOfLifeModel extends SimModel {
 	public GameOfLifeModel() {
 	}
 	
+	/**
+	 * create GameOfLifeModel object containing general parameters and States
+	 * 
+	 * @param genParams - String[] of general parameters
+	 * @param genStates - GenState[] of states necessary for simulation
+	 */
 	public GameOfLifeModel(String[] genParams, GenState[] genStates) {
 		super(genParams);
 		myFullState = genStates[0];

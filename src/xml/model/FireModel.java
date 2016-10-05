@@ -12,6 +12,13 @@ public class FireModel extends SimModel {
 	private GenState myBurning;
 	private GenState myEmptyState;
 	
+	/**
+	 * create FireModel object containing general parameters, probCatch, and States
+	 * 
+	 * @param genParams - String[] of general parameters
+	 * @param probCatch - double of probability of catching fire
+	 * @param genStates - GenState[] of states necessary for simulation
+	 */
 	public FireModel(String[] genParams, double probCatch, GenState[] genStates) {
 		super(genParams);
 		myProbCatch = probCatch;
