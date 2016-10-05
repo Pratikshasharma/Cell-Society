@@ -4,9 +4,10 @@ package cellpackage;
 import javafx.scene.shape.Shape;
 
 /**
- * 
+ * Creates an Object Cell that has attributes- Shape, CurrentState and NextState
  * @author pratiksha sharma
- *
+ * Dependencies: State Object
+ * 
  */
 public class Cell {
 	private Shape myCellShape;
