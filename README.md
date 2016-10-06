@@ -7,23 +7,23 @@ Date Finished - Oct. 5
 Hours spent - approx. 45 - 55 per person
 each person's role in developing the project
 
-###roles:
+### roles:
 
 Blake Becerra - Back end and logic for the Simulations
 Ryan Anders - Back end and XML documentation
 Pratiksha Sharma - Front End and integration of back end
 
-###resources:
+### resources:
 
 https://www.tutorialspoint.com/java_xml/index.htm
 
-We all consulted our TAís, Javadocís, and the above link for XML parsing.
+We all consulted our TA‚Äôs, Javadoc‚Äôs, and the above link for XML parsing.
 
-###files containing main:
+### files containing main:
 
 Main.java 
 
-###files for testing:
+### files for testing:
 
 XML files included in the data folder:
 
@@ -33,25 +33,25 @@ XML files included in the data folder:
 - Segregation.xml
 - SlimeMold.xml
 
-###resources required for project:
+### resources required for project:
 
 In the resources folder there is a Button.properties that is required for the program to run and display correctly.
 
-###program use:
+### program use:
 
-Run main, hit ìOpen Fileî and choose an XML file, then press either ìStepî (to move forward one ìtickî) or ìStartî (to set the simulation in motion).
+Run main, hit ‚ÄúOpen File‚Äù and choose an XML file, then press either ‚ÄúStep‚Äù (to move forward one ‚Äútick‚Äù) or ‚ÄúStart‚Äù (to set the simulation in motion).
 
-###bugs:
+### bugs:
 
 BUG: when no sharks remain in Predator-Prey, the Fish do not populate every cell after several turns.
 BUG: SlimeMold does not change states of the slime correctly and releases only a set amount of cAMP when it moves. 
 
-###extra features:
+### extra features:
 
 Graph showing population of states
 XML Error Checking - exceptions thrown
 Added Slime Mold simulation
 
-###impressions for the future:
+### impressions for the future:
 
 Extension Simulation directions were unclear and confusing making it harder to implement and extend because we could not test our logic. 
