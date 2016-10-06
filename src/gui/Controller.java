@@ -2,8 +2,8 @@
 package gui;
 import java.io.File;
 import java.util.Map;
-import simulations.SimulationManager;
 import simulations.Simulation;
+import simulations.SimulationManager;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.scene.Scene;

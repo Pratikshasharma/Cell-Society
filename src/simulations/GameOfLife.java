@@ -3,7 +3,7 @@ package simulations;
 import cellpackage.Cell;
 import cellpackage.State;
 
-public class GameOfLife extends SimulationSuperClass {
+public class GameOfLife extends Simulation{
 
 	private State myEmptyState;
 	private State myFullState;

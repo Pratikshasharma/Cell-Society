@@ -13,5 +13,4 @@ public class SimulationSpeedSlider extends SliderCreater{
 		super(Controller.MIN_FRAMES_PER_SECOND,Controller.MAX_FRAMES_PER_SECOND,Controller.DEFAULT_FRAMES_PER_SECOND);
 		createSlider(SPEED_SLIDER_TEXT);
 	}
-
 }
