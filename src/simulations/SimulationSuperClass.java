@@ -1,9 +1,6 @@
 package simulations;
 import cellpackage.Cell;
 
-//This entire file is part of my masterpiece.
-//Blake Becerra
-
 /**
  * Superclass for individual Simulation classes
  * @author Ryan Anders

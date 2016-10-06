@@ -12,5 +12,4 @@ public class Exit extends ButtonCreater {
 		super("ExitCommand");
 		setButtonSettings(0.7 * Controller.SCENE_WIDTH, Controller.SCENE_HEIGHT / 2, 20);
 	}
-
 }

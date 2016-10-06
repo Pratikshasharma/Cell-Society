@@ -22,19 +22,18 @@ public class PopulationGraph {
      *  Creates LineChart Graph, does basic Settings
      * @param myStatePopulationMap
      */
-    public void createLineChart(Map<String, Integer> myStatePopulationMap) {
+    public void drawGraph(Map<String, Integer> myStatePopulationMap) {
 	myPopulationChart = new LineChart<>(xAxis, yAxis);
 	setGraphSettings();
-	drawLineGraph(myStatePopulationMap, true);
+	addPointsOnGraph(myStatePopulationMap, true);
     }
-
     
 /**
  * Draws Line Chart with the values from the Map, Resets the Map when needed to 
  * @param myStatePopulationMap
  * @param resetLineGraph
  */
-    public void drawLineGraph(Map<String, Integer> myStatePopulationMap, boolean resetLineGraph) {
+    public void addPointsOnGraph(Map<String, Integer> myStatePopulationMap, boolean resetLineGraph) {
 	for (String key : myStatePopulationMap.keySet()) {
 	    if (!key.toString().equals(EMPTY_STATE)) {
 		if (resetLineGraph) {
@@ -69,7 +68,6 @@ public class PopulationGraph {
         return myPopulationChart;
     }
     
-   
     private void setGraphSettings(){
         myPopulationChart.setTitle("Population of Different States");
         myPopulationChart.setStyle("-fx-border-style: solid; -fx-border-width: 4px; ");
