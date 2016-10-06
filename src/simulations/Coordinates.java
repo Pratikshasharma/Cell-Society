@@ -14,10 +14,18 @@ public class Coordinates {
 		myY = y;
 	}
 	
+	/**
+	 * Getter for the X value of the coordinates
+	 * @return myX
+	 */
 	public int getX() {
 		return myX;
 	}
 	
+	/**
+	 * Getter for Y value of coordinate 
+	 * @return myY
+	 */
 	public int getY() {
 		return myY;
 	}

@@ -9,6 +9,14 @@ public class SpreadingOfFire extends SimulationSuperClass{
 	private State myTreeState;
 	private State myBurningState;
 
+	/**
+	 * Constructor for the class
+	 * @param grid - 2D array of cells
+	 * @param probCatch - probability that a tree will catch fire
+	 * @param state1 - state of a cell without a tree
+	 * @param state2 - state of a cell with a tree
+	 * @param state3 - state of a cell with a burning tree 
+	 */
 	public SpreadingOfFire(Cell[][] grid, double probCatch, State state1, State state2, State state3){
 		super(grid);
 		myProbCatch = probCatch;
@@ -64,7 +72,10 @@ public class SpreadingOfFire extends SimulationSuperClass{
 	private boolean checkIfFire(int row, int column){
 		return super.getGrid()[row][column].getCellCurrentState().getStateID() ==myBurningState.getStateID() ;
 	} 
-
+	
+	/**
+	 * Processes logic to update the grid for one step
+	 */
 	@Override
 	public void updateSimulation(){
 		checkBurningCells();

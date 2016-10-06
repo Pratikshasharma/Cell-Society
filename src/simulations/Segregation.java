@@ -7,11 +7,19 @@ import java.util.Random;
 import cellpackage.Cell;
 import cellpackage.State;
 
+
+
 public class Segregation extends SimulationSuperClass {
 
 	private double myPercentSatisfaction;
 	private State myEmptyState;
 
+	/**
+	 * Constructor for class
+	 * @param grid - 2D array of cells
+	 * @param spercentSatisfaction - Percent satisfaction wanted for each race
+	 * @param state1 - State of a cell that would be empty
+	 */
 	public Segregation(Cell[][] grid, double spercentSatisfaction, State state1){
 		super(grid);
 		myPercentSatisfaction = spercentSatisfaction;
@@ -98,6 +106,10 @@ public class Segregation extends SimulationSuperClass {
 		move(currentRow, currentColumn, emptyCells.get(toMoveTo).getX(), emptyCells.get(toMoveTo).getY());
 		emptyState(currentRow, currentColumn);
 	}
+	
+	/**
+	 * Processes the logic for to update the grid for one step
+	 */
 	@Override
 	public void updateSimulation(){
 		for(int i = 0; i<super.getGrid().length; i++){
@@ -118,12 +130,4 @@ public class Segregation extends SimulationSuperClass {
 		updateCells();
 	}
 
-	public void printGrid(){
-		for (int i = 0; i < super.getGrid().length;i++){
-			System.out.println();
-			for(int j = 0 ; j<super.getGrid()[i].length; j++){
-				System.out.print(super.getGrid()[i][j].getCellCurrentState().getStateID());
-			}
-		}
-	}
 }

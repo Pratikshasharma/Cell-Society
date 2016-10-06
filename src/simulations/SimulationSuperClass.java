@@ -1,7 +1,6 @@
 package simulations;
 import cellpackage.Cell;
 
-
 /**
  * Superclass for individual Simulation classes
  * @author Ryan Anders
@@ -55,6 +54,3 @@ public abstract class SimulationSuperClass {
 		}
 	}
 }
-
-
-
