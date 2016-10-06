@@ -2,7 +2,7 @@ package simulations;
 import cellpackage.Cell;
 import cellpackage.State;
 
-public class SpreadingOfFire extends SimulationSuperClass{
+public class SpreadingOfFire extends Simulation{
 
 	private double myProbCatch;
 	private State myEmptyState;

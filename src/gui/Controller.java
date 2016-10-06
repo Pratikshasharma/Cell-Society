@@ -3,7 +3,7 @@ package gui;
 import java.io.File;
 import java.util.Map;
 import simulations.SimulationManager;
-import simulations.SimulationSuperClass;
+import simulations.Simulation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.scene.Scene;
@@ -26,7 +26,7 @@ public class Controller {
 	private SimulationManager mySimulationManager;
 	private MainXML myXMLReader;
 	private SimModel mySimModel;
-	private SimulationSuperClass mySuperClass;
+	private Simulation mySuperClass;
 	private Scene myScene;
 	private StartScreen initialScreen;
 	private ChooseFile myFileChooser;
