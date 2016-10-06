@@ -11,6 +11,12 @@ public class SlimeMoldModel extends SimModel {
 	public SlimeMoldModel() {
 	}
 	
+	/**
+	 * create SlimeMoldModel object containing general parameters and States
+	 * 
+	 * @param genParams - String[] of general parameters
+	 * @param genStates - GenState[] of states necessary for simulation
+	 */
 	public SlimeMoldModel(String[] genParams, GenState[] genStates) {
 		super(genParams);
 		myMoldState = genStates[0];

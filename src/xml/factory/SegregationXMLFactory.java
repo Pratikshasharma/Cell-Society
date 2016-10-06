@@ -21,6 +21,12 @@ public class SegregationXMLFactory extends SimXMLFactory {
         super(XML_TAG_NAME);
     }
 
+    /**
+     * read xml document detailing a Segregation simulation
+     * 
+     * @param root node
+     * @return SegregationModel object containing general parameters, race1 state, race2 state, empty state, and satisfaction
+     */
     @Override
     public SegregationModel getSim (Element root) throws XMLFactoryException {  
     	if (! isValidFile(root)) {

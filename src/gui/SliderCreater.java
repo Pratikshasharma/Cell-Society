@@ -16,7 +16,7 @@ public  class SliderCreater {
     protected Label mySliderValue;
 
     public SliderCreater(int minValue, int maxValue, int defaultValue ){
-        this.mySlider = new Slider(minValue,maxValue,defaultValue);
+        mySlider = new Slider(minValue,maxValue,defaultValue);
     }
 
     protected void createSlider(String myLabelText){

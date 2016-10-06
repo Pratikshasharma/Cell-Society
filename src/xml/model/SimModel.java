@@ -15,6 +15,11 @@ public abstract class SimModel {
     	
     }
     
+	/**
+	 * create SimModel object containing general parameters
+	 * 
+	 * @param genParams - String[] of general parameters
+	 */
     public SimModel (String[] genParams) {
         mySimName = genParams[0];
         mySimAuthor = genParams[1];

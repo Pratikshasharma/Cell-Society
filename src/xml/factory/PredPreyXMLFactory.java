@@ -21,6 +21,12 @@ public class PredPreyXMLFactory extends SimXMLFactory {
         super(XML_TAG_NAME);
     }
 
+    /**
+     * read xml document detailing a Predator-Prey simulation
+     * 
+     * @param root node
+     * @return PredPreyModel object containing general parameters, fish state, shark state, empty state, fish turns to breed, shark turns to breed, and shark turns to starve
+     */
     @Override
     public PredPreyModel getSim (Element root) throws XMLFactoryException {  
     	if (! isValidFile(root)) {
