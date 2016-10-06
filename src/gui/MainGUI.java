@@ -73,14 +73,9 @@ public class MainGUI {
 		myVBox.setPadding(new Insets(10));
 
 		myGrid = new Grid(myNumberOfColumns,myNumberOfRows );
-		this.myStatePopulationMap = myGrid.createGrid(myGridColor, myStateColorMap);
-		
-		myPopulationGraph.drawGraph(myStatePopulationMap);
-		myGrid = new Grid(myNumberOfColumns,myNumberOfRows );
-		
 		myStatePopulationMap = myGrid.createGrid(myGridColor, myStateColorMap);
 		myPopulationGraph.drawGraph(myStatePopulationMap);
-
+		
 		tempHBox.getChildren().addAll(myGrid.getGrid(),myPopulationGraph.getMyStatePopulationChart());
 		myVBox.getChildren().addAll(addSimulationTitle(),tempHBox);
 		addButtons();

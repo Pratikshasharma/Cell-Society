@@ -51,7 +51,7 @@ public class SimulationManager {
 	 * @param mySimulationName Name of the Simulation
 	 * @return SimulationSuperClass - the Specific Simulation that is to be run 
 	 */
-	public SimulationSuperClass getSimulationType(String mySimulationName) {
+	public Simulation getSimulationType(String mySimulationName) {
 		if (SPREADING_FIRE.equals(mySimulationName)){
 			return mySpreadingFire;
 		}

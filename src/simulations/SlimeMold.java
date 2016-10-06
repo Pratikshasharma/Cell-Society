@@ -6,7 +6,7 @@ import java.util.Random;
 import cellpackage.Cell;
 import cellpackage.State;
 
-public class SlimeMold extends SimulationSuperClass{
+public class SlimeMold extends Simulation{
 
 	private State myNoAmoebeState;
 	private State myAmeobeState;

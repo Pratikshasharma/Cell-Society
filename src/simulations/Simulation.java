@@ -7,7 +7,7 @@ import cellpackage.Cell;
  * @author Ryan Anders
  *@author Blake Becerra
  */
-public abstract class SimulationSuperClass {
+public abstract class Simulation {
 
 	private Cell[][] myGrid;
 	
@@ -15,7 +15,7 @@ public abstract class SimulationSuperClass {
 	 * create SuperClass containing the grid for any simulation to operate upon
 	 * @param grid
 	 */
-	public SimulationSuperClass(Cell[][] grid){
+	public Simulation(Cell[][] grid){
 		myGrid = grid;
 	}
 

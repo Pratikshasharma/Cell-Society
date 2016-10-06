@@ -38,9 +38,7 @@ public class StartScreen {
 		ImageView myStartImage = new ImageView(new Image(getClass().getClassLoader().getResourceAsStream(CELL_IMAGE)));
 		myStartImage.setFitWidth(Controller.SCENE_WIDTH);
 		myStartImage.setFitHeight(Controller.SCENE_WIDTH);
-		root.getChildren().add(myStartImage);
-		root.getChildren().add(myOpenFileButton.getButton());
-		root.getChildren().add(myExitButton.getButton());
+		root.getChildren().addAll(myStartImage,myOpenFileButton.getButton(),(myExitButton.getButton()));
 		return root;
 	}
 

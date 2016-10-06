@@ -9,7 +9,7 @@ import cellpackage.*;
  * Runs logic for Predator-Prey Simulation
  * @author Ryan Anders
  */
-public class PredPrey extends SimulationSuperClass{
+public class PredPrey extends Simulation{
 
 	private static int FISH;
 	private static int SHARK;

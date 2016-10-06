@@ -7,7 +7,7 @@ import java.util.Random;
 import cellpackage.Cell;
 import cellpackage.State;
 
-public class Segregation extends SimulationSuperClass {
+public class Segregation extends Simulation {
 
 	private double myPercentSatisfaction;
 	private State myEmptyState;
