@@ -14,6 +14,15 @@ public class PredPreyModel extends SimModel {
 	private GenState myShark;
 	private GenState myEmptyState;
 	
+	/**
+	 * create PredPreyModel object containing general parameters, turns until fish and sharks breed, turns until sharks starve, and States
+	 * 
+	 * @param genParams - String[] of general parameters
+	 * @param fishTurnsToBreed - int of number of turns until fish breed
+	 * @param sharkTurnsToBreed - int of number of turns until sharks breed
+	 * @param sharkTurnsToStarve - int of number of turns until sharks starve
+	 * @param genStates - GenState[] of states necessary for simulation
+	 */
 	public PredPreyModel(String[] genParams,
 			int fishTurnsToBreed, int sharkTurnsToBreed, int sharkTurnsToStarve,
 			GenState[] genStates) {

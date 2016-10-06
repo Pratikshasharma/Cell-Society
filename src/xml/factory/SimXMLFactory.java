@@ -18,7 +18,7 @@ import java.util.Objects;
  * @author Robert Duvall
  * @author Ryan Anders
  */
-public abstract class SimXMLFactory extends XMLFactory {
+public abstract class SimXMLFactory {
     private String mySimType;
 
 
@@ -37,18 +37,24 @@ public abstract class SimXMLFactory extends XMLFactory {
     }
 
     /**
-     * Get the actual Simulation contained in this XML File.
+     * @return the SimModel object that details the actual Simulation contained in this XML File.
      */
     public abstract SimModel getSim (Element root) throws XMLFactoryException;
     
     /**
-     * @see XMLFactory#isValidFile()
+     * @return true if the SimType in the xml file matches mySimType in the factory object
      */
-    @Override
     protected boolean isValidFile (Element root) {
         return Objects.equals(getAttribute(root, "SimType"), getSimType());
     }
     
+    /**
+     * extract the general parameters from an xml document - SimName, SimAuthor, SimWidth, SimHeight
+     * 
+     * @param root node
+     * @return String[] containing general parameters
+     * @throws XMLFactoryException
+     */
     protected String[] getSimGenParams(Element root) throws XMLFactoryException {
     	NodeList genpList = root.getElementsByTagName("genparam");
     	
@@ -70,6 +76,99 @@ public abstract class SimXMLFactory extends XMLFactory {
     		return genParams;
     	}
     	return null;
+    }
+    
+    /**
+     * extract states from an xml document
+     * @param root node
+     * @return Array of GenStates containing the states required for the simulation
+     * @throws XMLFactoryException
+     */
+    protected GenState[] getSimGenStates(Element root) throws XMLFactoryException {
+    	NodeList nList = root.getElementsByTagName("state");
+    	GenState[] states = new GenState[nList.getLength()];
+    	double checkPercentages = 0;
+    	
+    	for (int temp = 0; temp < nList.getLength(); temp++) {
+    		Node nNode = nList.item(temp);
+    		if (nNode.getNodeType() == Node.ELEMENT_NODE) {
+    			Element eElement = (Element) nNode;
+    			valueCheck(eElement,temp);
+    			states[temp] = new GenState(getTextValue(eElement, "statename"), getTextValue(eElement, "statecolor"),
+    					getTextValue(eElement, "percentage"), eElement.getAttribute("id"));    			
+    			
+    			checkPercentages += Double.parseDouble(getTextValue(eElement, "percentage"));
+    		}
+    	}
+    	
+    	if (checkPercentages != 1) {
+    		throw new XMLFactoryException("State Percentages add up to %.2f, must add up to 1", checkPercentages);
+    	}
+    	
+    	return states;
+    }
+	
+	/**
+	 * Check to see if an extracted parameter is valid
+	 * 
+	 * @param param String - extracted parameter
+	 * @param type String - type of extracted parameter ("int" or "double")
+	 * @param description - description of extracted parameter (i.e. probCatch, satisfaction)
+	 * @param checkPos - 'true' if the value being checked needs to be positive
+	 * @throws XMLFactoryException
+	 */
+	protected void checkPositiveNumberParameter(String param, String type, String description, boolean checkPos) throws XMLFactoryException {
+		
+		if (param.equals("")) {
+			throw new XMLFactoryException("%s value was not found", description);
+		}
+		
+		int i = 0;
+		double d = 0;
+		
+		try {
+			if (type.equals("int")) {
+				i = Integer.parseInt(param);
+			} else if (type.equals("double")) {
+				type = type + " less than 1";
+				d = Double.parseDouble(param);
+			} else {
+				throw new XMLFactoryException("type \"%s\" not recognized for parameter check");
+			}
+		} catch (NumberFormatException e) {
+			throw new XMLFactoryException("%s value, \"%s\" is not valid. Must be a positive %s", description, param, type);
+		}
+		
+		if (checkPos) {
+			if (i<0 || d<0 || d>1) {
+				throw new XMLFactoryException("%s value, \"%s\" is not valid. Must be a positive %s", description, param, type);
+			}
+		}
+	}
+    
+    /**
+     * Get the value of an attribute.
+     */
+    protected String getAttribute (Element root, String attributeName) {
+        return root.getAttribute(attributeName);
+    }
+
+    /**
+     * Get the text value of a node.
+     * <p>
+     * Assumes you want the textValue of the first node with this tagName.
+     * </p>
+     * 
+     */
+    protected String getTextValue (Element root, String tagName) {
+        NodeList nodeList = root.getElementsByTagName(tagName);
+        if (nodeList != null && nodeList.getLength() > 0) {
+            return nodeList.item(0).getTextContent();
+        }
+        else {
+            // BUGBUG: return empty string or null, is it an error to not find the text value?
+            return "";
+        }
     }
     
     private void checkGenParams(String[] genParams) throws XMLFactoryException {
@@ -104,30 +203,6 @@ public abstract class SimXMLFactory extends XMLFactory {
     	}
     }
     
-    protected GenState[] getSimGenStates(Element root) throws XMLFactoryException {
-    	NodeList nList = root.getElementsByTagName("state");
-    	GenState[] states = new GenState[nList.getLength()];
-    	double checkPercentages = 0;
-    	
-    	for (int temp = 0; temp < nList.getLength(); temp++) {
-    		Node nNode = nList.item(temp);
-    		if (nNode.getNodeType() == Node.ELEMENT_NODE) {
-    			Element eElement = (Element) nNode;
-    			valueCheck(eElement,temp);
-    			states[temp] = new GenState(getTextValue(eElement, "statename"), getTextValue(eElement, "statecolor"),
-    					getTextValue(eElement, "percentage"), eElement.getAttribute("id"));    			
-    			
-    			checkPercentages += Double.parseDouble(getTextValue(eElement, "percentage"));
-    		}
-    	}
-    	
-    	if (checkPercentages != 1) {
-    		throw new XMLFactoryException("State Percentages add up to %.2f, must add up to 1", checkPercentages);
-    	}
-    	
-    	return states;
-    }
-    
 	@SuppressWarnings("unused")
 	private void valueCheck(Element e, int n) throws XMLFactoryException{
     	String name = getTextValue(e, "statename");
@@ -145,34 +220,6 @@ public abstract class SimXMLFactory extends XMLFactory {
     	}
     	
     	checkPositiveNumberParameter(percentage, "double", "Percentage", true);
-    	checkPositiveNumberParameter(id, "int", "State ID", false);
-    	
-	}
-	
-	protected void checkPositiveNumberParameter(String param, String type, String description, boolean checkPos) throws XMLFactoryException {
-		
-		if (param.equals("")) {
-			throw new XMLFactoryException("%s value was not found", description);
-		}
-		
-		int i = 0;
-		double d = 0;
-		
-		try {
-			if (type.equals("int")) {
-				i = Integer.parseInt(param);
-			} else if (type.equals("double")) {
-				type = type + " less than 1";
-				d = Double.parseDouble(param);
-			}
-		} catch (NumberFormatException e) {
-			throw new XMLFactoryException("%s value, \"%s\" is not valid. Must be a positive %s", description, param, type);
-		}
-		
-		if (checkPos) {
-			if (i<0 || d<0 || d>1) {
-				throw new XMLFactoryException("%s value, \"%s\" is not valid. Must be a positive %s", description, param, type);
-			}
-		}
+    	checkPositiveNumberParameter(id, "int", "State ID", false);	
 	}
 }

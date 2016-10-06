@@ -7,12 +7,20 @@ import xml.XMLParser;
 import xml.factory.*;
 
 /**
+ * Main Xml class -contains the most important method to the rest of the program, xmlRead
+ * 
  * @author Rhondu Smithwick
  * @author Robert Duvall
  * @author Ryan Anders
  */
 public class MainXML {
 
+	/**
+	 * Reads an xml file, returns a SimModel object containing parameters for the model described in the XMl file
+	 * 
+	 * @param file
+	 * @return SimModel object containing states/parameters
+	 */
     public SimModel xmlRead (File file) {
         XMLParser parser = new XMLParser();
         
@@ -53,7 +61,7 @@ public class MainXML {
         		e.printStackTrace();
         	}
         }
-        
+
 		return null;	
     }
     

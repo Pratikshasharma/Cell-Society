@@ -26,6 +26,6 @@ private void setTextSettings(){
  * Returns the Text Object 
  */
 public Text getMySimulationTitle(){
-    return this.myText;
+    return myText;
 }
 }

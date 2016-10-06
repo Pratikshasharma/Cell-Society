@@ -23,9 +23,9 @@ public class ButtonCreater {
 	 * @param property : tag to be read in Button.properties file
 	 */
 	public ButtonCreater(String property) {
-		this.myResources= ResourceBundle.getBundle(MainGUI.DEFAULT_RESOURCE_PACKAGE + File.separator + "Button");
+		myResources= ResourceBundle.getBundle(MainGUI.DEFAULT_RESOURCE_PACKAGE + File.separator + "Button");
 		String label = myResources.getString(property);
-		this.myButton = new Button(label);
+		myButton = new Button(label);
 	}
 
 	protected void setButtonSettings(double width, double height, double font_size){
@@ -39,6 +39,6 @@ public class ButtonCreater {
 	 * @return myButton: Button that is created 
 	 */
 	public Button getButton(){
-		return this.myButton;
+		return myButton;
 	}
 }
