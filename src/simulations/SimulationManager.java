@@ -8,6 +8,7 @@ import xml.model.SimModel;
 import gui.MainGUI;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.shape.Shape;
 
 /**
  * @author Pratiksha Sharma (ps179)
@@ -25,7 +26,7 @@ public class SimulationManager {
 
 	private int numCellsWidth;
 	private int numCellsHeight;
-	private Rectangle myRectangle;
+	private Shape myShape;
 
 	public final String SPREADING_FIRE = "Spreading of Fire";
 	public final String SEGREGATION = "Segregation";
@@ -141,8 +142,8 @@ public class SimulationManager {
 
 	private Cell createNewCell(GenState myGenState){
 		State myCellState = getCellState(myGenState);
-		myRectangle = new Rectangle(MainGUI.GRID_WIDTH/numCellsWidth,MainGUI.GRID_HEIGHT/numCellsHeight);
-		Cell myTempCell = new Cell(myRectangle,myCellState);
+		myShape = new Rectangle(MainGUI.GRID_WIDTH/numCellsWidth,MainGUI.GRID_HEIGHT/numCellsHeight);
+		Cell myTempCell = new Cell(myShape,myCellState);
 		return myTempCell;
 	}
 

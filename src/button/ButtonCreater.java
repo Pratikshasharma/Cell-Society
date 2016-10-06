@@ -14,7 +14,7 @@ import javafx.scene.text.FontWeight;
  * Assumption: Assumes Button.properties file exists
  */
 
-public abstract class ButtonCreater {
+public class ButtonCreater {
 	private ResourceBundle myResources;  
 	protected Button myButton;
 

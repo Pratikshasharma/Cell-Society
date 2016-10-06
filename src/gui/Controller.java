@@ -68,7 +68,7 @@ public class Controller {
 		updateGridAndGraph(true);
 		stopSimulation();
 	}
-
+	
 	private void chooseSimulationFile() {
 		readFile(myFileChooser.chooseFile());
 		createGUIObject();

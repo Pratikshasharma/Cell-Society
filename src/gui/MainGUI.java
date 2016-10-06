@@ -73,7 +73,7 @@ public class MainGUI {
 		myVBox.setPadding(new Insets(10));
 		myGrid = new Grid(numberOfColumns,numberOfRows );
 		this.myStatePopulationMap = myGrid.createGrid(myGridColor, myStateColorMap);
-		myPopulationGraph.createLineChart(myStatePopulationMap);
+		myPopulationGraph.drawGraph(myStatePopulationMap);
 		tempHBox.getChildren().addAll(myGrid.getGrid(),myPopulationGraph.getMyStatePopulationChart());
 		myVBox.getChildren().addAll(addSimulationTitle(),tempHBox);
 		addButtons();
@@ -151,7 +151,7 @@ public class MainGUI {
 	 * Called in from the Controller
 	 */
 	public void updatePopulationGraph(boolean resetLineGraph){
-		myPopulationGraph.drawLineGraph(myStatePopulationMap,resetLineGraph);
+		myPopulationGraph.addPointsOnGraph(myStatePopulationMap,resetLineGraph);
 	}
 
 	/**
