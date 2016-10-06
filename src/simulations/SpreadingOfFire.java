@@ -2,6 +2,9 @@ package simulations;
 import cellpackage.Cell;
 import cellpackage.State;
 
+//This entire file is part of my masterpiece.
+//Blake Becerra
+
 public class SpreadingOfFire extends SimulationSuperClass{
 
 	private double myProbCatch;
