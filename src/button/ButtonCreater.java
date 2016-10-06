@@ -6,9 +6,17 @@ import javafx.scene.control.Button;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 
+//This entire file is part of my masterpiece.
+//Pratiksha Sharma
+
 /**
+ * This is a Super class that creates buttons based on the String property passed in.
+ * This implements inheritance principles learnt in the class. 
+ * I have also used the Button.properties file to create the Labels for the buttons
+ * I should have used CSS file to style the buttons instead of hard coding the styles.
+ * 
  * @author pratiksha sharma
- * Creates Button on the GUI
+ * Creates Buttons on the GUI
  * Dependencies: Button.properties file , Controller, MainGUI.java 
  * Assumption: Assumes Button.properties file exists
  */

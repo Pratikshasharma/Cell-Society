@@ -1,8 +1,14 @@
 package button;
 
 import gui.Controller;
+//This entire file is part of my masterpiece.
+//Pratiksha Sharma
 
-/** Creates Exit Button 
+/** This class creates exitButton. This shows the implementation of ButtonCreater Super class.
+ * I also call in the setButtonSettings() method from this constructor 
+ * so that I don't have to create another method inside the class and call that method from the MainGUI.
+ *
+ * Creates Exit Button 
  * @author pratiksha sharma
  * Assumption: Assumes ButtonClass has setButonSettings() method
  * Dependencies: ButtonClass (Super Class)
