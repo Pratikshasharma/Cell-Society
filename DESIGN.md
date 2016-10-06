@@ -2,7 +2,7 @@
 ## Introduction
 
 
-The problem our team is trying to solve is to simulate a 2-D array of cells based on the rules and the state of its neighbouring cells. The design is flexible in extending it to other simulations, because we plan on implementing inheritance principles. Therefore new “rules” can be a new subclass and implementation can be added to the superclass. The 2-D array created will be open to the GUI class managers for access, but closed for modifications. The Cells information will be closed to the other classes and must be accessed through getters and setters. All information about rather the program should step or run all the way through will be open to the superclass. The major design goals of this project is to make everything modular, so that the program is extendable. 
+The problem our team is trying to solve is to simulate a 2-D array of cells based on the rules and the state of its neighboring cells. The design is flexible in extending it to other simulations, because we plan on implementing inheritance principles. Therefore new “rules” can be a new subclass and implementation can be added to the superclass. The 2-D array created will be open to the GUI class managers for access, but closed for modifications. The Cells information will be closed to the other classes and must be accessed through getters and setters. All information about rather the program should step or run all the way through will be open to the superclass. The major design goal of this project is to make everything modular, so that the program is extendible. 
 
 ## Overview
 ![enter image description here](https://lh3.googleusercontent.com/-V5AeZrmxYiM/V94C6QXKcJI/AAAAAAAACLY/O_RFMtN8uYYLU6jCCkDLNGEGy4J2mcrSACLcB/s0/designpic.jpg "designpic.jpg")

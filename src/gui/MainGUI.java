@@ -1,6 +1,6 @@
 package gui;
+import java.util.List;
 import java.util.Map;
-
 import button.Reset;
 import button.Start;
 import button.Step;
@@ -12,12 +12,13 @@ import javafx.scene.control.Slider;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Paint;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
+
 
 /**
  * @author pratiksha sharma
+ * Purpose: Template for Creating all the nodes in the Scene and Updating Shape Color and  
+ * Dependencies: Start, Stop, Step, Reset, PopulationGraph, Grid, SimulationSpeedSlider
  *
  */
 
@@ -33,15 +34,24 @@ public class MainGUI {
 	private Reset myResetButton;
 	private HBox myHBox;
 	private String mySimulationName;
-	private int numCellsWidth;
-	private int numCellsHeight;
+	private int numberOfColumns;
+	private int numberOfRows;
 	private Grid myGrid;
 	private PopulationGraph myPopulationGraph;
 	private Map<String, Paint> myStateColorMap;
 	private Map<String,Integer>myStatePopulationMap;
 	private SimulationSpeedSlider mySpeedSlider;
 
-	public MainGUI() {
+	/**
+	 * constructor
+	 * @param myParameterList : List that contains number of Rows, number Of columns and Simulation Name passed in 
+	 * from the Controller
+	 */
+	public MainGUI(List<String> myParameterList) {
+		this.mySimulationName = myParameterList.get(0);
+		this.numberOfRows = Integer.parseInt(myParameterList.get(1));
+		this.numberOfColumns = Integer.parseInt(myParameterList.get(2));
+		
 		this.myStartSimulationButton = new Start();
 		this.myStepSimulationButton = new Step();
 		this.myStopSimulationButton = new Stop();
@@ -49,19 +59,21 @@ public class MainGUI {
 		myPopulationGraph = new PopulationGraph();
 	}
 
+	/**
+	 * 
+	 * @param myGridColor : Paint Array of the Cells[][]
+	 * @param myStateColorMap
+	 * @return Group : Returns the main root of the Scene for Simulation
+	 */
 	public Group setScene(Paint[][] myGridColor, Map<String,Paint> myStateColorMap) {
 		this.myStateColorMap = myStateColorMap;
 		Group root = new Group();
-		myVBox = new VBox(20);
+		myVBox = new VBox(30);
 		HBox tempHBox = new HBox(20);
 		myVBox.setPadding(new Insets(10));
-		
-		myGrid = new Grid(this.numCellsWidth, this.numCellsHeight);
-		
+		myGrid = new Grid(numberOfColumns,numberOfRows );
 		this.myStatePopulationMap = myGrid.createGrid(myGridColor, myStateColorMap);
-		
-		myPopulationGraph.createLineChart(myStatePopulationMap,numCellsWidth);
-		
+		myPopulationGraph.drawGraph(myStatePopulationMap);
 		tempHBox.getChildren().addAll(myGrid.getGrid(),myPopulationGraph.getMyStatePopulationChart());
 		myVBox.getChildren().addAll(addSimulationTitle(),tempHBox);
 		addButtons();
@@ -73,9 +85,8 @@ public class MainGUI {
 	}
 
 	private Text addSimulationTitle() {
-		Text title = new Text(mySimulationName);
-		title.setFont(Font.font("Comic Sans", FontWeight.BOLD, 15));
-		return title;
+		SimulationTitle title = new SimulationTitle(mySimulationName);
+		return title.getMySimulationTitle();
 	}
 
 	private void addButtons() {
@@ -85,6 +96,9 @@ public class MainGUI {
 	}
 
 
+	/**
+	 * @return Reset Button
+	 */
 	public Button getResetButton() {
 		return this.myResetButton.getButton() ;
 	}
@@ -105,26 +119,21 @@ public class MainGUI {
 		return mySpeedSlider.mySlider;
 	}
 
-	public void setNumCellsWidth(int numCells) {
-		this.numCellsWidth = numCells;
-	}
-
-	public void setNumCellsHeight(int numCells) {
-		this.numCellsHeight = numCells;
-	}
-
-	public void setSimulationName(String simulationName) {
-		this.mySimulationName = simulationName;
-	}
-
-	public Grid getGrid() {
-		return this.myGrid;
-	}
-
+	/**
+	 * Called in from the Controller to change color of a Shape in the Grid 
+	 * @param row 
+	 * @param col
+	 * @param color
+	 */
 	public void updateGridColor(int row, int col, Paint color) {
 		myGrid.changeMyGridColor(row, col, color);
 	}
 
+	/**
+	 * updates Population count of the State based on the color provided
+	 * Called in from the Controller
+	 * @param color
+	 */
 	public void updatePopulationCount(Paint color){
 		Integer populationCounter;
 		for(String key: myStatePopulationMap.keySet()){
@@ -136,10 +145,19 @@ public class MainGUI {
 		}
 	}
 
+	/**
+	 * Updates Population Graph in the Scene
+	 * @param resetLineGraph
+	 * Called in from the Controller
+	 */
 	public void updatePopulationGraph(boolean resetLineGraph){
-		myPopulationGraph.drawLineGraph(myStatePopulationMap,resetLineGraph);
+		myPopulationGraph.addPointsOnGraph(myStatePopulationMap,resetLineGraph);
 	}
 
+	/**
+	 * Resets Population Graph in the Scene
+	 * Called in from the Controller
+	 */
 	public void resetStatePopulationMap(){
 		for(String key: myStatePopulationMap.keySet()){
 			myStatePopulationMap.put(key, 0);

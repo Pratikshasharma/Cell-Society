@@ -7,7 +7,8 @@ import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
-/**
+/** Purpose: Creates a root for the Initial Splash Screen to be put in the Scene
+ * Dependencies: Exit, OpenFile Classes
  * @author pratiksha sharma
  *
  */
@@ -25,19 +26,28 @@ public class StartScreen {
 		myOpenFileButton = new OpenFile();
 		myExitButton = new Exit();
 	}
+	
+	/**
+	 * Adds nodes to the main root of the Scene
+	 * @return root: Main root for the Scene in Splash Screen
+	 */
 
 	public Group createRoot() {
 		Group root = new Group();
 		myExitButton.getButton().setOnAction(e-> exitSimulation());
 		ImageView myStartImage = new ImageView(new Image(getClass().getClassLoader().getResourceAsStream(CELL_IMAGE)));
-		myStartImage.setFitWidth(GUIController.SCENE_WIDTH);
-		myStartImage.setFitHeight(GUIController.SCENE_WIDTH);
+		myStartImage.setFitWidth(Controller.SCENE_WIDTH);
+		myStartImage.setFitHeight(Controller.SCENE_WIDTH);
 		root.getChildren().add(myStartImage);
 		root.getChildren().add(myOpenFileButton.getButton());
 		root.getChildren().add(myExitButton.getButton());
 		return root;
 	}
 
+	/**
+	 * 
+	 * @return OpenFile Button
+	 */
 	public Button getOpenFileButton() {
 		return myOpenFileButton.getButton();
 	}

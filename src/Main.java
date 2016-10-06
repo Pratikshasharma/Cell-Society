@@ -1,24 +1,24 @@
 
-
-import gui.GUIController;
+import gui.Controller;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class Main extends Application{
-	private GUIController myGUIController;
+/**
+ * @author pratiksha sharma (ps179)
+ * Main program- sets up the Stage to create animated scene
+ * Dependencies: GUIController Class
+ * Assumption: Assumes there is getTitle() and init() function inside GUIController class
+ */
 
-	/**
-	 * Constructor
-	 */
-	public Main(){
-		myGUIController = new GUIController();
-	}
+public class Main extends Application{
+	private Controller myController;
 
 	@Override
 	public void start(Stage myStage) throws Exception{
-		myStage.setTitle(myGUIController.getTitle());
-		Scene scene = myGUIController.init();
+		myController = new Controller();
+		myStage.setTitle(myController.getTitle());
+		Scene scene = myController.init();
 		myStage.setScene(scene);
 		myStage.show();
 	}
@@ -29,5 +29,4 @@ public class Main extends Application{
 	public static void main (String[] args) {
 		launch(args);
 	}
-
 }
