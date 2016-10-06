@@ -41,6 +41,7 @@ public class MainGUI {
 	private Map<String, Paint> myStateColorMap;
 	private Map<String,Integer>myStatePopulationMap;
 	private SimulationSpeedSlider mySpeedSlider;
+	
 
 	/**
 	 * constructor
@@ -50,8 +51,7 @@ public class MainGUI {
 	public MainGUI(List<String> myParameterList) {
 		mySimulationName = myParameterList.get(0);
 		myNumberOfRows = Integer.parseInt(myParameterList.get(1));
-		myNumberOfColumns = Integer.parseInt(myParameterList.get(2));
-		
+		myNumberOfColumns = Integer.parseInt(myParameterList.get(2));          
 		myStartSimulationButton = new Start();
 		myStepSimulationButton = new Step();
 		myStopSimulationButton = new Stop();
@@ -71,9 +71,16 @@ public class MainGUI {
 		myVBox = new VBox(30);
 		HBox tempHBox = new HBox(20);
 		myVBox.setPadding(new Insets(10));
+
 		myGrid = new Grid(myNumberOfColumns,myNumberOfRows );
+		this.myStatePopulationMap = myGrid.createGrid(myGridColor, myStateColorMap);
+		
+		myPopulationGraph.drawGraph(myStatePopulationMap);
+		myGrid = new Grid(myNumberOfColumns,myNumberOfRows );
+		
 		myStatePopulationMap = myGrid.createGrid(myGridColor, myStateColorMap);
-		myPopulationGraph.createLineChart(myStatePopulationMap);
+		myPopulationGraph.drawGraph(myStatePopulationMap);
+
 		tempHBox.getChildren().addAll(myGrid.getGrid(),myPopulationGraph.getMyStatePopulationChart());
 		myVBox.getChildren().addAll(addSimulationTitle(),tempHBox);
 		addButtons();
@@ -151,7 +158,7 @@ public class MainGUI {
 	 * Called in from the Controller
 	 */
 	public void updatePopulationGraph(boolean resetLineGraph){
-		myPopulationGraph.drawLineGraph(myStatePopulationMap,resetLineGraph);
+		myPopulationGraph.addPointsOnGraph(myStatePopulationMap,resetLineGraph);
 	}
 
 	/**
