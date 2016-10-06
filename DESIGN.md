@@ -1,8 +1,12 @@
 ###Provide the high-level design goals of your project
 
 
+<<<<<<< HEAD
+The problem our team is trying to solve is to simulate a 2-D array of cells based on the rules and the state of its neighboring cells. The design is flexible in extending it to other simulations, because we plan on implementing inheritance principles. Therefore new “rules” can be a new subclass and implementation can be added to the superclass. The 2-D array created will be open to the GUI class managers for access, but closed for modifications. The Cells information will be closed to the other classes and must be accessed through getters and setters. All information about rather the program should step or run all the way through will be open to the superclass. The major design goal of this project is to make everything modular, so that the program is extendible. 
+=======
 ####Front End
 There is a Controller.java and MainGUI.java that are running the front end and simulation displays. Controller.java is called by Main.java and displays the first screen along with its associated buttons. As buttons are clicked and the simulation starts to run Controller.java will call MainGUI.java to associate the buttons with their respective functions in the GUI. MainGUI.java will call all the other classes within the guipackage to initialize the grid, graph, and set up the sliders and various buttons associtated with the display once an XML file is selected. Once the simulation is displayed and the buttons are displayed and associated with their respective functions. Controller.java will communicate with the Back End, more specifically SimilationManager.java, to controll and run the simulation logic. 
+>>>>>>> e07e1ed314d507e26c45e2e154dfa6220d77f308
 
 ####Back End
 Once the file is selected in GUI, the Controller sends it to MainXML for reading. The Controller calls in SimulationManager to get the right type of Simulation. A 2D array of Cells, myGrid, is initialized and an instance of the specific simulation is created. A copy of the color of each Cell object in myGrid[][] is then passed to the front end in the form of a 2 D array of Paint[][]. When Step/Start is pressed, Controller calls in SimulationManager to call update the Grid in the back end. The 2 D array representing updated array is then passed onto the front.
